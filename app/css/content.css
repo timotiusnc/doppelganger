@@ -1,0 +1,10 @@
+#content{
+	margin: 50px 0px 0px 0px;
+}
+
+textarea{
+    width: 100%;
+	/*background-image: url(custom-theme/images/bg1.jpg);*/
+    margin: 0px;
+    background-color: #F5F5F5;
+}

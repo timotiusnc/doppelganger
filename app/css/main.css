@@ -1,0 +1,15 @@
+html, body{
+    /*background-image: url('custom-theme/images/background.png');*/
+}
+
+#container{   
+	width: 97%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer{
+	clear: both;
+	text-align: center;
+	font-size: 12px;
+}
