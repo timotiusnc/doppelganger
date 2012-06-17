@@ -1,8 +1,13 @@
+/*
+ * Declare app level module which depends on filters, and services
+ * 
+ */
+
 'use strict';
 
-
-// Declare app level module which depends on filters, and services
+//App level directives, so that you can separate different directives in different files
 angular.module('codeEdit.directives', []);
+
 angular.module('codeEdit', ['codeEdit.filters', 'codeEdit.services', 'codeEdit.directives']).
     config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/view1', {template: 'partials/partial1.html', controller: MyCtrl1});
@@ -10,7 +15,7 @@ angular.module('codeEdit', ['codeEdit.filters', 'codeEdit.services', 'codeEdit.d
         $routeProvider.otherwise({redirectTo: '/view1'});
     }]).
     run(function($rootScope){
-        $rootScope.header_footer = $('.navbar').height() + $('footer').height() + 40 + 55; //10 for footer padding + 30 for jQuery tabs header
+        $rootScope.header_footer = $('.navbar').height() + $('footer').height() + 40 + 55; //10 for footer padding + 30 for jQuery tabs header + 55 for tab height
 
         /**Wrapper for angular.isArray, isObject, etc checks for use in the view
          * @param type {string} the name of the check (casing sensitive)

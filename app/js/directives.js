@@ -35,7 +35,7 @@ angular.module('codeEdit.directives').
     directive('tabbedPane',function() {
         return {
             replace: true,
-            templateUrl: 'partials/tabbed_pane.html',
+            templateUrl: 'partials/templates/tabbed_pane.html',
             link: function(scope, element, attrs){
                 element.tabs();
             }

@@ -11,12 +11,12 @@
         <link rel="stylesheet" type="text/css" href="lib/jquery/css/smoothness/jquery-ui-1.8.16.custom.css">
         <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap-responsive.css">
-        <link rel="stylesheet" type="text/css" href="css/jquery-linedtextarea/jquery-linedtextarea.css"/>
+        <link rel="stylesheet" type="text/css" href="lib/codemirror/lib/codemirror.css">
         <link rel="stylesheet" type="text/css" href="css/main.css"/>
 		<link rel="stylesheet" type="text/css" href="css/content.css"/>
     </head>
     <body>
-        <div class="navbar navbar-fixed-top">
+        <div class="navbar navbar-fixed-top" id="asu">
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -46,7 +46,7 @@
             <div id="content">
                 <div ng-view></div>
             </div>
-            
+
             <footer>
                 <hr style="margin:5px"/>
                 CodeEdit v<span app-version="kampret"></span><br/>
@@ -59,16 +59,31 @@
         <script type="text/javascript" src="lib/jquery/js/jquery-ui-1.8.21.custom.min.js"></script>
 
         <!-- angular -->
-        <script src="lib/angular/angular.js" type="text/javascript"></script>
-        <script src="lib/angular/angular-resource.js" type="text/javascript"></script>
-        <script src="js/app.js" type="text/javascript"></script>
-        <script src="js/services.js" type="text/javascript"></script>
-        <script src="js/controllers.js" type="text/javascript"></script>
-        <script src="js/filters.js" type="text/javascript"></script>
-        <script src="js/directives.js" type="text/javascript"></script>
-        <script src="js/textarea.js" type="text/javascript"></script>
+        <script type="text/javascript" src="lib/angular/angular.js"></script>
+        <script type="text/javascript" src="lib/angular/angular-resource.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/services.js"></script>
+        <script type="text/javascript" src="js/controllers.js"></script>
+        <script type="text/javascript" src="js/filters.js"></script>
+        <script type="text/javascript" src="js/directives.js"></script>
+
+        <!-- controllers -->
+        <script type="text/javascript" src="modules/controllers/KeyDownCtrl.js"></script>
+
+        <!-- directives -->
+        <script type="text/javascript" src="modules/directives/textarea.js"></script>
+        <script type="text/javascript" src="modules/directives/keypress.js"></script>
 
 		<!--Bootstrap-->
         <script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
+
+        <!--Code Mirror -->
+        <script type="text/javascript" src="lib/codemirror/lib/codemirror.js"></script>
+        <script type="text/javascript" src="lib/codemirror/mode/clike/clike.js"></script>
+
+        <!-- JSZip -->
+        <script type="text/javascript" src="lib/jszip/jszip.js"></script>
+
+        <script type="text/javascript" src="js/script.js"></script>
     </body>
 </html>
