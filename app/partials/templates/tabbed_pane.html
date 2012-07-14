@@ -1,9 +1,15 @@
-<div id="myTab">
-    <ul>
-        <li><a href="#code1">Untitled1.txt</a></li>
-        <li><a href="#code2">Untitled2.txt</a></li>
+<div class="tabbable" id="myTab">
+    <ul class="nav nav-tabs">
+        <li ng-repeat="item in items()" ng-class="{active:itemSelected(item)}">
+            <a ng-click="selectItem(item)">{{itemTitle(item)}}</a>
+        </li>
     </ul>
 
-    <div id="code1"><div code-edit-text-area></div></div>
-    <div id="code2"><div code-edit-text-area></div></div>
+    <div class="tab-content">
+        <div ng-repeat="item in items()">
+            <div class="tab-pane" ng-class="{active:itemSelected(item), hidden: !itemSelected(item)}">
+                <div code-edit-text-area></div>
+            </div>
+        </div>
+    </div>
 </div>

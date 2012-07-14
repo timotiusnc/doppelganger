@@ -26,7 +26,6 @@ function KeyDownCtrl($scope, element){
         } else if (keyEvent.keyCode == 8){
             $scope.backSpaceCtr++;
             $scope.$apply(); //Apply the change to force 2-way data-binding to work
-            //$scope.log(element.val());
         } else {
             //$scope.log(keyEvent.keyCode);
         }

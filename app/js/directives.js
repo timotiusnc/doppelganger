@@ -31,13 +31,4 @@ angular.module('codeEdit.directives').
                 toggle();
             }
         }
-    }).
-    directive('tabbedPane',function() {
-        return {
-            replace: true,
-            templateUrl: 'partials/templates/tabbed_pane.html',
-            link: function(scope, element, attrs){
-                element.tabs();
-            }
-        }
     });

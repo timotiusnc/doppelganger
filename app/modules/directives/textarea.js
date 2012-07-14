@@ -7,7 +7,7 @@
 'use strict';
 
 angular.module('codeEdit.directives').
-    directive('codeEditTextArea', function(){
+    directive('codeEditTextArea', ['header_footer', function(header_footer){
         return {
             replace: true,
             templateUrl: 'partials/templates/textarea.html',
@@ -15,28 +15,29 @@ angular.module('codeEdit.directives').
             scope: true,
             controller: KeyDownCtrl,
             link: function(scope, element, attrs){
+                console.log('editor-'+KeyDownCtrl.INSTANCE_CTR);
                 var textarea = element.children('.editor-text-area');
                 textarea.attr('id', 'editor-'+KeyDownCtrl.INSTANCE_CTR);
 
-                var editor = CodeMirror.fromTextArea(document.getElementById('editor-' + scope.id), {
+                /*var editor = CodeMirror.fromTextArea(document.getElementById('editor-' + scope.id), {
                     lineNumbers: true,
                     matchBrackets: true,
                     mode: "text/x-csrc",
                     onKeyEvent: scope.processKeyPress
                 });
 
-                scope.log('editor ' + editor.getTextArea());
-                /*var new_textarea = $(editor.);
-                new_textarea.css('height', ($(window).height() - scope.header_footer)+'px');
-                $(window).resize(function() { //Bind and event (window resized)
-                    var contentHeight = $(window).height() - scope.header_footer;
-                    new_textarea.css('height', contentHeight+'px');
-                    scope.log(new_textarea.css('height'));
-                });*/
+                scope.log('editor ' + editor.getTextArea());*/
 
-                /*textarea.bind('keydown', function(event){
+                //textarea.css('width', ($(window).width() + 'px'));
+                textarea.css('height', ($(window).height() - header_footer)+'px');
+                $(window).resize(function() { //Bind and event (window resized)
+                    var contentHeight = $(window).height() - header_footer;
+                    textarea.css('height', contentHeight+'px');
+                });
+
+                textarea.bind('keydown', function(event){
                     scope.processKeyPress(textarea, event);
-                });*/
+                });
             }
         }
-    });
+    }]);

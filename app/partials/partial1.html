@@ -4,5 +4,8 @@ Text: <textarea ng-model="text"></textarea>
 <hr/>
 <div class="zippy" zippy-title="Details: {{title}}...">{{text}}</div>-->
 
-<div tabbed-pane></div>
+<div tabbed-pane
+     items="tabs"
+     item-title-attr="tabTitle">
+</div>
 <!--<div ui-keypress></div>-->

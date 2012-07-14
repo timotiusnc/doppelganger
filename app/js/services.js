@@ -2,18 +2,9 @@
 
 /* Services */
 
-// Demonstrate how to register services
-// In this case it is a simple value service.
-angular.module('codeEdit.services', ['ngResource']).
+angular.module('codeEdit.services').
     value('version', '0.1').
-    factory('LZ', function($resource){
-        return $resource('http://167.205.32.27/lz/services/grading/compile',
-            {clientid: '100', clienttoken: '100', GradeRequest:'@grade_request'},
-            {
-                'compile': {method: 'POST'}
-            }
-        );
-    });
+    value('header_footer', $('.navbar').height() + $('footer').height() + 40 + 56); //10 for footer padding + 30 for jQuery tabs header + 54 for tab height
 
-    //http://180.246.3.122:port/tes.php
-    //http://167.205.32.27/lz/services/grading/compile
+//http://180.246.3.122:port/tes.php
+//http://167.205.32.27/lz/services/grading/compile
