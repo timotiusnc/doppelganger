@@ -35,8 +35,8 @@ angular.module('codeEdit.directives').
                 return item[opts.itemTitleAttr];
             }
 
-            $scope.$on('handleBroadcast', function(){ //When a new tab added, set selected tab to the newest one
-                if(sharedService.message == "newTabAdded"){
+            $scope.$on(sharedService.HANDLE_BROADCAST, function(){ //When a new tab added, set selected tab to the newest one
+                if(sharedService.message == sharedService.NEW_TAB_ADDED){
                     var i = 1;
                     angular.forEach($scope.items(), function(item) {
                         if(i < $scope.items().length){

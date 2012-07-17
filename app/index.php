@@ -10,10 +10,10 @@
         <!-- styles -->
         <!--<link rel="stylesheet" type="text/css" href="lib/jquery/css/smoothness/jquery-ui-1.8.16.custom.css">-->
         <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap-responsive.css">
-        <link rel="stylesheet" type="text/css" href="lib/codemirror/lib/codemirror.css">
         <link rel="stylesheet" type="text/css" href="css/main.css"/>
 		<link rel="stylesheet" type="text/css" href="css/content.css"/>
+        <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap-responsive.css">
+        <link rel="stylesheet" type="text/css" href="lib/codemirror/lib/codemirror.css">
     </head>
     <body ng-controller="GlobalCtrl" ng-init="modalShown = false">
         <div class="navbar navbar-fixed-top">
@@ -48,9 +48,8 @@
             </div>
 
             <footer>
-                <hr style="margin:5px"/>
-                CodeEdit v<span app-version="kampret"></span><br/>
-                Timotius Nugroho Chandra - Institut Teknologi Bandung &copy; 2012
+                <div code-edit-footer></div>
+                <span id="footer_text">&copy; 2012 CodeEdit Team</span>
             </footer>
         </div>
 
@@ -75,12 +74,14 @@
         <script type="text/javascript" src="modules/controllers/KeyDownCtrl.js"></script>
         <script type="text/javascript" src="modules/controllers/CompileCtrl.js"></script>
         <script type="text/javascript" src="modules/controllers/SendFileCtrl.js"></script>
+        <script type="text/javascript" src="modules/controllers/FooterCtrl.js"></script>
 
         <!-- services -->
-        <script type="text/javascript" src="modules/services/lxConnector.js"></script>
         <script type="text/javascript" src="modules/services/sharedService.js"></script>
+        <script type="text/javascript" src="modules/services/lxConnector.js"></script>
 
         <!-- directives -->
+        <script type="text/javascript" src="modules/directives/footer.js"></script>
         <script type="text/javascript" src="modules/directives/tabbedpane.js"></script>
         <script type="text/javascript" src="modules/directives/textarea.js"></script>
         <script type="text/javascript" src="modules/directives/keypress.js"></script>

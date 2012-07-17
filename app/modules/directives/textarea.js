@@ -35,6 +35,11 @@ angular.module('codeEdit.directives').
                     textarea.css('height', contentHeight+'px');
                 });
 
+                textarea.css('width', ($(window).width() - 40)+'px');
+                $(window).resize(function() { //Bind and event (window resized)
+                    textarea.css('width', ($(window).width() - 40)+'px');
+                });
+
                 textarea.bind('keydown', function(event){
                     scope.processKeyPress(textarea, event);
                 });

@@ -15,7 +15,23 @@ angular.module('codeEdit', ['codeEdit.filters', 'codeEdit.services', 'codeEdit.d
         $routeProvider.when('/view2', {template: 'partials/partial2.html', controller: MyCtrl2});
         $routeProvider.otherwise({redirectTo: '/view1'});
     }]).
-    run(function($rootScope){
+    run(function($rootScope){ //App initialization
+        //When resized, top navbar will be added 18px margin at the bottom, so content margin-top needs to be resized
+        $(window).resize(function() {
+            var navbar_mb = $(".navbar").css("margin-bottom");
+            if(navbar_mb == "18px"){
+                $("#content").css('margin-top', '0px');
+            }else{
+                $("#content").css('margin-top', '50px');
+            }
+        });
+
+        //footer textarea responsiveness
+        $(".footer_textarea").css('width', ($(window).width() - 40)+'px');
+        $(window).resize(function() { //Bind and event (window resized)
+            $(".footer_textarea").css('width', ($(window).width() - 40)+'px');
+        });
+
         /**Wrapper for angular.isArray, isObject, etc checks for use in the view
          * @param type {string} the name of the check (casing sensitive)
          * @param value {string} value to check

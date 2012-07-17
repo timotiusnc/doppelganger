@@ -1,0 +1,15 @@
+<div id="footer_tab">
+    <ul class="nav nav-tabs">
+        <li><a href="#result" data-toggle="tab">Result</a></li>
+        <li><a href="#input" data-toggle="tab">Input</a></li>
+        <li><a href="#output" data-toggle="tab">Output</a></li>
+        <li><a href="#error" data-toggle="tab">Errors</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane" id="result"><textarea id="result_txt" class="footer_textarea">{{result | json}}</textarea></div>
+        <div class="tab-pane" id="input"><textarea id="input_txt" class="footer_textarea"></textarea></div>
+        <div class="tab-pane" id="output"><textarea id="output_txt" class="footer_textarea">{{output}}</textarea></div>
+        <div class="tab-pane" id="error"><textarea id="error_txt" class="footer_textarea">{{error}}</textarea></div>
+    </div>
+</div>

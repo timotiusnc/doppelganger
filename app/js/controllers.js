@@ -16,7 +16,7 @@ function GlobalCtrl($scope, sharedService){
     }
 
     $scope.addNewTabBtnClick = function(){
-        sharedService.prepForBroadcast('newTabBtnClicked', null);
+        sharedService.prepForBroadcast(sharedService.NEW_TAB_BTN_CLICKED, null);
     }
 }
 GlobalCtrl.$inject = ['$scope', 'sharedService'];
@@ -29,14 +29,14 @@ function MyCtrl1($scope, sharedService) {
             tabTitle: (title == "") ? ('untitled-' + ($scope.tabs.length)) : title,
             selected: selected
         });
-        sharedService.prepForBroadcast('newTabAdded', null);
+        sharedService.prepForBroadcast(sharedService.NEW_TAB_ADDED, null);
     }
 
-    $scope.$on('handleBroadcast', function(){
-        if(sharedService.message == "newTabBtnClicked"){
+    $scope.$on(sharedService.HANDLE_BROADCAST, function(){
+        if(sharedService.message == sharedService.NEW_TAB_BTN_CLICKED){
             $scope.addNewTab('');
-        }else if(sharedService.message == "requestFiles"){
-            sharedService.prepForBroadcast('requestFilesResponse', $scope.tabs);
+        }else if(sharedService.message == sharedService.REQUEST_FILES){
+            sharedService.prepForBroadcast(sharedService.REQUEST_FILES_RESPONSE, $scope.tabs);
         }
     });
 

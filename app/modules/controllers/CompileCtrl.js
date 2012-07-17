@@ -9,15 +9,12 @@ function CompileCtrl($scope, lxConnector, sharedService){
 
     //When a modal shown, get current files
     $('#compileModal').on('show', function () {
-        sharedService.prepForBroadcast('requestFiles', null);
+        sharedService.prepForBroadcast(sharedService.REQUEST_FILES, null);
     });
 
-    $scope.$on('handleBroadcast', function(){
-        if(sharedService.message == "requestFilesResponse"){
-            //console.log('msg = ' + sharedService.message);
-            //console.log('param = ' + sharedService.param[0].tabTitle);
+    $scope.$on(sharedService.HANDLE_BROADCAST, function(){
+        if(sharedService.message == sharedService.REQUEST_FILES_RESPONSE){
             $scope.fileNames = sharedService.param;
-            console.log('name = ' + $scope.fileNames[0].tabTitle);
         }
     });
 
@@ -25,10 +22,11 @@ function CompileCtrl($scope, lxConnector, sharedService){
         console.log('submit compilation request = ' + KeyDownCtrl.INSTANCE_CTR);
         $("#compileModal").modal('hide');
 
-        for(i=1; i<=KeyDownCtrl.INSTANCE_CTR; ++i){
-            console.log('val = ' + $("#editor-" + i).val());
+        for(i=1; i<=KeyDownCtrl.INSTANCE_CTR; ++i){ //Get file contents());
             $scope.files[i-1] = $("#editor-" + i).val();
         }
+        
+        //console.log('input = ' + $("#input_txt").val());
         lxConnector.submit($scope.fileNames, $scope.files);
     }
 }
