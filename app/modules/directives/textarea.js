@@ -7,7 +7,7 @@
 'use strict';
 
 angular.module('codeEdit.directives').
-    directive('codeEditTextArea', ['header_footer', function(header_footer){
+    directive('codeEditTextArea', function(defaultHeight){
         return {
             replace: true,
             templateUrl: 'partials/templates/textarea.html',
@@ -19,19 +19,31 @@ angular.module('codeEdit.directives').
                 var textarea = element.children('.editor-text-area');
                 textarea.attr('id', 'editor-'+KeyDownCtrl.INSTANCE_CTR);
 
-                /*var editor = CodeMirror.fromTextArea(document.getElementById('editor-' + scope.id), {
+                var editor = CodeMirror.fromTextArea(document.getElementById('editor-' + scope.id), {
                     lineNumbers: true,
                     matchBrackets: true,
                     mode: "text/x-csrc",
                     onKeyEvent: scope.processKeyPress
                 });
 
-                scope.log('editor ' + editor.getTextArea());*/
+                //console.log(editor.getTextArea());
 
-                //textarea.css('width', ($(window).width() + 'px'));
-                textarea.css('height', ($(window).height() - header_footer)+'px');
+                var cm_textarea = $('.CodeMirror-scroll');
+
+                cm_textarea.css('height', ($(window).height() - defaultHeight.getOccupiedHeight())+'px');
                 $(window).resize(function() { //Bind and event (window resized)
-                    var contentHeight = $(window).height() - header_footer;
+                    var contentHeight = $(window).height() - defaultHeight.getOccupiedHeight();
+                    cm_textarea.css('height', contentHeight+'px');
+                });
+
+                cm_textarea.css('width', ($(window).width() - 40)+'px');
+                $(window).resize(function() { //Bind and event (window resized)
+                    cm_textarea.css('width', ($(window).width() - 40)+'px');
+                });
+
+                /*textarea.css('height', ($(window).height() - defaultHeight.getOccupiedHeight())+'px');
+                $(window).resize(function() { //Bind and event (window resized)
+                    var contentHeight = $(window).height() - defaultHeight.getOccupiedHeight();
                     textarea.css('height', contentHeight+'px');
                 });
 
@@ -42,7 +54,7 @@ angular.module('codeEdit.directives').
 
                 textarea.bind('keydown', function(event){
                     scope.processKeyPress(textarea, event);
-                });
+                });*/
             }
         }
-    }]);
+    });

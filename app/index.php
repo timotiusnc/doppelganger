@@ -79,6 +79,7 @@
         <!-- services -->
         <script type="text/javascript" src="modules/services/sharedService.js"></script>
         <script type="text/javascript" src="modules/services/lxConnector.js"></script>
+        <script type="text/javascript" src="modules/services/defaultHeight.js"></script>
 
         <!-- directives -->
         <script type="text/javascript" src="modules/directives/footer.js"></script>
