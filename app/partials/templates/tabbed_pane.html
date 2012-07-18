@@ -1,12 +1,12 @@
 <div class="tabbable" id="myTab">
     <ul class="nav nav-tabs">
-        <li ng-repeat="item in items()" ng-class="{active:itemSelected(item)}">
+        <li ng-repeat="item in items" ng-class="{active:itemSelected(item)}">
             <a ng-click="selectItem(item)">{{itemTitle(item)}}</a>
         </li>
     </ul>
 
     <div class="tab-content">
-        <div ng-repeat="item in items()">
+        <div ng-repeat="item in items">
             <div class="tab-pane" ng-class="{active:itemSelected(item), hidden: !itemSelected(item)}">
                 <div code-edit-text-area></div>
             </div>

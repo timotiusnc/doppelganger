@@ -21,7 +21,7 @@ angular.module('codeEdit.directives').
 
         var controllerFn = function($scope, $element, $attrs, sharedService){
             $scope.selectItem = function(item) {
-                angular.forEach($scope.items(), function(item) {
+                angular.forEach($scope.items, function(item) {
                     item[opts.itemSelectedAttr] = false;
                 });
                 item[opts.itemSelectedAttr] = true;
@@ -38,8 +38,8 @@ angular.module('codeEdit.directives').
             $scope.$on(sharedService.HANDLE_BROADCAST, function(){ //When a new tab added, set selected tab to the newest one
                 if(sharedService.message == sharedService.NEW_TAB_ADDED){
                     var i = 1;
-                    angular.forEach($scope.items(), function(item) {
-                        if(i < $scope.items().length){
+                    angular.forEach($scope.items, function(item) {
+                        if(i < $scope.items.length){
                             item[opts.itemSelectedAttr] = false;
                         }else{
                             item[opts.itemSelectedAttr] = true;
@@ -54,8 +54,8 @@ angular.module('codeEdit.directives').
             link: linkFn,
             controller: controllerFn,
             scope: {
-                items: 'accessor',
-                itemTitleAttr: 'attribute'
+                items: '=',
+                itemTitleAttr: '@'
             },
             templateUrl: 'partials/templates/tabbed_pane.html'
         }
