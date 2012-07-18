@@ -3,11 +3,13 @@
  * Intercept all keydown event
  */
 
-function FooterCtrl($scope, sharedService){
+function FooterCtrl($scope, sharedService, browserDetect){
     $scope.result   = '';
     $scope.report   = '';
     $scope.error    = '';
     $scope.output   = '';
+    $scope.wheight  = '';
+    $scope.UA       = '';
 
     $scope.$on(sharedService.HANDLE_BROADCAST, function(){
         if(sharedService.message == sharedService.RESULT_RECEIVED){
@@ -25,5 +27,13 @@ function FooterCtrl($scope, sharedService){
             $scope.$apply();
         }
     });
+
+    $scope.wheight = 'Height = ' + $(window).height();
+    $(window).resize(function() { //Bind and event (window resized)
+        $scope.wheight = 'Height = ' + $(window).height();
+        $scope.$apply();
+    });
+
+    $scope.UA = '\n' + browserDetect.browser + ' Ver ' + browserDetect.version + ' on ' + browserDetect.OS;
 }
-KeyDownCtrl.$inject = ['$scope', 'sharedService'];
+KeyDownCtrl.$inject = ['$scope', 'sharedService', 'browserDetect'];

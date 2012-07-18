@@ -13,9 +13,7 @@ footer{
 }
 
 #footer_text{
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    padding: 3px 3px 3px 3px;
+    float: right;
+    margin: 3px 3px 3px 3px;
     font-family: Tahoma,Ubuntu,Helvetica,Arial;
 }

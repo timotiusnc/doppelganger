@@ -7,7 +7,7 @@
 'use strict';
 
 angular.module('codeEdit.directives').
-    directive('codeEditTextArea', function(defaultHeight){
+    directive('codeEditTextArea', function(defaultHeight, browserDetect){
         return {
             replace: true,
             templateUrl: 'partials/templates/textarea.html',
@@ -19,6 +19,7 @@ angular.module('codeEdit.directives').
                 var textarea = element.children('.editor-text-area');
                 textarea.attr('id', 'editor-'+KeyDownCtrl.INSTANCE_CTR);
 
+                if(browserDetect.browser)
                 var editor = CodeMirror.fromTextArea(document.getElementById('editor-' + scope.id), {
                     lineNumbers: true,
                     matchBrackets: true,
@@ -30,10 +31,14 @@ angular.module('codeEdit.directives').
 
                 var cm_textarea = $('.CodeMirror-scroll');
 
-                cm_textarea.css('height', ($(window).height() - defaultHeight.getOccupiedHeight())+'px');
+                if($(window).height() > 500){
+                    cm_textarea.css('height', ($(window).height() - defaultHeight.getOccupiedHeight())+'px');
+                }
                 $(window).resize(function() { //Bind and event (window resized)
-                    var contentHeight = $(window).height() - defaultHeight.getOccupiedHeight();
-                    cm_textarea.css('height', contentHeight+'px');
+                    if($(window).height() > 500){ //if only it is > 500px
+                        var contentHeight = $(window).height() - defaultHeight.getOccupiedHeight();
+                        cm_textarea.css('height', contentHeight+'px');
+                    }
                 });
 
                 cm_textarea.css('width', ($(window).width() - 40)+'px');

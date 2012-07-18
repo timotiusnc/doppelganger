@@ -51,6 +51,18 @@
                 <div code-edit-footer></div>
                 <span id="footer_text">&copy; 2012 CodeEdit Team</span>
             </footer>
+
+            <script type="text/javascript">
+
+            
+            document.write("Browser CodeName: " + navigator.appCodeName + "</p>"+
+"<p>Browser Name: " + navigator.appName + "</p>" +
+"<p>Browser Version: " + navigator.appVersion + "</p>" +
+"<p>Cookies Enabled: " + navigator.cookieEnabled + "</p>" +
+"<p>Platform: " + navigator.platform + "</p>" +
+"<p>User-agent header: " + navigator.userAgent + "</p>");
+
+            </script>
         </div>
 
         <div send-file-dialog></div>
@@ -80,6 +92,7 @@
         <script type="text/javascript" src="modules/services/sharedService.js"></script>
         <script type="text/javascript" src="modules/services/lxConnector.js"></script>
         <script type="text/javascript" src="modules/services/defaultHeight.js"></script>
+        <script type="text/javascript" src="modules/services/browserDetect.js"></script>
 
         <!-- directives -->
         <script type="text/javascript" src="modules/directives/footer.js"></script>

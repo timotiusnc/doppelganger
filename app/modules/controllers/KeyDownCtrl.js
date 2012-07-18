@@ -11,7 +11,7 @@ function KeyDownCtrl($scope, element){
     $scope.processKeyPress = function(element, keyEvent){
         //We need to call $apply here because we make change (call this processKeyPress method)
         //frm outside the angular (we call it from codeEditTextArea directive)
-        if (keyEvent.keyCode == 9 ) { // Fake TAB key
+        /*if (keyEvent.keyCode == 9 ) { // Fake TAB key
             keyEvent.preventDefault();
 
             var start = element.prop('selectionStart');
@@ -28,7 +28,7 @@ function KeyDownCtrl($scope, element){
             $scope.$apply(); //Apply the change to force 2-way data-binding to work
         } else {
             //$scope.log(keyEvent.keyCode);
-        }
+        }*/
     }
     KeyDownCtrl.INSTANCE_CTR++;
     $scope.id = KeyDownCtrl.INSTANCE_CTR;
