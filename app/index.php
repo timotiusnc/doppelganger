@@ -15,32 +15,8 @@
         <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap-responsive.css">
         <link rel="stylesheet" type="text/css" href="lib/codemirror/lib/codemirror.css">
     </head>
-    <body ng-controller="GlobalCtrl" ng-init="modalShown = false">
-        <div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="#/view1">CodeEdit</a>
-                    <div class="nav-collapse">
-                        <ul class="nav">
-                            <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">File <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a ng-click="addNewTabBtnClick()">New Tab</a></li>
-                                    <li><a ng-click="sendFileBtnClick()">Send File</a></li>
-                                    <li><a ng-click="listFileBtnClick()">List File</a></li>
-                                </ul>
-                            </li>
-                            <!--<li><a href="#/view2">View 2</a></li>-->
-                            <li><a ng-click="compileBtnClick()">Compile</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <body ng-controller="AppCtrl">
+        <div code-edit-navbar></div>
 
         <div id="container">
             <div id="content">
@@ -51,22 +27,12 @@
                 <div code-edit-footer></div>
                 <span id="footer_text">&copy; 2012 CodeEdit Team</span>
             </footer>
-
-            <script type="text/javascript">
-
-            
-            document.write("Browser CodeName: " + navigator.appCodeName + "</p>"+
-"<p>Browser Name: " + navigator.appName + "</p>" +
-"<p>Browser Version: " + navigator.appVersion + "</p>" +
-"<p>Cookies Enabled: " + navigator.cookieEnabled + "</p>" +
-"<p>Platform: " + navigator.platform + "</p>" +
-"<p>User-agent header: " + navigator.userAgent + "</p>");
-
-            </script>
         </div>
 
         <div send-file-dialog></div>
-        <div compile-dialog></div>
+        <div compile-dialog
+             item-title-attr="tabTitle">
+        </div>
         
         <!-- jQuery -->
         <script type="text/javascript" src="lib/jquery/js/jquery-1.7.2.min.js"></script>
@@ -83,7 +49,7 @@
         <script type="text/javascript" src="js/directives.js"></script>
 
         <!-- controllers -->
-        <script type="text/javascript" src="modules/controllers/KeyDownCtrl.js"></script>
+        <script type="text/javascript" src="modules/controllers/TextAreaCtrl.js"></script>
         <script type="text/javascript" src="modules/controllers/CompileCtrl.js"></script>
         <script type="text/javascript" src="modules/controllers/SendFileCtrl.js"></script>
         <script type="text/javascript" src="modules/controllers/FooterCtrl.js"></script>
@@ -99,6 +65,7 @@
         <script type="text/javascript" src="modules/directives/tabbedpane.js"></script>
         <script type="text/javascript" src="modules/directives/textarea.js"></script>
         <script type="text/javascript" src="modules/directives/keypress.js"></script>
+        <script type="text/javascript" src="modules/directives/navbar.js"></script>
         
         <script type="text/javascript" src="modules/directives/dialog/compile_dialog.js"></script>
         <script type="text/javascript" src="modules/directives/dialog/sendfile_dialog.js"></script>

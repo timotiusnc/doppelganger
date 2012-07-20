@@ -7,11 +7,11 @@
 'use strict';
 
 angular.module('codeEdit.directives').
-    directive('compileDialog', function(){
+    directive('codeEditNavbar', function(){
         return {
             replace: true,
-            templateUrl: 'partials/templates/dialog/compile_dialog.html',
+            templateUrl: 'partials/templates/navbar.html',
             transclude: false,
-            controller: CompileCtrl
+            scope: true
         }
     });

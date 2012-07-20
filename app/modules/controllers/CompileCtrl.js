@@ -3,31 +3,35 @@
  * Intercept all keydown event
  */
 
-function CompileCtrl($scope, lxConnector, sharedService){
+function CompileCtrl($scope, lxConnector, sharedService, browserDetect){
     $scope.fileNames = '';
     $scope.files = [];
 
-    //When a modal shown, get current files
-    $('#compileModal').on('show', function () {
-        sharedService.prepForBroadcast(sharedService.REQUEST_FILES, null);
-    });
-
-    $scope.$on(sharedService.HANDLE_BROADCAST, function(){
-        if(sharedService.message == sharedService.REQUEST_FILES_RESPONSE){
-            $scope.fileNames = sharedService.param;
-        }
-    });
-
     $scope.compile = function(){
-        console.log('submit compilation request = ' + KeyDownCtrl.INSTANCE_CTR);
         $("#compileModal").modal('hide');
 
-        for(i=1; i<=KeyDownCtrl.INSTANCE_CTR; ++i){ //Get file contents());
+        //if Desktop OS used, tell TextAreaCtrl to transfer code from CodeMirror to original textarea
+        if(!browserDetect.mobileVendor){
+            sharedService.prepForBroadcast(sharedService.SAVE_CODE, null);
+        }
+        
+        for(i=1; i<=TextAreaCtrl.INSTANCE_CTR; ++i){ //Get file contents());
             $scope.files[i-1] = $("#editor-" + i).val();
         }
         
         //console.log('input = ' + $("#input_txt").val());
         lxConnector.submit($scope.fileNames, $scope.files);
     }
+
+    //eventListener
+    $('#compileModal').on('show', function () { //When a modal shown, get current files
+        sharedService.prepForBroadcast(sharedService.REQUEST_FILE_NAMES, null); //Request files to MyCtrl1
+    });
+
+    $scope.$on(sharedService.HANDLE_BROADCAST, function(){
+        if(sharedService.message == sharedService.REQUEST_FILE_NAMES_RESPONSE){ //Files requested from MyCtrl1 responded
+            $scope.fileNames = sharedService.param;
+        }
+    });
 }
-KeyDownCtrl.$inject = ['$scope', 'lxConnector', 'sharedService'];
+TextAreaCtrl.$inject = ['$scope', 'lxConnector', 'sharedService', 'browserDetect'];

@@ -20,10 +20,11 @@ angular.module('codeEdit.services').
     
     sharedService.NEW_TAB_ADDED             = "newTabAdded";
     sharedService.NEW_TAB_BTN_CLICKED       = "newTabBtnClicked";
-    sharedService.REQUEST_FILES             = "requestFiles";
-    sharedService.REQUEST_FILES_RESPONSE    = "requestFilesResponse"
+    sharedService.REQUEST_FILE_NAMES        = "requestFileNames";
+    sharedService.REQUEST_FILE_NAMES_RESPONSE    = "requestFileNamesResponse"
     sharedService.RESULT_RECEIVED           = "resultReceived";
     sharedService.CODE_GRADED               = "codeGraded";
+    sharedService.SAVE_CODE                 = "saveCode";
 
     return sharedService;
 });

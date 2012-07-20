@@ -1,28 +1,48 @@
-'use strict';
-
 /* Controllers */
 
-function GlobalCtrl($scope, sharedService){
+'use strict';
+
+/**
+ * @name AppCtrl
+ * @class Application level controller
+ */
+function AppCtrl($scope, sharedService){
+    /**
+     * @name compileBtnClick
+     * @methodOf AppCtrl#
+     */
     $scope.compileBtnClick = function(){
         $("#compileModal").modal('show');
     }
 
+    /**
+     * @name sendFileBtnClick
+     * @methodOf AppCtrl#
+     */
     $scope.sendFileBtnClick = function(){
         $("#sendFileModal").modal('show');
     }
 
+    /**
+     * @name listFileBtnClick
+     * @methodOf AppCtrl#
+     */
     $scope.listFileBtnClick = function(){
         $scope.log('list file btn click');
     }
 
+    /**
+     * @name addNewTabBtnClick
+     * @methodOf AppCtrl#
+     */
     $scope.addNewTabBtnClick = function(){
         sharedService.prepForBroadcast(sharedService.NEW_TAB_BTN_CLICKED, null);
     }
 }
-GlobalCtrl.$inject = ['$scope', 'sharedService'];
+AppCtrl.$inject = ['$scope', 'sharedService'];
 
-function MyCtrl1($scope, sharedService) {
-    $scope.tabs = [];
+function EditorCtrl($scope, sharedService) {
+    $scope.tabs = []; //Semantically an array of Tab Title, the content (codeEditTextArea) is another instance
 
     $scope.addNewTab = function(title, selected){
         $scope.tabs.push({
@@ -35,29 +55,20 @@ function MyCtrl1($scope, sharedService) {
     $scope.$on(sharedService.HANDLE_BROADCAST, function(){
         if(sharedService.message == sharedService.NEW_TAB_BTN_CLICKED){
             $scope.addNewTab('');
-        }else if(sharedService.message == sharedService.REQUEST_FILES){
-            sharedService.prepForBroadcast(sharedService.REQUEST_FILES_RESPONSE, $scope.tabs);
+        }else if(sharedService.message == sharedService.REQUEST_FILE_NAMES){ //Files requested from CompileCtrl
+            sharedService.prepForBroadcast(sharedService.REQUEST_FILE_NAMES_RESPONSE, $scope.tabs);
         }
     });
 
     //Add default tab
     $scope.addNewTab('main', true);
 }
-MyCtrl1.$inject = ['$scope', 'sharedService'];
+EditorCtrl.$inject = ['$scope', 'sharedService'];
 
 function MyCtrl2($scope) {
-    $scope.tes = 'asoe';
+    $scope.tes = 'tes';
     $scope.changeTes = function(){
-        $scope.tes = 'bukan asoe';
+        $scope.tes = 'bukan tes';
     }
 }
 MyCtrl2.$inject = ['$scope'];
-
-/*$http({
-        method: 'POST',
-        url: 'http://167.205.32.27/lz/services/grading/compile',
-        data: {
-            asu: 'tes',
-            tes: 'asu'
-        }
-    });*/

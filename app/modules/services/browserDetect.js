@@ -1,6 +1,6 @@
 angular.module('codeEdit.services').
     factory('browserDetect', function($rootScope){
-
+    //from http://www.quirksmode.org/js/detect.html
     var browserDetect = {
         init: function () {
             this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
@@ -8,6 +8,7 @@ angular.module('codeEdit.services').
                 || this.searchVersion(navigator.appVersion)
                 || "an unknown version";
             this.OS = this.searchString(this.dataOS) || "an unknown OS";
+            this.mobileVendor = this.searchString(this.dataMobileOS) || "";
         },
         searchString: function (data) {
             for (var i=0;i<data.length;i++)	{
@@ -105,17 +106,63 @@ angular.module('codeEdit.services').
                 identity: "Mac"
             },
             {
-                   string: navigator.userAgent,
-                   subString: "iPhone",
-                   identity: "iPhone/iPod"
+                string: navigator.userAgent,
+                subString: "iPhone",
+                identity: "iPhone/iPod"
             },
             {
                 string: navigator.platform,
                 subString: "Linux",
                 identity: "Linux"
             }
+        ],
+        dataMobileOS: [
+            {
+                string: navigator.userAgent,
+                subString: "Windows Phone",
+                identity: "Windows Phone"
+            },
+            {
+                string: navigator.userAgent,
+                subString: "iPhone",
+                identity: "iPhone"
+            },
+            {
+                string: navigator.userAgent,
+                subString: "iPod",
+                identity: "iPod"
+            },
+            {
+                string: navigator.userAgent,
+                subString: "Android",
+                identity: "Android"
+            },
+            {
+                string: navigator.userAgent,
+                subString: "Webkit",
+                identity: "Webkit"
+            },
+            {
+                string: navigator.userAgent,
+                subString: "Series60",
+                identity: "Series60"
+            },
+            {
+                string: navigator.userAgent,
+                subString: "Symbian",
+                identity: "Symbian"
+            },
+            {
+                string: navigator.userAgent,
+                subString: "Windows CE",
+                identity: "Windows CE"
+            },
+            {
+                string: navigator.userAgent,
+                subString: "BlackBerry",
+                identity: "BlackBerry"
+            }
         ]
-
     };
     browserDetect.init();
 

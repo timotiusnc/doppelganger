@@ -34,6 +34,6 @@ function FooterCtrl($scope, sharedService, browserDetect){
         $scope.$apply();
     });
 
-    $scope.UA = '\n' + browserDetect.browser + ' Ver ' + browserDetect.version + ' on ' + browserDetect.OS;
+    $scope.UA = '\n' + ' on ' + browserDetect.OS + ' mobile ' + browserDetect.mobileOS;
 }
-KeyDownCtrl.$inject = ['$scope', 'sharedService', 'browserDetect'];
+TextAreaCtrl.$inject = ['$scope', 'sharedService', 'browserDetect'];

@@ -13,53 +13,49 @@ angular.module('codeEdit.directives').
             templateUrl: 'partials/templates/textarea.html',
             transclude: false,
             scope: true,
-            controller: KeyDownCtrl,
+            controller: TextAreaCtrl,
             link: function(scope, element, attrs){
-                console.log('editor-'+KeyDownCtrl.INSTANCE_CTR);
+                console.log('editor-'+TextAreaCtrl.INSTANCE_CTR);
                 var textarea = element.children('.editor-text-area');
-                textarea.attr('id', 'editor-'+KeyDownCtrl.INSTANCE_CTR);
+                textarea.attr('id', 'editor-'+TextAreaCtrl.INSTANCE_CTR);
 
-                if(browserDetect.browser)
-                var editor = CodeMirror.fromTextArea(document.getElementById('editor-' + scope.id), {
-                    lineNumbers: true,
-                    matchBrackets: true,
-                    mode: "text/x-csrc",
-                    onKeyEvent: scope.processKeyPress
-                });
+                //console.log(browserDetect.mobileVendor);
+                if(!browserDetect.mobileVendor){
+                    var editor = CodeMirror.fromTextArea(document.getElementById('editor-' + scope.id), {
+                        lineNumbers: true,
+                        matchBrackets: true,
+                        mode: "text/x-csrc",
+                        onKeyEvent: scope.processKeyPress
+                    });
+                    scope.editors.push(editor);
 
-                //console.log(editor.getTextArea());
+                    var cm_textarea = $('.CodeMirror-scroll'); //get element instance (indicated with this class)
 
-                var cm_textarea = $('.CodeMirror-scroll');
-
-                if($(window).height() > 500){
-                    cm_textarea.css('height', ($(window).height() - defaultHeight.getOccupiedHeight())+'px');
-                }
-                $(window).resize(function() { //Bind and event (window resized)
-                    if($(window).height() > 500){ //if only it is > 500px
-                        var contentHeight = $(window).height() - defaultHeight.getOccupiedHeight();
-                        cm_textarea.css('height', contentHeight+'px');
+                    if($(window).height() > defaultHeight.MINIMUM_HEIGHT){
+                        cm_textarea.css('height', ($(window).height() - defaultHeight.getOccupiedHeight())+'px');
                     }
-                });
+                    $(window).resize(function() { //Bind and event (window resized)
+                        if($(window).height() > defaultHeight.MINIMUM_HEIGHT){
+                            var contentHeight = $(window).height() - defaultHeight.getOccupiedHeight();
+                            cm_textarea.css('height', contentHeight+'px');
+                        }
+                    });
+                }else{
+                    textarea.css('height', ($(window).height() - defaultHeight.getOccupiedHeight())+'px');
+                    $(window).resize(function() { //Bind and event (window resized)
+                        var contentHeight = $(window).height() - defaultHeight.getOccupiedHeight();
+                        textarea.css('height', contentHeight+'px');
+                    });
 
-                cm_textarea.css('width', ($(window).width() - 40)+'px');
-                $(window).resize(function() { //Bind and event (window resized)
-                    cm_textarea.css('width', ($(window).width() - 40)+'px');
-                });
-
-                /*textarea.css('height', ($(window).height() - defaultHeight.getOccupiedHeight())+'px');
-                $(window).resize(function() { //Bind and event (window resized)
-                    var contentHeight = $(window).height() - defaultHeight.getOccupiedHeight();
-                    textarea.css('height', contentHeight+'px');
-                });
-
-                textarea.css('width', ($(window).width() - 40)+'px');
-                $(window).resize(function() { //Bind and event (window resized)
                     textarea.css('width', ($(window).width() - 40)+'px');
-                });
+                    $(window).resize(function() { //Bind and event (window resized)
+                        textarea.css('width', ($(window).width() - 40)+'px');
+                    });
 
-                textarea.bind('keydown', function(event){
-                    scope.processKeyPress(textarea, event);
-                });*/
+                    textarea.bind('keydown', function(event){
+                        scope.processKeyPress(textarea, event);
+                    });
+                }
             }
         }
     });
