@@ -35,7 +35,7 @@ angular.module('codeEdit.services').
             };
 
             data.files = new Array();
-            for(i=0; i<fileNames.length; ++i){
+            for(i=0,n=fileNames.length; i<n; ++i){
                 data.files[i] = {
                     name : fileNames[i].tabTitle,
                     content: fileContents[i]

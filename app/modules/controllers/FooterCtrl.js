@@ -10,6 +10,7 @@ function FooterCtrl($scope, sharedService, browserDetect){
     $scope.output   = '';
     $scope.wheight  = '';
     $scope.UA       = '';
+    $scope.fileAPI  = '';
 
     $scope.$on(sharedService.HANDLE_BROADCAST, function(){
         if(sharedService.message == sharedService.RESULT_RECEIVED){
@@ -34,6 +35,7 @@ function FooterCtrl($scope, sharedService, browserDetect){
         $scope.$apply();
     });
 
-    $scope.UA = '\n' + ' on ' + browserDetect.OS + ' mobile ' + browserDetect.mobileOS;
+    $scope.UA = '\n' + ' on ' + browserDetect.OS + ' mobile ' + browserDetect.mobileVendor;
+    $scope.fileAPI = browserDetect.fileAPISupport();
 }
 TextAreaCtrl.$inject = ['$scope', 'sharedService', 'browserDetect'];

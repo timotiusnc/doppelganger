@@ -41,7 +41,7 @@ function TextAreaCtrl($scope, sharedService, browserDetect, element){
 
     $scope.$on(sharedService.HANDLE_BROADCAST, function(){
         if(sharedService.message == sharedService.SAVE_CODE){ //Save CodeMirror's code into original textarea
-            for(i=0; i<$scope.editors.length; ++i){
+            for(i=0,n=$scope.editors.length; i<n; ++i){
                 $scope.editors[i].save();
             }
         }

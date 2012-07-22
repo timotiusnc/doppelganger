@@ -4,9 +4,5 @@
  */
 
 $(document).ready(function(){
-    var x = document.getElementById('asu');
-    //console.log('x = ' + x);
-
-    var y = $('#asu')[0];
-    //console.log('y = ' + y);
+    
 });

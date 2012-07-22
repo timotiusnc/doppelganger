@@ -30,6 +30,7 @@
         </div>
 
         <div send-file-dialog></div>
+        <div import-file-dialog></div>
         <div compile-dialog
              item-title-attr="tabTitle">
         </div>
@@ -52,6 +53,7 @@
         <script type="text/javascript" src="modules/controllers/TextAreaCtrl.js"></script>
         <script type="text/javascript" src="modules/controllers/CompileCtrl.js"></script>
         <script type="text/javascript" src="modules/controllers/SendFileCtrl.js"></script>
+        <script type="text/javascript" src="modules/controllers/ImportFileCtrl.js"></script>
         <script type="text/javascript" src="modules/controllers/FooterCtrl.js"></script>
 
         <!-- services -->
@@ -69,6 +71,7 @@
         
         <script type="text/javascript" src="modules/directives/dialog/compile_dialog.js"></script>
         <script type="text/javascript" src="modules/directives/dialog/sendfile_dialog.js"></script>
+        <script type="text/javascript" src="modules/directives/dialog/importfile_dialog.js"></script>
 
 		<!--Bootstrap-->
         <script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>

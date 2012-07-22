@@ -35,6 +35,10 @@ angular.module('codeEdit.directives').
                 return item[opts.itemTitleAttr];
             }
 
+            $scope.itemContent = function(item){
+                return item[opts.itemContentAttr];
+            }
+
             $scope.$on(sharedService.HANDLE_BROADCAST, function(){ //When a new tab added, set selected tab to the newest one
                 if(sharedService.message == sharedService.NEW_TAB_ADDED){
                     var i = 1;
@@ -55,7 +59,8 @@ angular.module('codeEdit.directives').
             controller: controllerFn,
             scope: {
                 items: '=',
-                itemTitleAttr: '@'
+                itemTitleAttr: '@',
+                itemContentAttr: '@'
             },
             templateUrl: 'partials/templates/tabbed_pane.html'
         }

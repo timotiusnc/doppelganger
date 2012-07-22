@@ -3,7 +3,7 @@ angular.module('codeEdit.services').
     var sharedService = {};
 
     sharedService.message = '';
-    sharedService.param = '';
+    sharedService.param = {};
 
     sharedService.prepForBroadcast = function(msg, param) {
         this.message = msg;

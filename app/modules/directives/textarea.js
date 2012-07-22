@@ -12,14 +12,15 @@ angular.module('codeEdit.directives').
             replace: true,
             templateUrl: 'partials/templates/textarea.html',
             transclude: false,
-            scope: true,
+            scope: {
+                content: '='
+            },
             controller: TextAreaCtrl,
             link: function(scope, element, attrs){
                 console.log('editor-'+TextAreaCtrl.INSTANCE_CTR);
                 var textarea = element.children('.editor-text-area');
                 textarea.attr('id', 'editor-'+TextAreaCtrl.INSTANCE_CTR);
 
-                //console.log(browserDetect.mobileVendor);
                 if(!browserDetect.mobileVendor){
                     var editor = CodeMirror.fromTextArea(document.getElementById('editor-' + scope.id), {
                         lineNumbers: true,
@@ -27,6 +28,7 @@ angular.module('codeEdit.directives').
                         mode: "text/x-csrc",
                         onKeyEvent: scope.processKeyPress
                     });
+                    editor.setValue(scope.content);
                     scope.editors.push(editor);
 
                     var cm_textarea = $('.CodeMirror-scroll'); //get element instance (indicated with this class)

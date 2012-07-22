@@ -3,13 +3,46 @@ angular.module('codeEdit.services').
     //from http://www.quirksmode.org/js/detect.html
     var browserDetect = {
         init: function () {
+            /**
+             * @name Browser Name
+             * @field browser
+             */
             this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
+
+            /**
+             * @name Browser version
+             * @field version
+             */
             this.version = this.searchVersion(navigator.userAgent)
                 || this.searchVersion(navigator.appVersion)
                 || "an unknown version";
+
+            /**
+             * @name Operating System
+             * @field OS
+             */
             this.OS = this.searchString(this.dataOS) || "an unknown OS";
+
+            /**
+             * @name Mobile Vendor (Android/iPhone/etc, "" if not a mobile device)
+             * @field mobileVendor
+             */
             this.mobileVendor = this.searchString(this.dataMobileOS) || "";
+
+            /**
+             * @name fileAPISupport compatibility
+             * @field fileAPISupport
+             */
+            this.fileAPISupport = function(){
+                var retval = '0000'.split('');
+                window.File ? retval[0] = '1' : retval[0] = '0';
+                window.FileReader ? retval[1] = '1' : retval[1] = '0';
+                window.FileList ? retval[2] = '1' : retval[2] = '0';
+                window.Blob ? retval[3] = '1' : retval[3] = '0';
+                return retval;
+            }
         },
+        
         searchString: function (data) {
             for (var i=0;i<data.length;i++)	{
                 var dataString = data[i].string;

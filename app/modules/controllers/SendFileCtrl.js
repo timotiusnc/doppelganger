@@ -8,4 +8,4 @@ function SendFileCtrl($scope){
         console.log('SendFileCtrl');
     }
 }
-TextAreaCtrl.$inject = ['$scope'];
+SendFileCtrl.$inject = ['$scope'];
