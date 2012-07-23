@@ -7,9 +7,11 @@ function TextAreaCtrl($scope, sharedService, browserDetect, element){
     //$scope.log('ctr from ctrl = ' + KeyDownCtrl.INSTANCE_CTR);
     $scope.backSpaceCtr = 0;
     $scope.tesAttr = 0;
-    $scope.editors = []; //CodeMirror instances
+    $scope.instances = []; //CodeMirror instances
 
     $scope.processKeyPress = function(element, keyEvent){
+        sharedService.prepForBroadcast(sharedService.START_TIMER, null);
+        sharedService.prepForBroadcast(sharedService.KEYPRESS_ACTION, keyEvent);
         //We need to call $apply here because we make change (call this processKeyPress method)
         //from outside the angular (we call it from codeEditTextArea directive)
 
@@ -39,10 +41,14 @@ function TextAreaCtrl($scope, sharedService, browserDetect, element){
         }
     }
 
+    $scope.onMouseClick = function(evt){
+        sharedService.prepForBroadcast(sharedService.MOUSECLICK_ACTION, evt);
+    }
+
     $scope.$on(sharedService.HANDLE_BROADCAST, function(){
         if(sharedService.message == sharedService.SAVE_CODE){ //Save CodeMirror's code into original textarea
-            for(i=0,n=$scope.editors.length; i<n; ++i){
-                $scope.editors[i].save();
+            for(i=0,n=$scope.instances.length; i<n; ++i){
+                $scope.instances[i].save();
             }
         }
     });

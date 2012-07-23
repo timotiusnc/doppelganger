@@ -17,6 +17,7 @@ angular.module('codeEdit.services').
                     var res = eval('(' + data + ')');
                     sharedService.prepForBroadcast(sharedService.RESULT_RECEIVED, res);
                     if(res.detail.status == 2 || res.detail.status == 3){
+                        sharedService.prepForBroadcast(sharedService.SAVE_CODE, null); //tap the compile event here, so should the compilation fails, it won't be counted
                         sharedService.prepForBroadcast(sharedService.CODE_GRADED, res.detail.report);
                         lxConnector.stopGetResult();
                     }

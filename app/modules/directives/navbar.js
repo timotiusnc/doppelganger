@@ -8,8 +8,20 @@
 
 angular.module('codeEdit.directives').
     directive('codeEditNavbar', function(){
+        var controllerFn = function($scope, sharedService){
+            $scope.duration = 0;
+
+            $scope.$on(sharedService.HANDLE_BROADCAST, function(){
+                if(sharedService.message == sharedService.ONE_SECOND_PASSED){
+                    $scope.duration = sharedService.param;
+                    $scope.$apply();
+                }
+            });
+        }
+
         return {
             replace: true,
+            controller: controllerFn,
             templateUrl: 'partials/templates/navbar.html',
             transclude: false,
             scope: true

@@ -3,13 +3,13 @@
 'use strict';
 
 /**
- * @name AppCtrl
+ * @name MainCtrl
  * @class Application level controller
  */
-function AppCtrl($scope, sharedService){
+function MainCtrl($scope, sharedService, eventRecorder){
     /**
      * @name compileBtnClick
-     * @methodOf AppCtrl#
+     * @methodOf MainCtrl#
      */
     $scope.compileBtnClick = function(){
         $("#compileModal").modal('show');
@@ -17,7 +17,7 @@ function AppCtrl($scope, sharedService){
 
     /**
      * @name sendFileBtnClick
-     * @methodOf AppCtrl#
+     * @methodOf MainCtrl#
      */
     $scope.sendFileBtnClick = function(){
         $("#sendFileModal").modal('show');
@@ -25,7 +25,7 @@ function AppCtrl($scope, sharedService){
 
     /**
      * @name importFileBtnClick
-     * @methodOf AppCtrl#
+     * @methodOf MainCtrl#
      */
     $scope.importFileBtnClick = function(){
         $("#importFileModal").modal('show');
@@ -33,40 +33,13 @@ function AppCtrl($scope, sharedService){
 
     /**
      * @name addNewTabBtnClick
-     * @methodOf AppCtrl#
+     * @methodOf MainCtrl#
      */
     $scope.addNewTabBtnClick = function(){
         sharedService.prepForBroadcast(sharedService.NEW_TAB_BTN_CLICKED, {title: '', content: ''});
     }
 }
-AppCtrl.$inject = ['$scope', 'sharedService'];
-
-function EditorCtrl($scope, sharedService) {
-    $scope.tabs = []; //Semantically an array of Tab Title, the content (codeEditTextArea) is another instance
-
-    $scope.addNewTab = function(title, content, selected){
-        console.log(content);
-        $scope.tabs.push({
-            tabTitle: (title == '') ? ('untitled-' + ($scope.tabs.length)) : title,
-            tabContent: (content) ? content : '',
-            selected: selected
-        });
-        sharedService.prepForBroadcast(sharedService.NEW_TAB_ADDED, null);
-    }
-
-    $scope.$on(sharedService.HANDLE_BROADCAST, function(){
-        if(sharedService.message == sharedService.NEW_TAB_BTN_CLICKED){
-            //console.log('masuk ' + sharedService.param.title + ' ' + sharedService.param.content);
-            $scope.addNewTab(sharedService.param.title, sharedService.param.content);
-        }else if(sharedService.message == sharedService.REQUEST_FILE_NAMES){ //Files requested from CompileCtrl
-            sharedService.prepForBroadcast(sharedService.REQUEST_FILE_NAMES_RESPONSE, $scope.tabs);
-        }
-    });
-
-    //Add default tab
-    $scope.addNewTab('main', '', true);
-}
-EditorCtrl.$inject = ['$scope', 'sharedService'];
+MainCtrl.$inject = ['$scope', 'sharedService', 'eventRecorder'];
 
 function MyCtrl2($scope) {
     $scope.tes = 'tes';

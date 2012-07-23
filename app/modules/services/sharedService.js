@@ -26,5 +26,13 @@ angular.module('codeEdit.services').
     sharedService.CODE_GRADED               = "codeGraded";
     sharedService.SAVE_CODE                 = "saveCode";
 
+    sharedService.START_TIMER               = "startTimer";
+    sharedService.ONE_SECOND_PASSED         = "oneSecondPassed";
+
+    //Action to be recorded for grading purpose
+    sharedService.KEYPRESS_ACTION           = "keypressAction";
+    sharedService.MOUSECLICK_ACTION         = "mouseClickAction";
+    sharedService.COMPILE_ACTION            = "compileAction";
+
     return sharedService;
 });

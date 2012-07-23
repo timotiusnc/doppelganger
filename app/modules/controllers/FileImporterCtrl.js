@@ -3,7 +3,7 @@
  * Intercept all keydown event
  */
 
-function ImportFileCtrl($scope, sharedService){
+function FileImporterCtrl($scope, sharedService){
     $scope.files = [];
 
     $scope.handleFileSelect = function (evt) {
@@ -31,14 +31,16 @@ function ImportFileCtrl($scope, sharedService){
             if(f.size < 1048576){ //only process file with size < 1 MB
                 var reader = new FileReader();
                 reader.readAsText(f);
-                reader.onload = function(file){
-                    sharedService.prepForBroadcast(sharedService.NEW_TAB_BTN_CLICKED, {title: f.name, content: file.target.result});
-                    $scope.$apply();
-                }
+                reader.onload = (function(file){
+                    return function(e){
+                        sharedService.prepForBroadcast(sharedService.NEW_TAB_BTN_CLICKED, {title: file.name, content: e.target.result});
+                        $scope.$apply();
+                    }
+                })(f);
             }
         }
         
         $("#importFileModal").modal('hide');
     }
 }
-ImportFileCtrl.$inject = ['$scope', 'sharedService'];
+FileImporterCtrl.$inject = ['$scope', 'sharedService'];

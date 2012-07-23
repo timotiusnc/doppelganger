@@ -1,5 +1,5 @@
 angular.module('codeEdit.services').
-    factory('browserDetect', function($rootScope){
+    factory('browserDetect', function(){
     //from http://www.quirksmode.org/js/detect.html
     var browserDetect = {
         init: function () {

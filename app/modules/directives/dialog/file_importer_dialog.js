@@ -7,12 +7,12 @@
 'use strict';
 
 angular.module('codeEdit.directives').
-    directive('importFileDialog', function(){
+    directive('fileImporterDialog', function(){
         return {
             replace: true,
             templateUrl: 'partials/templates/dialog/importfile_dialog.html',
             transclude: false,
-            controller: ImportFileCtrl,
+            controller: FileImporterCtrl,
             link: function(scope, elm, attrs) {
                 elm.bind('change', scope.handleFileSelect);
                 document.getElementById("drop_zone").addEventListener("dragover", scope.handleDragOver, false);

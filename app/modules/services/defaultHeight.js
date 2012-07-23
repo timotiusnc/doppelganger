@@ -1,5 +1,5 @@
 angular.module('codeEdit.services').
-    factory('defaultHeight', function($rootScope){
+    factory('defaultHeight', function(){
     var defaultHeight = {};
 
     defaultHeight.MINIMUM_HEIGHT    = 500;

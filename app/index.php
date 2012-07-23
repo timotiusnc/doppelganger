@@ -15,7 +15,7 @@
         <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap-responsive.css">
         <link rel="stylesheet" type="text/css" href="lib/codemirror/lib/codemirror.css">
     </head>
-    <body ng-controller="AppCtrl">
+    <body ng-controller="MainCtrl">
         <div code-edit-navbar></div>
 
         <div id="container">
@@ -30,7 +30,7 @@
         </div>
 
         <div send-file-dialog></div>
-        <div import-file-dialog></div>
+        <div file-importer-dialog></div>
         <div compile-dialog
              item-title-attr="tabTitle">
         </div>
@@ -50,10 +50,11 @@
         <script type="text/javascript" src="js/directives.js"></script>
 
         <!-- controllers -->
+        <script type="text/javascript" src="modules/controllers/EditorCtrl.js"></script>
         <script type="text/javascript" src="modules/controllers/TextAreaCtrl.js"></script>
         <script type="text/javascript" src="modules/controllers/CompileCtrl.js"></script>
         <script type="text/javascript" src="modules/controllers/SendFileCtrl.js"></script>
-        <script type="text/javascript" src="modules/controllers/ImportFileCtrl.js"></script>
+        <script type="text/javascript" src="modules/controllers/FileImporterCtrl.js"></script>
         <script type="text/javascript" src="modules/controllers/FooterCtrl.js"></script>
 
         <!-- services -->
@@ -61,6 +62,7 @@
         <script type="text/javascript" src="modules/services/lxConnector.js"></script>
         <script type="text/javascript" src="modules/services/defaultHeight.js"></script>
         <script type="text/javascript" src="modules/services/browserDetect.js"></script>
+        <script type="text/javascript" src="modules/services/eventRecorder.js"></script>
 
         <!-- directives -->
         <script type="text/javascript" src="modules/directives/footer.js"></script>
@@ -71,7 +73,7 @@
         
         <script type="text/javascript" src="modules/directives/dialog/compile_dialog.js"></script>
         <script type="text/javascript" src="modules/directives/dialog/sendfile_dialog.js"></script>
-        <script type="text/javascript" src="modules/directives/dialog/importfile_dialog.js"></script>
+        <script type="text/javascript" src="modules/directives/dialog/file_importer_dialog.js"></script>
 
 		<!--Bootstrap-->
         <script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
