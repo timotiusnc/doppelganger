@@ -4,14 +4,14 @@ angular.module('codeEdit.services').
 
     defaultHeight.MINIMUM_HEIGHT    = 500;
     defaultHeight.DEFAULT_NAVBAR_MB = 18;   //navbar margin-bottom
-    defaultHeight.FOOTER_HEIGHT     = 50;   //was 70
+    defaultHeight.FOOTER_HEIGHT     = 50;   //was 50, was 70
 
     defaultHeight.getOccupiedHeight = function(){
-        var retval = (6+28)    //#footer_text + its padding
-            + 5         //margin-top footer
+        var retval = 6  //#footer_text + its padding, was 6+28
+            + 0         //margin-top footer, was 5
             + 50        //marign-top 50px
-            + (26*2)    //Tab height, look at bootstrap.js line 3315-3318, *2 cause there are two main tabs
-            + defaultHeight.FOOTER_HEIGHT       //footer_tab height, was 130
+            + (26)      //Tab height, look at bootstrap.js line 3315-3318, was *2 cause there are two main tabs
+            + 0         //footer_tab height, was defaultHeight.FOOTER_HEIGHT
             + (defaultHeight.DEFAULT_NAVBAR_MB*2);
 
         return retval;

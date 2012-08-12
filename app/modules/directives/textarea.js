@@ -27,12 +27,11 @@ angular.module('codeEdit.directives').
                         lineNumbers: true,
                         matchBrackets: true,
                         mode: "text/x-csrc",
-                        onKeyEvent: scope.processKeyPress //arg-0: cm_instance; arg-1: keyEvent
+                        onKeyEvent: scope.processKeyPress   //arg[0]: cm_instance; arg[1]: keyEvent
                     });
-                    //Set original value
-                    cm_instance.setValue(scope.content);
-                    //Push instances into instances array in TextAreaCtrl
-                    scope.instances.push(cm_instance);
+
+                    cm_instance.setValue(scope.content);    //Set original value
+                    scope.instances.push(cm_instance);      //Push instances into instances array in TextAreaCtrl
 
                     //get element instance (indicated with CodeMirror-scroll class name)
                     var cm_textarea = $('.CodeMirror-scroll');
@@ -53,14 +52,10 @@ angular.module('codeEdit.directives').
                     });
                 }else{ //handle Mobile version
                     //Handle textarea height
-                    if($(window).height() > defaultHeight.MINIMUM_HEIGHT){
-                        textarea.css('height', ($(window).height() - defaultHeight.getOccupiedHeight())+'px');
-                    }
+                    textarea.css('height', ($(window).height() - defaultHeight.getOccupiedHeight())+'px');
                     $(window).resize(function() { //Bind and event (window resized)
-                        if($(window).height() > defaultHeight.MINIMUM_HEIGHT){
-                            var contentHeight = $(window).height() - defaultHeight.getOccupiedHeight();
-                            textarea.css('height', contentHeight+'px');
-                        }
+                        var contentHeight = $(window).height() - defaultHeight.getOccupiedHeight();
+                        textarea.css('height', contentHeight+'px');
                     });
 
                     //bind keydown event to key processor

@@ -48,11 +48,3 @@ function MainCtrl($scope, sharedService, eventRecorder){
     }
 }
 MainCtrl.$inject = ['$scope', 'sharedService', 'eventRecorder'];
-
-function MyCtrl2($scope) {
-    $scope.tes = 'tes';
-    $scope.changeTes = function(){
-        $scope.tes = 'bukan tes';
-    }
-}
-MyCtrl2.$inject = ['$scope'];

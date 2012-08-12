@@ -35,8 +35,8 @@ angular.module('codeEdit.directives').
                 return item[opts.itemTitleAttr];
             }
 
-            $scope.itemContent = function(item){
-                return item[opts.itemContentAttr];
+            $scope.itemInitialContent = function(item){
+                return item[opts.itemInitialContentAttr];
             }
 
             $scope.$on(sharedService.HANDLE_BROADCAST, function(){ //When a new tab added, set selected tab to the newest one
@@ -60,7 +60,7 @@ angular.module('codeEdit.directives').
             scope: {
                 items: '=',
                 itemTitleAttr: '@',
-                itemContentAttr: '@'
+                itemInitialContentAttr: '@'
             },
             templateUrl: 'partials/templates/tabbed_pane.html'
         }

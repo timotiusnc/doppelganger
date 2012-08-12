@@ -42,7 +42,7 @@ angular.module('codeEdit.services').
                 return retval;
             }
 
-            this.localStorageSupport = function(){
+            this.supportLocalStorage = function(){
                 try {
                     return 'localStorage' in window && window['localStorage'] !== null;
                 } catch (e) {

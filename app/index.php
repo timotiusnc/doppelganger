@@ -52,20 +52,26 @@
         <script type="text/javascript" src="js/directives.js"></script>
 
         <!-- controllers -->
-        <script type="text/javascript" src="modules/controllers/EditorCtrl.js"></script>
-        <script type="text/javascript" src="modules/controllers/TextAreaCtrl.js"></script>
-        <script type="text/javascript" src="modules/controllers/CompileCtrl.js"></script>
-        <script type="text/javascript" src="modules/controllers/SendFileCtrl.js"></script>
-        <script type="text/javascript" src="modules/controllers/FileImporterCtrl.js"></script>
-        <script type="text/javascript" src="modules/controllers/ResultDialogCtrl.js"></script>
-        <script type="text/javascript" src="modules/controllers/FooterCtrl.js"></script>
+        <script type="text/javascript" src="modules/controllers/CodeEditorCtrl.js"></script>
+        <script type="text/javascript" src="modules/controllers/CodeMessagingCtrl.js"></script>
 
+        <!-- directive controllers -->
+        <script type="text/javascript" src="modules/controllers/directive_ctrl/TextAreaCtrl.js"></script>
+        <script type="text/javascript" src="modules/controllers/directive_ctrl/FooterCtrl.js"></script>
+
+        <!-- dialog controllers -->
+        <script type="text/javascript" src="modules/controllers/dialog_ctrl/CompileCtrl.js"></script>
+        <script type="text/javascript" src="modules/controllers/dialog_ctrl/SendFileCtrl.js"></script>
+        <script type="text/javascript" src="modules/controllers/dialog_ctrl/FileImporterCtrl.js"></script>
+        <script type="text/javascript" src="modules/controllers/dialog_ctrl/ResultDialogCtrl.js"></script>
+        
         <!-- services -->
         <script type="text/javascript" src="modules/services/sharedService.js"></script>
         <script type="text/javascript" src="modules/services/lxConnector.js"></script>
         <script type="text/javascript" src="modules/services/defaultHeight.js"></script>
         <script type="text/javascript" src="modules/services/browserDetect.js"></script>
         <script type="text/javascript" src="modules/services/eventRecorder.js"></script>
+        <script type="text/javascript" src="modules/services/fileHandler.js"></script>
 
         <!-- directives -->
         <script type="text/javascript" src="modules/directives/footer.js"></script>

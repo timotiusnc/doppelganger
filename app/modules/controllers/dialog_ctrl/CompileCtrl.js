@@ -3,7 +3,7 @@
  * Intercept all keydown event
  */
 
-function CompileCtrl($scope, lxConnector, sharedService, browserDetect){
+function CompileCtrl($scope, sharedService, lxConnector, browserDetect){
     $scope.fileNames = '';
     $scope.files = [];
 
@@ -34,4 +34,4 @@ function CompileCtrl($scope, lxConnector, sharedService, browserDetect){
         }
     });
 }
-TextAreaCtrl.$inject = ['$scope', 'lxConnector', 'sharedService', 'browserDetect'];
+TextAreaCtrl.$inject = ['$scope', 'sharedService', 'lxConnector', 'browserDetect'];

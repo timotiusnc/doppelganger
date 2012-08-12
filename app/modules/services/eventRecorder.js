@@ -4,7 +4,7 @@
  */
 
 angular.module('codeEdit.services').
-    factory('eventRecorder', function($rootScope, sharedService){
+    factory('eventRecorder', function($rootScope, fileHandler, sharedService){
     var eventRecorder = {};
 
     var timer = null;
@@ -32,7 +32,9 @@ angular.module('codeEdit.services').
             eventRecorder.start();
         }else if(sharedService.message == sharedService.KEYPRESS_ACTION){
             var evt = sharedService.param;
+
             if(evt.type == 'keydown'){
+                fileHandler.updateRecordAttr('tes', {mouse:1, keypress_ctr:2});
                 ++eventRecorder.keyPressCtr;
                 
                 var kc = evt.keyCode;
