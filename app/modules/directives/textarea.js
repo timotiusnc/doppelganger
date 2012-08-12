@@ -29,14 +29,19 @@ angular.module('codeEdit.directives').
                         mode: "text/x-csrc",
                         onKeyEvent: scope.processKeyPress //arg-0: cm_instance; arg-1: keyEvent
                     });
+                    //Set original value
                     cm_instance.setValue(scope.content);
+                    //Push instances into instances array in TextAreaCtrl
                     scope.instances.push(cm_instance);
 
-                    //Handle textarea height
-                    var cm_textarea = $('.CodeMirror-scroll'); //get element instance (indicated with this class name)
+                    //get element instance (indicated with CodeMirror-scroll class name)
+                    var cm_textarea = $('.CodeMirror-scroll');
+                    //Bind mouse click event
                     cm_textarea.bind('click', function(evt){
                         scope.onMouseClick(evt);
                     });
+
+                    //Handle textarea height
                     if($(window).height() > defaultHeight.MINIMUM_HEIGHT){
                         cm_textarea.css('height', ($(window).height() - defaultHeight.getOccupiedHeight())+'px');
                     }

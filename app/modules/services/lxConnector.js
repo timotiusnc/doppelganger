@@ -17,8 +17,16 @@ angular.module('codeEdit.services').
                     var res = eval('(' + data + ')');
                     sharedService.prepForBroadcast(sharedService.RESULT_RECEIVED, res);
                     if(res.detail.status == 2 || res.detail.status == 3){
-                        sharedService.prepForBroadcast(sharedService.SAVE_CODE, null); //tap the compile event here, so should the compilation fails, it won't be counted
+                        //tap the compile event here, so should the compilation fails, it won't be counted
+                        sharedService.prepForBroadcast(sharedService.COMPILE_ACTION, null);
+
+                        //tell the timer to start (if it hasn't)
+                        sharedService.prepForBroadcast(sharedService.START_TIMER, null);
+
+                        //tell FooterCtrl that the code has been graded
                         sharedService.prepForBroadcast(sharedService.CODE_GRADED, res.detail.report);
+
+                        //stop the pooling
                         lxConnector.stopGetResult();
                     }
                 }
@@ -42,7 +50,7 @@ angular.module('codeEdit.services').
                     content: fileContents[i]
                 }
             }
-            //console.log(data);
+            console.log(data);
 
             $.ajax({
                 type: 'POST',

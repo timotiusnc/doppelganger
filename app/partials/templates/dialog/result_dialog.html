@@ -1,0 +1,45 @@
+<div class="modal hide" id="resultDialogModal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>Hasil Penilaian Proses</h3>
+    </div>
+    <div class="modal-body">
+        <div id="keypress_counter_grade">
+            <blockquote>
+                <p><b>Jumlah Ketikan: <span style="color: red">{{jumlah_ketikan}}%</span></b></p>
+                <small><i>(Jumlah karakter akhir / Jumlah ketikan total) * 100%</i></small>
+            </blockquote>
+
+            <div class="progress progress-striped active">
+                <div class="bar" style="width: {{jumlah_ketikan}}%;"></div>{{jumlah_ketikan}}%
+            </div>
+        </div>
+
+        <div id="accuracy_grade">
+            <blockquote>
+                <p><b>Akurasi: <span style="color: red">{{akurasi_pengetikan}}%</span></b></p>
+                <small><i>(&Sigma;backspace + &Sigma;mouseclick + &Sigma;&larr;&uarr;&rarr;&darr;)/Jumlah ketikan total) * 100%</i></small>
+            </blockquote>
+
+            <div class="progress progress-striped active">
+                <div class="bar" style="width: {{akurasi_pengetikan}}%;"></div>
+            </div>
+        </div>
+
+        <div id="duration_grade">
+            <blockquote>
+                <p><b>Jumlah Kompilasi: <span style="color: red">{{compilationCtr}} X</span></b></p>
+            </blockquote>
+        </div>
+
+        <div id="compilation_counter_grade">
+            <blockquote>
+                <p><b>Durasi: <span style="color: red">{{duration}} seconds</span></b></p>
+            </blockquote>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class="btn" data-dismiss="modal">Close</a>
+        <a class="btn btn-primary" ng-click="">Upload Assignment</a>
+    </div>
+</div>

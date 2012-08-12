@@ -13,6 +13,7 @@
         <link rel="stylesheet" type="text/css" href="css/main.css"/>
 		<link rel="stylesheet" type="text/css" href="css/content.css"/>
         <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap-responsive.css">
+        <link rel="stylesheet" type="text/css" href="lib/jquery.alerts-1.1/jquery.alerts.css">
         <link rel="stylesheet" type="text/css" href="lib/codemirror/lib/codemirror.css">
     </head>
     <body ng-controller="MainCtrl">
@@ -31,6 +32,7 @@
 
         <div send-file-dialog></div>
         <div file-importer-dialog></div>
+        <div result-dialog></div>
         <div compile-dialog
              item-title-attr="tabTitle">
         </div>
@@ -55,6 +57,7 @@
         <script type="text/javascript" src="modules/controllers/CompileCtrl.js"></script>
         <script type="text/javascript" src="modules/controllers/SendFileCtrl.js"></script>
         <script type="text/javascript" src="modules/controllers/FileImporterCtrl.js"></script>
+        <script type="text/javascript" src="modules/controllers/ResultDialogCtrl.js"></script>
         <script type="text/javascript" src="modules/controllers/FooterCtrl.js"></script>
 
         <!-- services -->
@@ -73,10 +76,14 @@
         
         <script type="text/javascript" src="modules/directives/dialog/compile_dialog.js"></script>
         <script type="text/javascript" src="modules/directives/dialog/sendfile_dialog.js"></script>
+        <script type="text/javascript" src="modules/directives/dialog/result_dialog.js"></script>
         <script type="text/javascript" src="modules/directives/dialog/file_importer_dialog.js"></script>
 
 		<!--Bootstrap-->
         <script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>
+
+        <!-- jQuery alert 1.1 -->
+        <script type="text/javascript" src="lib/jquery.alerts-1.1/jquery.alerts.js"></script>
 
         <!--Code Mirror -->
         <script type="text/javascript" src="lib/codemirror/lib/codemirror.js"></script>

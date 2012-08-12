@@ -7,16 +7,18 @@ function FileImporterCtrl($scope, sharedService){
     $scope.files = [];
 
     $scope.handleFileSelect = function (evt) {
-        $scope.files = evt.target.files;
-        $scope.$apply();
+        $scope.$apply(function(){
+            $scope.files = evt.target.files;
+        })
     }
 
     $scope.handleFileSelectFromDrop = function(evt){
         evt.stopPropagation();
         evt.preventDefault();
 
-        $scope.files = evt.dataTransfer.files;
-        $scope.$apply();
+        $scope.$apply(function(){
+            $scope.files = evt.dataTransfer.files;
+        });
     }
 
     $scope.handleDragOver = function handleDragOver(evt) {
@@ -33,8 +35,9 @@ function FileImporterCtrl($scope, sharedService){
                 reader.readAsText(f);
                 reader.onload = (function(file){
                     return function(e){
-                        sharedService.prepForBroadcast(sharedService.NEW_TAB_BTN_CLICKED, {title: file.name, content: e.target.result});
-                        $scope.$apply();
+                        $scope.$apply(function(){
+                            sharedService.prepForBroadcast(sharedService.NEW_TAB_BTN_CLICKED, {title: file.name, content: e.target.result});
+                        });
                     }
                 })(f);
             }

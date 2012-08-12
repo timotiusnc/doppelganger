@@ -13,8 +13,9 @@ angular.module('codeEdit.directives').
 
             $scope.$on(sharedService.HANDLE_BROADCAST, function(){
                 if(sharedService.message == sharedService.ONE_SECOND_PASSED){
-                    $scope.duration = sharedService.param;
-                    $scope.$apply();
+                    $scope.$apply(function(){
+                        $scope.duration = sharedService.param;
+                    });
                 }
             });
         }
