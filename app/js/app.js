@@ -10,9 +10,9 @@ angular.module('codeEdit.directives', []);  //to include all directives modules 
 
 angular.module('codeEdit', ['codeEdit.filters', 'codeEdit.services', 'codeEdit.directives']).
     config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html', controller: EditorCtrl});
-        $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html', controller: MyCtrl2});
-        $routeProvider.otherwise({redirectTo: '/view1'});
+        $routeProvider.when('/code-editor', {templateUrl: 'partials/partial1.html', controller: EditorCtrl});
+        $routeProvider.when('/code-messaging', {templateUrl: 'partials/partial2.html', controller: MyCtrl2});
+        $routeProvider.otherwise({redirectTo: '/code-editor'});
     }]).
     run(function($rootScope){ //App initialization
         /**

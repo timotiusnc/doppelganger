@@ -41,6 +41,14 @@ angular.module('codeEdit.services').
                 window.Blob ? retval[3] = '1' : retval[3] = '0';
                 return retval;
             }
+
+            this.localStorageSupport = function(){
+                try {
+                    return 'localStorage' in window && window['localStorage'] !== null;
+                } catch (e) {
+                    return false;
+                }
+            }
         },
         
         searchString: function (data) {
@@ -197,6 +205,7 @@ angular.module('codeEdit.services').
             }
         ]
     };
+    
     browserDetect.init();
 
     return browserDetect;

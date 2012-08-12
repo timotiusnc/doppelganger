@@ -17,17 +17,17 @@
         <link rel="stylesheet" type="text/css" href="lib/codemirror/lib/codemirror.css">
     </head>
     <body ng-controller="MainCtrl">
-        <div code-edit-navbar></div>
+        <!--<div code-edit-navbar></div>-->
 
         <div id="container">
             <div id="content">
                 <div ng-view></div>
             </div>
 
-            <footer>
+            <!--<footer>
                 <div code-edit-footer></div>
-                <span id="footer_text">&copy; 2012 CodeEdit two-sub-app yeah Team</span>
-            </footer>
+                <span id="footer_text">&copy; 2012 CodeEdit two-sub-app Team</span>
+            </footer>-->
         </div>
 
         <div send-file-dialog></div>
@@ -73,6 +73,7 @@
         <script type="text/javascript" src="modules/directives/textarea.js"></script>
         <script type="text/javascript" src="modules/directives/keypress.js"></script>
         <script type="text/javascript" src="modules/directives/navbar.js"></script>
+        <script type="text/javascript" src="modules/directives/navbar_codemessaging.js"></script>
         
         <script type="text/javascript" src="modules/directives/dialog/compile_dialog.js"></script>
         <script type="text/javascript" src="modules/directives/dialog/sendfile_dialog.js"></script>
@@ -84,6 +85,9 @@
 
         <!-- jQuery alert 1.1 -->
         <script type="text/javascript" src="lib/jquery.alerts-1.1/jquery.alerts.js"></script>
+
+        <!-- FileSaver -->
+        <script type="text/javascript" src="lib/filesaver/filesaver.js"></script>
 
         <!--Code Mirror -->
         <script type="text/javascript" src="lib/codemirror/lib/codemirror.js"></script>
