@@ -26,7 +26,7 @@
 
             <footer>
                 <div code-edit-footer></div>
-                <span id="footer_text">&copy; 2012 CodeEdit Team</span>
+                <span id="footer_text">&copy; 2012 CodeEdit two-sub-app Team</span>
             </footer>
         </div>
 
