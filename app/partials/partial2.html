@@ -1,23 +1,19 @@
 <div code-messaging-navbar></div>
 
-<div id="main">
-    <p>Partial view 2</p>
-
-    <button class="btn btn-primary">Primary</button>
-    <button class="btn btn-navbar">Navbar</button>
-    <button class="btn btn-danger">Danger</button>
-    <button class="btn btn-warning">Warning</button>
-    <button class="btn btn-success">Success</button>
-    <button class="btn btn-info">Info</button>
-    <button class="btn btn-inverse">Inverse</button>
-    
-    <p>
-        Showing of 'interpolate' filter:
-        {{ 'Current version is v%VERSION%.' | interpolate }}
-    </p>
-
-    {{tes}}
+<div style="margin: 15px">
+    <p>Select file(s):</p>
+    <div class="btn-group" data-toggle="buttons-checkbox">
+        <span ng-repeat="file in files">
+            <input type="checkbox" value="{{file.fileName}}" ng:model="file.checked"> <span title="{{file.previewContent}}">{{file.fileName}}</span><br/>
+        </span>
+    </div>
+    <div style="margin-top: 10px">
+        <button ng-click="initializeFile()" class="btn btn-primary">Refresh List</button>
+        <button ng-click="selectDeselect()" class="btn btn-navbar">{{selectDeselectStr}}</button>
+    </div>
 </div>
+
+<hr/>
 
 <footer>
     <div code-edit-footer></div>

@@ -2,17 +2,8 @@ function CodeEditorCtrl($scope, fileHandler, sharedService) {
     $scope.tabs = []; //Semantically an array of Tab Title, the content (codeEditTextArea) is another instance
 
     /**
-     * @name compileBtnClick
-     * @methodOf MainCtrl#
-     */
-    $scope.compileBtnClick = function(){
-        //$("#compileModal").modal('show');
-        localStorage.clear();
-    }
-
-    /**
      * @name openFileBtnClick
-     * @methodOf MainCtrl#
+     * @methodOf CodeEditorCtrl#
      */
     $scope.openFileBtnClick = function(){
         fileHandler.listFilesOnLocalStorage();
