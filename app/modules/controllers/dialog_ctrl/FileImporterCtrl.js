@@ -3,7 +3,7 @@
  * Intercept all keydown event
  */
 
-function FileImporterCtrl($scope, sharedService){
+function FileImporterCtrl($scope, fileHandler, sharedService){
     $scope.files = [];
 
     $scope.handleFileSelect = function (evt) {
@@ -36,7 +36,7 @@ function FileImporterCtrl($scope, sharedService){
                 reader.onload = (function(file){
                     return function(e){
                         $scope.$apply(function(){
-                            sharedService.prepForBroadcast(sharedService.NEW_TAB_BTN_CLICKED, {title: file.name, content: e.target.result});
+                            sharedService.prepForBroadcast(sharedService.NEW_TAB_BTN_CLICKED, {title: fileHandler.formatFileName(file.name), content: e.target.result});
                         });
                     }
                 })(f);
@@ -46,4 +46,4 @@ function FileImporterCtrl($scope, sharedService){
         $("#importFileModal").modal('hide');
     }
 }
-FileImporterCtrl.$inject = ['$scope', 'sharedService'];
+FileImporterCtrl.$inject = ['$scope', 'fileHandler', 'sharedService'];

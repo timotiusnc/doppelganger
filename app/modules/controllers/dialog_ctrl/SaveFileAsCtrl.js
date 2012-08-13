@@ -9,12 +9,13 @@ function SaveFileAsCtrl($scope, fileHandler, sharedService){
 
     $scope.save_file_as = function(){
         var oldFileName = $scope.selectedTab.tabTitle;
+        var newFileName = fileHandler.formatFileName($scope.newFileName);
 
         //change textarea ID and tab title
-        $("#"+oldFileName.replace(".", "\\.")).attr('id', $scope.newFileName);
-        $scope.selectedTab.tabTitle = $scope.newFileName;
+        $("#"+fileHandler.formatFileName(oldFileName)).attr('id', newFileName);
+        $scope.selectedTab.tabTitle = newFileName;
 
-        fileHandler.saveFileAs(oldFileName, $scope.newFileName);
+        fileHandler.saveFileAs(oldFileName, newFileName);
 
         $scope.newFileName = ''; //initialize with empty string again for next save-as command
         $("#saveFileAsModal").modal('hide');

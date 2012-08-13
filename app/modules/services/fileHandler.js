@@ -69,7 +69,7 @@ angular.module('codeEdit.services').
 
         //[save code mirror value]; get textarea value; update file content attr; save to localstorage
         sharedService.prepForBroadcast(sharedService.REQUEST_SAVE_FILE_AS, fileName);
-        fileContent = $("#" + fileName.replace(".","\\.")).val();
+        fileContent = $("#" + fileName.replace(/[.]/g,"\\.")).val();
         fileHandler.updateFileAttr(fileName, {content: fileContent});
         fileHandler.saveFileToLocalStorage(fileName);
     }
@@ -79,7 +79,7 @@ angular.module('codeEdit.services').
 
         //[save code mirror value]; get textarea value
         sharedService.prepForBroadcast(sharedService.REQUEST_SAVE_FILE_AS, newFileName);
-        fileContent = $("#" + newFileName.replace(".","\\.")).val();
+        fileContent = $("#" + newFileName.replace(/[.]/g,"\\.")).val();
 
         //change fileHandler.files file name; update file content attr
         fileHandler.changeFileName(oldFileName, newFileName);
@@ -174,6 +174,10 @@ angular.module('codeEdit.services').
         }
 
         return retval;
+    }
+
+    fileHandler.formatFileName = function(fileName){
+        return fileName.replace(/\s/g,"_");
     }
 
     $rootScope.$on(sharedService.HANDLE_BROADCAST, function(){
