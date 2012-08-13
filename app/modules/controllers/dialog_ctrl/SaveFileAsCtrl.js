@@ -8,26 +8,13 @@ function SaveFileAsCtrl($scope, fileHandler, sharedService){
     $scope.newFileName = '';
 
     $scope.save_file_as = function(){
-        var fileContent, oldFileName;
-
-        //save oldFileName
-        oldFileName = $scope.selectedTab.tabTitle;
+        var oldFileName = $scope.selectedTab.tabTitle;
 
         //change textarea ID and tab title
-        $("#"+$scope.selectedTab.tabTitle).attr('id', $scope.newFileName);
+        $("#"+oldFileName.replace(".", "\\.")).attr('id', $scope.newFileName);
         $scope.selectedTab.tabTitle = $scope.newFileName;
 
-        //[save code mirror value]; get textarea value
-        sharedService.prepForBroadcast(sharedService.REQUEST_SAVE_FILE_AS, $scope.newFileName);
-        fileContent = $("#" + $scope.newFileName).val();
-
-        //change fileHandler.files file name; update file content attr
-        fileHandler.changeFileName(oldFileName, $scope.newFileName);
-        fileHandler.updateFileAttr($scope.newFileName, {content: fileContent});
-
-        //delete old file and then save new file from/to localstorage
-        fileHandler.deleteFileFromLocalStorage(oldFileName);
-        fileHandler.saveFileToLocalStorage($scope.newFileName);
+        fileHandler.saveFileAs(oldFileName, $scope.newFileName);
 
         $scope.newFileName = ''; //initialize with empty string again for next save-as command
         $("#saveFileAsModal").modal('hide');

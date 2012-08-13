@@ -90,7 +90,7 @@ angular.module('codeEdit.services').
     sharedService.OLD_FILE_NAME_RESPONSE   = "oldFileNameResponse"
 
     /**
-     * @broadcaster SaveFileAsCtrl
+     * @broadcaster FileHandler
      * @receiver TextAreaCtrl
      * @param string fileName file name to be saved (associated to textarea id)
      * Ask the TextAreaCtrl's CodeMirror intance to save its content.

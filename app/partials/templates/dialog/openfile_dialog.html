@@ -6,8 +6,8 @@
     <div class="modal-body">
         <p>Select the file(s) you want to open</p>
         <div class="btn-group" data-toggle="buttons-checkbox">
-            <span ng-repeat="fileName in fileNames">
-                <input type="checkbox" value="{{fileName.tabTitle}}" checked> {{fileName.tabTitle}}<br/>
+            <span ng-repeat="file in files">
+                <input type="checkbox" value="{{file.fileName}}" ng:model="file.checked"> <span title="{{file.previewContent}}">{{file.fileName}}</span><br/>
             </span>
         </div>
     </div>

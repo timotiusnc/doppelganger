@@ -13,6 +13,7 @@ angular.module('codeEdit.directives').
             templateUrl: 'partials/templates/textarea.html',
             transclude: false,
             scope: {
+                title: '=',
                 content: '='
             },
             controller: TextAreaCtrl,

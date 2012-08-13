@@ -6,7 +6,8 @@ function CodeEditorCtrl($scope, fileHandler, sharedService) {
      * @methodOf MainCtrl#
      */
     $scope.compileBtnClick = function(){
-        $("#compileModal").modal('show');
+        //$("#compileModal").modal('show');
+        localStorage.clear();
     }
 
     /**
@@ -19,8 +20,10 @@ function CodeEditorCtrl($scope, fileHandler, sharedService) {
     }
 
     $scope.saveFileBtnClick = function(){
-        console.log('save');
-        //fileHandler.saveFileToLocalStorage(fileName);
+        var selectedTab = $scope.getSelectedTab();
+        if(selectedTab){
+            fileHandler.saveFile(selectedTab.tabTitle);
+        }
     }
 
     $scope.saveFileAsBtnClick = function(){

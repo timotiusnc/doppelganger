@@ -27,6 +27,7 @@ angular.module('codeEdit.services').
             var newFile = new Object();
             newFile.fileName        = fileName;
             newFile.content         = '';
+            newFile.previewContent  = '';
             newFile.duration        = 0;
             newFile.backspace_ctr   = 0;
             newFile.dir_ctr         = 0;
@@ -47,6 +48,10 @@ angular.module('codeEdit.services').
                     file[key] = fileAttr[key];
                 }
             }
+
+            if(file.content){
+                file.previewContent = file.content.substring(0, 50);
+            }
         }
     }
 
@@ -59,8 +64,41 @@ angular.module('codeEdit.services').
         }
     }
 
-    fileHandler.deleteFileFromMemory = function(){
-        
+    fileHandler.saveFile = function(fileName){
+        var fileContent;
+
+        //[save code mirror value]; get textarea value; update file content attr; save to localstorage
+        sharedService.prepForBroadcast(sharedService.REQUEST_SAVE_FILE_AS, fileName);
+        fileContent = $("#" + fileName.replace(".","\\.")).val();
+        fileHandler.updateFileAttr(fileName, {content: fileContent});
+        fileHandler.saveFileToLocalStorage(fileName);
+    }
+
+    fileHandler.saveFileAs = function(oldFileName, newFileName){
+        var fileContent;
+
+        //[save code mirror value]; get textarea value
+        sharedService.prepForBroadcast(sharedService.REQUEST_SAVE_FILE_AS, newFileName);
+        fileContent = $("#" + newFileName.replace(".","\\.")).val();
+
+        //change fileHandler.files file name; update file content attr
+        fileHandler.changeFileName(oldFileName, newFileName);
+        fileHandler.updateFileAttr(newFileName, {content: fileContent});
+
+        //delete old file and then save new file from/to localstorage
+        fileHandler.deleteFileFromLocalStorage(oldFileName);
+        fileHandler.saveFileToLocalStorage(newFileName);
+    }
+
+    fileHandler.openFile = function(fileName){
+        var openedFile = fileHandler.getFileFromLocalStorage(fileName);
+        if(openedFile){
+            fileHandler.files[fileName] = openedFile;
+            fileHandler.startTimer(fileName);           //start the timer as soon as the file opened
+            return openedFile.content;                  //return the content (to be displayed)
+        }else{
+            return null;
+        }
     }
 
     fileHandler.startTimer = function(fileName){
@@ -91,11 +129,10 @@ angular.module('codeEdit.services').
      */
     fileHandler.saveFileToLocalStorage = function(fileName){
         if(browserDetect.supportLocalStorage){
-            console.log('save');
             var file = fileHandler.files[fileName];
             if(file){
                 localStorage[fileName] = JSON.stringify(file);
-                console.log(localStorage[fileName]);
+                //console.log(localStorage[fileName]);
             }
         }
     }
@@ -126,13 +163,17 @@ angular.module('codeEdit.services').
     }
 
     fileHandler.listFilesOnLocalStorage = function(){
-        /*for(var i=0; i<localStorage.length; ++i){
+        var retval = new Object();
+        for(var i=0; i<localStorage.length; ++i){
             var key = localStorage.key(i);
-            console.log('local');
-            console.log(localStorage[key]);
-        }*/
+            retval[key] = fileHandler.getFileFromLocalStorage(key);
 
-        console.log(fileHandler.files);
+            if(retval[key].content){
+                retval[key].previewContent = retval[key].content.substring(0, 50);
+            }
+        }
+
+        return retval;
     }
 
     $rootScope.$on(sharedService.HANDLE_BROADCAST, function(){
