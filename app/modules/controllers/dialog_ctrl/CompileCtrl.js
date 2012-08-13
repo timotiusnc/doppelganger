@@ -34,4 +34,4 @@ function CompileCtrl($scope, sharedService, lxConnector, browserDetect){
         }
     });
 }
-TextAreaCtrl.$inject = ['$scope', 'sharedService', 'lxConnector', 'browserDetect'];
+CompileCtrl.$inject = ['$scope', 'sharedService', 'lxConnector', 'browserDetect'];

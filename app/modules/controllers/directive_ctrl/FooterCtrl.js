@@ -45,4 +45,4 @@ function FooterCtrl($scope, sharedService, browserDetect){
     $scope.fileAPI = browserDetect.fileAPISupport();
     $scope.localStore = browserDetect.supportLocalStorage();
 }
-TextAreaCtrl.$inject = ['$scope', 'sharedService', 'browserDetect'];
+FooterCtrl.$inject = ['$scope', 'sharedService', 'browserDetect'];

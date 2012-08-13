@@ -3,15 +3,16 @@
  * Intercept all keydown event
  */
 
-function TextAreaCtrl($scope, sharedService, browserDetect, element){
+function TextAreaCtrl($scope, eventRecorder, sharedService, browserDetect){
     $scope.instances = []; //CodeMirror instances
+
+    console.log(sharedService, browserDetect);
 
     /**
      * Start timer (if not started); Dispatch keyEvent into eventRecorder
      */
     $scope.processKeyPress = function(element, keyEvent){ //GANTI DENGAN LANGSUNG PANGGIL service eventRecorder
-        sharedService.prepForBroadcast(sharedService.START_TIMER, null);
-        sharedService.prepForBroadcast(sharedService.KEYPRESS_ACTION, keyEvent);
+        eventRecorder.keyPressHandler(keyEvent);
     }
 
     /**
@@ -27,7 +28,7 @@ function TextAreaCtrl($scope, sharedService, browserDetect, element){
      * onMouseClick event
      */
     $scope.onMouseClick = function(evt){
-        sharedService.prepForBroadcast(sharedService.MOUSECLICK_ACTION, evt);
+        eventRecorder.mouseClickHandler();
     }
 
     /**
@@ -59,5 +60,5 @@ function TextAreaCtrl($scope, sharedService, browserDetect, element){
     $scope.id = TextAreaCtrl.INSTANCE_CTR;
     TextAreaCtrl.INSTANCE_CTR++;
 }
-TextAreaCtrl.$inject = ['$scope', 'sharedService', 'browserDetect'];
+TextAreaCtrl.$inject = ['$scope', 'eventRecorder', 'sharedService', 'browserDetect'];
 TextAreaCtrl.INSTANCE_CTR = 0;

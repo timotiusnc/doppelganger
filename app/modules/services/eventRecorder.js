@@ -4,10 +4,8 @@
  */
 
 angular.module('codeEdit.services').
-    factory('eventRecorder', function($rootScope, fileHandler, sharedService){
+    factory('eventRecorder', function(){
     var eventRecorder = {};
-
-    var timer = null;
 
     eventRecorder.keyPressCtr      = 0;
     eventRecorder.directionCtr     = 0;
@@ -16,62 +14,22 @@ angular.module('codeEdit.services').
     eventRecorder.compilationCtr   = 0;
     eventRecorder.duration         = 0;
 
-    eventRecorder.setTime = function(){
-        ++eventRecorder.duration;
-        sharedService.prepForBroadcast(sharedService.ONE_SECOND_PASSED, this.duration);
-    };
+    eventRecorder.keyPressHandler = function(keyEvent){
+        if( (keyEvent.type == 'keydown') && !(keyEvent.altKey || keyEvent.ctrlKey || keyEvent.shiftKey)){
+            ++eventRecorder.keyPressCtr;
 
-    eventRecorder.start = function(){
-        if(!timer){
-            timer = setInterval(function(){eventRecorder.setTime()}, 1000);
+            var kc = keyEvent.keyCode;
+            if(kc == 8){                    //backspace
+                ++eventRecorder.backSpaceCtr;
+            }else if(kc >= 37 && kc <= 40){ //4-directional pad
+                ++eventRecorder.directionCtr;
+            }
         }
     }
 
-    $rootScope.$on(sharedService.HANDLE_BROADCAST, function(){
-        if(sharedService.message == sharedService.START_TIMER){
-            eventRecorder.start();
-        }else if(sharedService.message == sharedService.KEYPRESS_ACTION){
-            var evt = sharedService.param;
-
-            if(evt.type == 'keydown'){
-                ++eventRecorder.keyPressCtr;
-                
-                var kc = evt.keyCode;
-                if(kc == 8){                    //backspace
-                    ++eventRecorder.backSpaceCtr;
-                }else if(kc >= 37 && kc <= 40){ //4-directional pad
-                    ++eventRecorder.directionCtr;
-                }
-            }
-        }else if(sharedService.message == sharedService.MOUSECLICK_ACTION){
-            ++eventRecorder.mouseClickCtr;
-        }else if(sharedService.message == sharedService.COMPILE_ACTION){
-            ++eventRecorder.compilationCtr;
-        }else if(sharedService.message == sharedService.STOPCODING_ACTION){
-            if(timer){
-                //stop the timer
-                clearInterval(timer);
-                timer = null;
-
-                $rootScope.$apply(function(){
-                    //Send coding result for process-grading
-                    sharedService.prepForBroadcast(sharedService.SEND_CODINGRESULT, {
-                        keyPressCtr     : eventRecorder.keyPressCtr,
-                        directionCtr    : eventRecorder.directionCtr,
-                        mouseClickCtr   : eventRecorder.mouseClickCtr,
-                        backSpaceCtr    : eventRecorder.backSpaceCtr,
-                        compilationCtr  : eventRecorder.compilationCtr,
-                        duration        : eventRecorder.duration
-                    });
-
-                    //Show result grade dialog
-                    $('#resultDialogModal').modal('show');
-                });
-            }else{
-                jAlert("You haven't started coding, yet !!", 'Coding Not Yet Started');
-            }
-        }
-    });
+    eventRecorder.mouseClickHandler = function(){
+        ++eventRecorder.mouseClickCtr;
+    }
 
     return eventRecorder;
 });

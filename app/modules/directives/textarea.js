@@ -34,9 +34,8 @@ angular.module('codeEdit.directives').
                     cm_instance.setValue(scope.content);    //Set original value
                     scope.instances.push(cm_instance);      //Push instances into instances array in TextAreaCtrl
 
-                    //get element instance (indicated with CodeMirror-scroll class name)
+                    //get element instance (indicated with CodeMirror-scroll class name); bind its mouse click event
                     var cm_textarea = $('.CodeMirror-scroll');
-                    //Bind mouse click event
                     cm_textarea.bind('click', function(evt){
                         scope.onMouseClick(evt);
                     });

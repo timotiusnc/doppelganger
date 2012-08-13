@@ -7,7 +7,7 @@
 'use strict';
 
 angular.module('codeEdit.directives').
-    directive('tabbedPane', function(fileHandler) {
+    directive('tabbedPane', function(fileHandler, sharedService) {
         var defaults = {
             itemSelectedAttr: 'selected',
             itemTitleAttr: 'title'
@@ -19,7 +19,7 @@ angular.module('codeEdit.directives').
             opts = angular.extend(defaults, attrs);
         }
 
-        var controllerFn = function($scope, $element, $attrs, sharedService){
+        var controllerFn = function($scope, $element, $attrs){
             $scope.selectItem = function(item) {
                 angular.forEach($scope.items, function(it) {
                     it[opts.itemSelectedAttr] = false;

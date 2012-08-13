@@ -32,4 +32,4 @@ function OpenFileCtrl($scope, fileHandler, sharedService){
         }
     });
 }
-TextAreaCtrl.$inject = ['$scope', 'fileHandler', 'sharedService'];
+OpenFileCtrl.$inject = ['$scope', 'fileHandler', 'sharedService'];
