@@ -47,7 +47,6 @@
 
         <!-- dialog controllers -->
         <script type="text/javascript" src="modules/controllers/dialog_ctrl/OpenFileCtrl.js"></script>
-        <script type="text/javascript" src="modules/controllers/dialog_ctrl/CompileCtrl.js"></script>
         <script type="text/javascript" src="modules/controllers/dialog_ctrl/SaveFileAsCtrl.js"></script>
         <script type="text/javascript" src="modules/controllers/dialog_ctrl/FileImporterCtrl.js"></script>
         <script type="text/javascript" src="modules/controllers/dialog_ctrl/ResultDialogCtrl.js"></script>
@@ -64,12 +63,10 @@
         <script type="text/javascript" src="modules/directives/footer.js"></script>
         <script type="text/javascript" src="modules/directives/tabbedpane.js"></script>
         <script type="text/javascript" src="modules/directives/textarea.js"></script>
-        <script type="text/javascript" src="modules/directives/keypress.js"></script>
         <script type="text/javascript" src="modules/directives/navbar.js"></script>
         <script type="text/javascript" src="modules/directives/navbar_codemessaging.js"></script>
 
         <script type="text/javascript" src="modules/directives/dialog/openfile_dialog.js"></script>
-        <script type="text/javascript" src="modules/directives/dialog/compile_dialog.js"></script>
         <script type="text/javascript" src="modules/directives/dialog/savefileas_dialog.js"></script>
         <script type="text/javascript" src="modules/directives/dialog/result_dialog.js"></script>
         <script type="text/javascript" src="modules/directives/dialog/importfile_dialog.js"></script>

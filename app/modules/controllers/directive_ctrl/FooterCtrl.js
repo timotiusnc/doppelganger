@@ -18,7 +18,6 @@ function FooterCtrl($scope, sharedService, browserDetect){
             $scope.$apply(function(){
                 $scope.result = sharedService.param;
             });
-            //$scope.$apply(); //jika $apply ini dikeluarkan dari if else, muncul error $digest already in progress
         }else if(sharedService.message == sharedService.CODE_GRADED){
             $scope.$apply(function(){
                 $scope.report= sharedService.param
@@ -30,7 +29,6 @@ function FooterCtrl($scope, sharedService, browserDetect){
                     $("#footer_tab a[href='#output']").tab('show');
                 }
             });
-            //$scope.$apply();
         }
     });
 

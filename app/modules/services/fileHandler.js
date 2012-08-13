@@ -183,9 +183,7 @@ angular.module('codeEdit.services').
     }
 
     $rootScope.$on(sharedService.HANDLE_BROADCAST, function(){
-        if(sharedService.message == sharedService.START_TIMER){
-            //eventRecorder.start();
-        }
+        
     });
 
     return fileHandler;

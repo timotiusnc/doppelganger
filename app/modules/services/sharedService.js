@@ -52,25 +52,16 @@ angular.module('codeEdit.services').
      * @broadcaster lxConnectr
      * @receiver FooterCtrl
      * @param string the result string
-     * App gets the result
+     * App gets the compilation/execution result
      */
     sharedService.CODE_GRADED               = "codeGraded";
 
     /**
-     * TODO: CHECK THIS
+     * @broadcaster fileHandler
+     * @receiver navbar.js
+     * fileHandler has incremented the duration, the view in navbar should reflect it
      */
-    sharedService.START_TIMER               = "startTimer";
     sharedService.ONE_SECOND_PASSED         = "oneSecondPassed";
-
-    //Request response
-    /**
-     * REQUEST_FILE_NAMES
-     * @broadcaster CompileCtrl
-     * @receiver EditorCtrl
-     * CompileCtrl needs a file names. Get responded vice-versa with FILE_NAMES_RESPONSE
-     */
-    sharedService.REQUEST_FILE_NAMES        = "requestFileNames";
-    sharedService.FILE_NAMES_RESPONSE       = "fileNamesResponse"
 
     /**
      * REQUEST_CODE_TEXT
@@ -103,14 +94,6 @@ angular.module('codeEdit.services').
      * @receiver navbar.js
      */
     sharedService.CHANGE_NAVBAR_FILENAME    = "changeNavbarFilename";
-
-    //Action to be recorded for grading purpose
-    sharedService.KEYPRESS_ACTION           = "keypressAction";
-    sharedService.MOUSECLICK_ACTION         = "mouseClickAction";
-    sharedService.COMPILE_ACTION            = "compileAction";
-
-    sharedService.STOPCODING_ACTION        = "stopCodingAction";
-    sharedService.SEND_CODINGRESULT        = "sendCodingResult";
 
     return sharedService;
 });

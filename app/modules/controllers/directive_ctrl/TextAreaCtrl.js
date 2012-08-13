@@ -4,14 +4,13 @@
  */
 
 function TextAreaCtrl($scope, eventRecorder, sharedService, browserDetect){
-    $scope.instances = []; //CodeMirror instances
-
-    console.log(sharedService, browserDetect);
+    $scope.instances = new Array(); //CodeMirror instances
 
     /**
      * Start timer (if not started); Dispatch keyEvent into eventRecorder
      */
     $scope.processKeyPress = function(element, keyEvent){ //GANTI DENGAN LANGSUNG PANGGIL service eventRecorder
+        console.log($scope.instances[0].getOption('mode'));
         eventRecorder.keyPressHandler(keyEvent);
     }
 
