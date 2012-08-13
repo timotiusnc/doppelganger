@@ -1,10 +1,10 @@
-<div class="modal hide" id="compileModal">
+<div class="modal hide" id="openFileModal">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">×</button>
-        <h3>Compile</h3>
+        <h3>Open File</h3>
     </div>
     <div class="modal-body">
-        <p>Please select the file(s)</p>
+        <p>Select the file(s) you want to open</p>
         <div class="btn-group" data-toggle="buttons-checkbox">
             <span ng-repeat="fileName in fileNames">
                 <input type="checkbox" value="{{fileName.tabTitle}}" checked> {{fileName.tabTitle}}<br/>
@@ -13,6 +13,6 @@
     </div>
     <div class="modal-footer">
         <a class="btn" data-dismiss="modal">Cancel</a>
-        <a class="btn btn-primary" ng-click="compile()">Compile</a>
+        <a class="btn btn-primary" ng-click="open()">Open</a>
     </div>
 </div>

@@ -17,24 +17,10 @@
         <link rel="stylesheet" type="text/css" href="lib/codemirror/lib/codemirror.css">
     </head>
     <body ng-controller="MainCtrl">
-        <!--<div code-edit-navbar></div>-->
-
         <div id="container">
             <div id="content">
                 <div ng-view></div>
             </div>
-
-            <!--<footer>
-                <div code-edit-footer></div>
-                <span id="footer_text">&copy; 2012 CodeEdit two-sub-app Team</span>
-            </footer>-->
-        </div>
-
-        <div send-file-dialog></div>
-        <div file-importer-dialog></div>
-        <div result-dialog></div>
-        <div compile-dialog
-             item-title-attr="tabTitle">
         </div>
         
         <!-- jQuery -->
@@ -60,6 +46,7 @@
         <script type="text/javascript" src="modules/controllers/directive_ctrl/FooterCtrl.js"></script>
 
         <!-- dialog controllers -->
+        <script type="text/javascript" src="modules/controllers/dialog_ctrl/OpenFileCtrl.js"></script>
         <script type="text/javascript" src="modules/controllers/dialog_ctrl/CompileCtrl.js"></script>
         <script type="text/javascript" src="modules/controllers/dialog_ctrl/SendFileCtrl.js"></script>
         <script type="text/javascript" src="modules/controllers/dialog_ctrl/FileImporterCtrl.js"></script>
@@ -80,11 +67,12 @@
         <script type="text/javascript" src="modules/directives/keypress.js"></script>
         <script type="text/javascript" src="modules/directives/navbar.js"></script>
         <script type="text/javascript" src="modules/directives/navbar_codemessaging.js"></script>
-        
+
+        <script type="text/javascript" src="modules/directives/dialog/openfile_dialog.js"></script>
         <script type="text/javascript" src="modules/directives/dialog/compile_dialog.js"></script>
         <script type="text/javascript" src="modules/directives/dialog/sendfile_dialog.js"></script>
         <script type="text/javascript" src="modules/directives/dialog/result_dialog.js"></script>
-        <script type="text/javascript" src="modules/directives/dialog/file_importer_dialog.js"></script>
+        <script type="text/javascript" src="modules/directives/dialog/importfile_dialog.js"></script>
 
 		<!--Bootstrap-->
         <script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>

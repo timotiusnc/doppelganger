@@ -34,7 +34,6 @@ angular.module('codeEdit.services').
             var evt = sharedService.param;
 
             if(evt.type == 'keydown'){
-                fileHandler.updateRecordAttr('tes', {mouse:1, keypress_ctr:2});
                 ++eventRecorder.keyPressCtr;
                 
                 var kc = evt.keyCode;

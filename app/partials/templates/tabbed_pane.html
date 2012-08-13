@@ -1,7 +1,7 @@
 <div class="tabbable" id="myTab">
     <ul class="nav nav-tabs">
         <li ng-repeat="item in items" ng-class="{active:itemSelected(item)}">
-            <a ng-click="selectItem(item)">{{itemTitle(item)}}</a>
+            <a ng-click="selectItem(item)">{{itemTitle(item)}} <button class="close" ng-click="closeItem(item, $event);">&times;</button></a>
         </li>
     </ul>
 

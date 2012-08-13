@@ -7,7 +7,7 @@
 'use strict';
 
 angular.module('codeEdit.directives').
-    directive('fileImporterDialog', function(){
+    directive('importFileDialog', function(){
         return {
             replace: true,
             templateUrl: 'partials/templates/dialog/importfile_dialog.html',

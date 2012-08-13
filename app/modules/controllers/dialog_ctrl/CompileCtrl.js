@@ -4,7 +4,7 @@
  */
 
 function CompileCtrl($scope, sharedService, lxConnector, browserDetect){
-    $scope.fileNames = '';
+    $scope.fileNames = null;
     $scope.files = [];
 
     $scope.compile = function(){

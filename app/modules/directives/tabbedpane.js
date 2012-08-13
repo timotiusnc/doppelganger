@@ -39,6 +39,12 @@ angular.module('codeEdit.directives').
                 return item[opts.itemInitialContentAttr];
             }
 
+            $scope.closeItem = function(item, $event){
+                $scope.items.splice(item.tabIndex, 1);
+                console.log($scope.items);
+                $event.preventDefault();
+            }
+
             $scope.$on(sharedService.HANDLE_BROADCAST, function(){ //When a new tab added, set selected tab to the newest one
                 if(sharedService.message == sharedService.NEW_TAB_ADDED){
                     var i = 1;
