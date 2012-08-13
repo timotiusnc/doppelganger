@@ -1,12 +1,16 @@
 function CodeEditorCtrl($scope, fileHandler, sharedService) {
     $scope.tabs = []; //Semantically an array of Tab Title, the content (codeEditTextArea) is another instance
 
+    $scope.clearBtnClick = function(){
+        localStorage.clear();
+        alert('Local Storage Cleared');
+    }
+
     /**
      * @name openFileBtnClick
      * @methodOf CodeEditorCtrl#
      */
     $scope.openFileBtnClick = function(){
-        fileHandler.listFilesOnLocalStorage();
         $("#openFileModal").modal('show');
     }
 

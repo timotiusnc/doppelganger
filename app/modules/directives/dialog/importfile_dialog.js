@@ -15,8 +15,8 @@ angular.module('codeEdit.directives').
             controller: FileImporterCtrl,
             link: function(scope, elm, attrs) {
                 elm.bind('change', scope.handleFileSelect);
-                document.getElementById("drop_zone").addEventListener("dragover", scope.handleDragOver, false);
-                document.getElementById("drop_zone").addEventListener("drop", scope.handleFileSelectFromDrop, false);
+                //document.getElementById("drop_zone").addEventListener("dragover", scope.handleDragOver, false);
+                //document.getElementById("drop_zone").addEventListener("drop", scope.handleFileSelectFromDrop, false);
             }
         }
     });

@@ -41,7 +41,7 @@ function FooterCtrl($scope, sharedService, browserDetect){
         });
     });
 
-    $scope.UA = '\n' + ' on ' + browserDetect.OS + ' mobile ' + browserDetect.mobileVendor;
+    $scope.UA = '\n' + ' on ' + browserDetect.OS + ' mobile=' + browserDetect.mobileVendor;
     $scope.fileAPI = browserDetect.fileAPISupport();
     $scope.localStore = browserDetect.supportLocalStorage();
 }

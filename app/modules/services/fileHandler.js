@@ -107,6 +107,7 @@ angular.module('codeEdit.services').
             if(!file.timer){
                 file.timer = setInterval(function(){
                     ++file.duration;
+                    sharedService.prepForBroadcast(sharedService.ONE_SECOND_PASSED, file.duration);
                 }, 1000);
             }
         }
@@ -118,6 +119,7 @@ angular.module('codeEdit.services').
             if(file.timer){
                 clearInterval(file.timer);
                 file.timer = null;
+                console.log('timer = ' + file.timer);
             }
         }
     }

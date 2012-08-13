@@ -10,12 +10,16 @@ angular.module('codeEdit.directives').
     directive('codeEditNavbar', function(){
         var controllerFn = function($scope, sharedService){
             $scope.duration = 0;
+            $scope.fileName = '';
 
             $scope.$on(sharedService.HANDLE_BROADCAST, function(){
                 if(sharedService.message == sharedService.ONE_SECOND_PASSED){
                     $scope.$apply(function(){
                         $scope.duration = sharedService.param;
                     });
+                }else if(sharedService.message == sharedService.CHANGE_NAVBAR_FILENAME){
+                    $scope.duration = '--';
+                    $scope.fileName = sharedService.param;
                 }
             });
         }

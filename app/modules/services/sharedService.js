@@ -97,6 +97,12 @@ angular.module('codeEdit.services').
      * Then SaveFileAsCtrl can get the textarea value
      */
     sharedService.REQUEST_SAVE_FILE_AS     = "saveFileAs";
+    
+    /**
+     * @broadcaster tabbedpane.js (when a tab is selected)
+     * @receiver navbar.js
+     */
+    sharedService.CHANGE_NAVBAR_FILENAME    = "changeNavbarFilename";
 
     //Action to be recorded for grading purpose
     sharedService.KEYPRESS_ACTION           = "keypressAction";

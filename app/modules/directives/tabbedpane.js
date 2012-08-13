@@ -7,7 +7,7 @@
 'use strict';
 
 angular.module('codeEdit.directives').
-    directive('tabbedPane', function() {
+    directive('tabbedPane', function(fileHandler) {
         var defaults = {
             itemSelectedAttr: 'selected',
             itemTitleAttr: 'title'
@@ -21,10 +21,14 @@ angular.module('codeEdit.directives').
 
         var controllerFn = function($scope, $element, $attrs, sharedService){
             $scope.selectItem = function(item) {
-                angular.forEach($scope.items, function(item) {
-                    item[opts.itemSelectedAttr] = false;
+                angular.forEach($scope.items, function(it) {
+                    it[opts.itemSelectedAttr] = false;
+                    fileHandler.stopTimer(it[opts.itemTitleAttr]);
                 });
+
                 item[opts.itemSelectedAttr] = true;
+                fileHandler.startTimer(item[opts.itemTitleAttr]);
+                sharedService.prepForBroadcast(sharedService.CHANGE_NAVBAR_FILENAME, item[opts.itemTitleAttr]);
             };
 
             $scope.itemSelected = function(item){
@@ -57,8 +61,11 @@ angular.module('codeEdit.directives').
                     angular.forEach($scope.items, function(item) {
                         if(i < $scope.items.length){
                             item[opts.itemSelectedAttr] = false;
+                            fileHandler.stopTimer(item[opts.itemTitleAttr]);
                         }else{
                             item[opts.itemSelectedAttr] = true;
+                            fileHandler.startTimer(item[opts.itemTitleAttr]);
+                            sharedService.prepForBroadcast(sharedService.CHANGE_NAVBAR_FILENAME, item[opts.itemTitleAttr]);
                         }
                         ++i;
                     });

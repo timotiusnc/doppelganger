@@ -5,6 +5,7 @@
 
 function OpenFileCtrl($scope, fileHandler, sharedService){
     $scope.files = null;
+    $scope.noFile = '';
 
     $scope.open = function(){
         for(var key in $scope.files){
@@ -18,10 +19,16 @@ function OpenFileCtrl($scope, fileHandler, sharedService){
     }
 
     $('#openFileModal').on('shown', function () { //When the modal shown
+        var ctr = 0;
         $scope.files = fileHandler.listFilesOnLocalStorage();
 
         for(var key in $scope.files){
+            ++ctr;
             $scope.files[key].checked = true; //initialize check state to true
+        }
+
+        if(ctr == 0){
+            $scope.noFile = 'No saved file';
         }
     });
 }
