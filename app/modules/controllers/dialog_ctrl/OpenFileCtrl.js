@@ -13,7 +13,7 @@ function OpenFileCtrl($scope, fileHandler, sharedService){
     }
 
     $('#openFileModal').on('show', function () { //When the modal shown
-        fileHandler.listFilesOnLocalStorage();
+        
     });
 }
 TextAreaCtrl.$inject = ['$scope', 'fileHandler', 'sharedService'];

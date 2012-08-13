@@ -70,7 +70,7 @@ angular.module('codeEdit.services').
      * CompileCtrl needs a file names. Get responded vice-versa with FILE_NAMES_RESPONSE
      */
     sharedService.REQUEST_FILE_NAMES        = "requestFileNames";
-    sharedService.FILE_NAMES_RESPONSE       = "requestFileNamesResponse"
+    sharedService.FILE_NAMES_RESPONSE       = "fileNamesResponse"
 
     /**
      * REQUEST_CODE_TEXT
@@ -80,6 +80,23 @@ angular.module('codeEdit.services').
      */
     sharedService.REQUEST_CODE_TEXT         = "getCodeText";
     sharedService.CODE_TEXT_RESPONSE        = "codeTextResponse";
+
+    /**
+     * @broadcaster SaveFileAsCtrl
+     * @receiver CodeEditorCtrl
+     * Save as thingy
+     */
+    sharedService.REQUEST_OLD_FILE_NAME    = "requestOldFileName";
+    sharedService.OLD_FILE_NAME_RESPONSE   = "oldFileNameResponse"
+
+    /**
+     * @broadcaster SaveFileAsCtrl
+     * @receiver TextAreaCtrl
+     * @param string fileName file name to be saved (associated to textarea id)
+     * Ask the TextAreaCtrl's CodeMirror intance to save its content.
+     * Then SaveFileAsCtrl can get the textarea value
+     */
+    sharedService.REQUEST_SAVE_FILE_AS     = "saveFileAs";
 
     //Action to be recorded for grading purpose
     sharedService.KEYPRESS_ACTION           = "keypressAction";

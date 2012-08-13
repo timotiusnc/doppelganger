@@ -6,7 +6,7 @@ function CodeEditorCtrl($scope, fileHandler, sharedService) {
      * @methodOf MainCtrl#
      */
     $scope.compileBtnClick = function(){
-        $("#compileModal").modal('show');       
+        $("#compileModal").modal('show');
     }
 
     /**
@@ -14,15 +14,19 @@ function CodeEditorCtrl($scope, fileHandler, sharedService) {
      * @methodOf MainCtrl#
      */
     $scope.openFileBtnClick = function(){
+        fileHandler.listFilesOnLocalStorage();
         $("#openFileModal").modal('show');
     }
 
     $scope.saveFileBtnClick = function(){
-        $("#sendFileModal").modal('show');
+        console.log('save');
+        //fileHandler.saveFileToLocalStorage(fileName);
     }
 
     $scope.saveFileAsBtnClick = function(){
-        $("#sendFileModal").modal('show');
+        if($scope.getSelectedTab()){
+            $("#saveFileAsModal").modal('show');
+        }
     }
 
     $scope.importFileBtnClick = function(){
@@ -41,10 +45,26 @@ function CodeEditorCtrl($scope, fileHandler, sharedService) {
         });
     }
 
+    $scope.getSelectedTab = function(){
+        var found = false, i=0;
+        while(!found && i<$scope.tabs.length){
+            if($scope.tabs[i].selected){
+                found = true;
+            }else{
+                ++i;
+            }
+        }
+
+        if(found){
+            return $scope.tabs[i];
+        }else{
+            return null;
+        }
+    }
+
     $scope.addNewTab = function(title, content, selected){
         var fileName = (title == '') ? ('untitled-' + (TextAreaCtrl.INSTANCE_CTR)) : title;
         $scope.tabs.push({
-            tabIndex: $scope.tabs.length,
             tabTitle: fileName,
             tabInitialContent: (content) ? content : '',
             selected: selected
@@ -58,6 +78,9 @@ function CodeEditorCtrl($scope, fileHandler, sharedService) {
             $scope.addNewTab(sharedService.param.title, sharedService.param.content);
         }else if(sharedService.message == sharedService.REQUEST_FILE_NAMES){
             sharedService.prepForBroadcast(sharedService.FILE_NAMES_RESPONSE, $scope.tabs);
+        }else if(sharedService.message == sharedService.REQUEST_OLD_FILE_NAME){
+            var selectedTab = $scope.getSelectedTab();
+            sharedService.prepForBroadcast(sharedService.OLD_FILE_NAME_RESPONSE, selectedTab);
         }
     });
 

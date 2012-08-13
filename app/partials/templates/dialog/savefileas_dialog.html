@@ -1,0 +1,14 @@
+<div class="modal hide fade" id="saveFileAsModal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>Save File As</h3>
+    </div>
+    <div class="modal-body">
+        <p>Old file name: {{selectedTab.tabTitle}}</p>
+        <p>New file name: <input id="newfilename_input" type="text" ng-model="newFileName" autofocus></p>
+    </div>
+    <div class="modal-footer">
+        <a class="btn" ng-click="close()" data-dismiss="modal">Close</a>
+        <a class="btn btn-primary" ng-click="save_file_as()">Save</a>
+    </div>
+</div>

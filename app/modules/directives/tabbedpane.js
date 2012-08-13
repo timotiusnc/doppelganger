@@ -40,8 +40,14 @@ angular.module('codeEdit.directives').
             }
 
             $scope.closeItem = function(item, $event){
-                $scope.items.splice(item.tabIndex, 1);
-                console.log($scope.items);
+                var found = false, i=0;
+                while(!found && i<$scope.items.length){
+                    if($scope.items[i].tabTitle === item.tabTitle){
+                        found = true;
+                        $scope.items.splice(i, 1);
+                    }
+                    ++i;
+                }                
                 $event.preventDefault();
             }
 

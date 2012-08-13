@@ -44,15 +44,20 @@ function TextAreaCtrl($scope, sharedService, browserDetect, element){
 
             //Get textarea contents
             for(i=1; i<=TextAreaCtrl.INSTANCE_CTR; ++i){
-                retval[i-1] = $("#editor-" + i).val();
+                retval[i-1] = $("#untitled-" + i).val();
             }
 
             sharedService.prepForBroadcast(sharedService.CODE_TEXT_RESPONSE, retval);
+        }else if(sharedService.message == sharedService.REQUEST_SAVE_FILE_AS){
+            //if Desktop OS used, tell TextAreaCtrl to transfer code from CodeMirror to original textarea
+            if(!browserDetect.mobileVendor){
+                $scope.saveCodeMirrorText();
+            }
         }
     });
-    
-    TextAreaCtrl.INSTANCE_CTR++;
+
     $scope.id = TextAreaCtrl.INSTANCE_CTR;
+    TextAreaCtrl.INSTANCE_CTR++;
 }
 TextAreaCtrl.$inject = ['$scope', 'sharedService', 'browserDetect'];
 TextAreaCtrl.INSTANCE_CTR = 0;

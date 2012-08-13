@@ -17,13 +17,13 @@ angular.module('codeEdit.directives').
             },
             controller: TextAreaCtrl,
             link: function(scope, element, attrs){
-                console.log('editor-'+TextAreaCtrl.INSTANCE_CTR);
+                console.log('untitled-' + scope.id);
                 var textarea = element.children('.editor-text-area');       //Get textarea object
-                textarea.attr('id', 'editor-'+TextAreaCtrl.INSTANCE_CTR);   //Give ID to newly created textarea
+                textarea.attr('id', 'untitled-' + scope.id);   //Give ID to newly created textarea
 
                 if(!browserDetect.mobileVendor){ //handle Desktop version
                     //Replace original textarea with CodeMirror textarea
-                    var cm_instance = CodeMirror.fromTextArea(document.getElementById('editor-' + scope.id), {
+                    var cm_instance = CodeMirror.fromTextArea(document.getElementById('untitled-' + scope.id), {
                         lineNumbers: true,
                         matchBrackets: true,
                         mode: "text/x-csrc",

@@ -59,6 +59,10 @@ angular.module('codeEdit.services').
         }
     }
 
+    fileHandler.deleteFileFromMemory = function(){
+        
+    }
+
     fileHandler.startTimer = function(fileName){
         var file = fileHandler.files[fileName];
         if(file){
@@ -87,9 +91,11 @@ angular.module('codeEdit.services').
      */
     fileHandler.saveFileToLocalStorage = function(fileName){
         if(browserDetect.supportLocalStorage){
+            console.log('save');
             var file = fileHandler.files[fileName];
             if(file){
                 localStorage[fileName] = JSON.stringify(file);
+                console.log(localStorage[fileName]);
             }
         }
     }
@@ -115,16 +121,16 @@ angular.module('codeEdit.services').
      * @name deleteFile
      * @methodOf Files#
      */
-    fileHandler.deleteFileFromLocalStorage = function(key){
-        
+    fileHandler.deleteFileFromLocalStorage = function(fileName){
+        localStorage.removeItem(fileName);
     }
 
     fileHandler.listFilesOnLocalStorage = function(){
-        for(var i=0; i<localStorage.length; ++i){
+        /*for(var i=0; i<localStorage.length; ++i){
             var key = localStorage.key(i);
             console.log('local');
             console.log(localStorage[key]);
-        }
+        }*/
 
         console.log(fileHandler.files);
     }

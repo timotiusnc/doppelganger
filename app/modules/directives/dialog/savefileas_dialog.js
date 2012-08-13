@@ -7,11 +7,14 @@
 'use strict';
 
 angular.module('codeEdit.directives').
-    directive('compileDialog', function(){
+    directive('saveFileAsDialog', function(){
         return {
             replace: true,
-            templateUrl: 'partials/templates/dialog/compile_dialog.html',
+            templateUrl: 'partials/templates/dialog/savefileas_dialog.html',
             transclude: false,
-            controller: CompileCtrl
+            controller: SaveFileAsCtrl,
+            scope: true,
+            link: function(scope, element, attrs){
+            }
         }
     });
