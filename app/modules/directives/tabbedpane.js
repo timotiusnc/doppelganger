@@ -44,14 +44,32 @@ angular.module('codeEdit.directives').
             }
 
             $scope.closeItem = function(item, $event){
-                var found = false, i=0;
+                var found = false, i=0, changeSelected=false;
+
+                if(item[opts.itemSelectedAttr]){
+                    changeSelected = true;
+                }
+
                 while(!found && i<$scope.items.length){
                     if($scope.items[i].tabTitle === item.tabTitle){
                         found = true;
                         $scope.items.splice(i, 1);
+                        fileHandler.stopTimer(item[opts.itemTitleAttr]);
+                    }else{
+                        ++i;
                     }
-                    ++i;
-                }                
+                }
+
+                //If the deleted tab is selected, change selected to previous item
+                if(changeSelected){
+                    --i;
+                    if( (i>=0) && (i<$scope.items.length)){
+                        $scope.selectItem($scope.items[i]);
+                    }else{ //no more items
+                        sharedService.prepForBroadcast(sharedService.CHANGE_NAVBAR_FILENAME, '');
+                    }
+                }
+
                 $event.preventDefault();
             }
 

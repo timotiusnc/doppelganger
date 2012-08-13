@@ -6,8 +6,7 @@
  * @name MainCtrl
  * @class Application level controller
  */
-function MainCtrl($scope, sharedService, eventRecorder){
+function MainCtrl($scope){
     
-
 }
-MainCtrl.$inject = ['$scope', 'sharedService', 'eventRecorder'];
+MainCtrl.$inject = ['$scope'];

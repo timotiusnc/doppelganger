@@ -9,7 +9,7 @@
 angular.module('codeEdit.directives').
     directive('codeEditNavbar', function(){
         var controllerFn = function($scope, sharedService){
-            $scope.duration = 0;
+            $scope.duration = '--';
             $scope.fileName = '';
 
             $scope.$on(sharedService.HANDLE_BROADCAST, function(){

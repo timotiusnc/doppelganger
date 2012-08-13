@@ -93,6 +93,7 @@ angular.module('codeEdit.services').
     fileHandler.openFile = function(fileName){
         var openedFile = fileHandler.getFileFromLocalStorage(fileName);
         if(openedFile){
+            openedFile.timer = null;                    //initialize the timer
             fileHandler.files[fileName] = openedFile;
             fileHandler.startTimer(fileName);           //start the timer as soon as the file opened
             return openedFile.content;                  //return the content (to be displayed)
@@ -119,7 +120,6 @@ angular.module('codeEdit.services').
             if(file.timer){
                 clearInterval(file.timer);
                 file.timer = null;
-                console.log('timer = ' + file.timer);
             }
         }
     }
