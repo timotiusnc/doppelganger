@@ -21,8 +21,8 @@ angular.module('codeEdit.services').
     //Events
     /**
      * NEW_TAB_ADDED
-     * @broadcaster EditoCtrl
-     * @receiver tabbedpane ctrl
+     * @broadcaster CodeEditoCtrl
+     * @receiver tabbedpane.js
      * Broadcasted when a new tab is added, set all old tabs selected attr to false and the newest one to true
      */
     sharedService.NEW_TAB_ADDED             = "newTabAdded";
@@ -30,7 +30,7 @@ angular.module('codeEdit.services').
     /**
      * NEW_TAB_BTN_CLICKED
      * @broadcaster MainCtrl, FileImporterCtrl
-     * @reicever EditorCtrl
+     * @receiver CodeEditorCtrl
      * @param string title
      * @param string content
      * @param boolean selected
@@ -62,15 +62,6 @@ angular.module('codeEdit.services').
      * fileHandler has incremented the duration, the view in navbar should reflect it
      */
     sharedService.ONE_SECOND_PASSED         = "oneSecondPassed";
-
-    /**
-     * REQUEST_CODE_TEXT
-     * @broadcaster CompileCtrl, ResultDialog
-     * @receiver TextAreaCtrl
-     * CompileCtrl and ResultDialog need source code contents. Get responded vice-versa with CODE_TEXT_RESPONSE
-     */
-    sharedService.REQUEST_CODE_TEXT         = "getCodeText";
-    sharedService.CODE_TEXT_RESPONSE        = "codeTextResponse";
 
     /**
      * @broadcaster SaveFileAsCtrl

@@ -35,12 +35,8 @@ function CodeEditorCtrl($scope, fileHandler, sharedService) {
         sharedService.prepForBroadcast(sharedService.NEW_TAB_BTN_CLICKED, {title: '', content: ''});
     }
 
-    $scope.stopCodingBtnClick = function(){
-        jConfirm('Are you sure you want to stop coding?', 'Stop Coding Confirmation', function(r) {
-            if(r){
-                sharedService.prepForBroadcast(sharedService.STOPCODING_ACTION, null);
-            }
-        });
+    $scope.gradeBtnClick = function(){
+        $("#resultDialogModal").modal('show');
     }
 
     $scope.getSelectedTab = function(){

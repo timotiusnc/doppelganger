@@ -16,7 +16,7 @@
         <link rel="stylesheet" type="text/css" href="lib/jquery.alerts-1.1/jquery.alerts.css">
         <link rel="stylesheet" type="text/css" href="lib/codemirror/lib/codemirror.css">
     </head>
-    <body ng-controller="MainCtrl">
+    <body>
         <div id="container">
             <div id="content">
                 <div ng-view></div>

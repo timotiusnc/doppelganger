@@ -1,4 +1,4 @@
-function CodeMessagingCtrl($scope, fileHandler, sharedService) {
+function CodeMessagingCtrl($scope, fileHandler, lxConnector) {
     $scope.files = null;
     $scope.selectDeselectStr = 'Select All';
 
@@ -7,11 +7,14 @@ function CodeMessagingCtrl($scope, fileHandler, sharedService) {
      * @methodOf CodeMessagingCtrl#
      */
     $scope.compileBtnClick = function(){
+        var files = new Array();
         for(var key in $scope.files){
             if($scope.files[key].checked){
-                console.log($scope.files[key]);
+                files.push($scope.files[key]);
             }
         }
+
+        lxConnector.submit(files);
     }
 
     $scope.executeBtnClick = function(){
@@ -44,7 +47,7 @@ function CodeMessagingCtrl($scope, fileHandler, sharedService) {
 
     $scope.initializeFile();
 }
-CodeMessagingCtrl.$inject = ['$scope', 'fileHandler', 'sharedService'];
+CodeMessagingCtrl.$inject = ['$scope', 'fileHandler', 'lxConnector'];
 
 /**
  * <p>Partial view 2</p>

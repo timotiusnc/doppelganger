@@ -4,14 +4,13 @@
  */
 
 function TextAreaCtrl($scope, eventRecorder, sharedService, browserDetect){
-    $scope.instances = new Array(); //CodeMirror instances
+    $scope.instances    = new Array(); //CodeMirror instances
 
     /**
      * Start timer (if not started); Dispatch keyEvent into eventRecorder
      */
-    $scope.processKeyPress = function(element, keyEvent){ //GANTI DENGAN LANGSUNG PANGGIL service eventRecorder
-        console.log($scope.instances[0].getOption('mode'));
-        eventRecorder.keyPressHandler(keyEvent);
+    $scope.processKeyPress = function(element, keyEvent){
+        eventRecorder.keyPressHandler($scope.title, keyEvent);
     }
 
     /**
@@ -27,28 +26,14 @@ function TextAreaCtrl($scope, eventRecorder, sharedService, browserDetect){
      * onMouseClick event
      */
     $scope.onMouseClick = function(evt){
-        eventRecorder.mouseClickHandler();
+        eventRecorder.mouseClickHandler($scope.title, evt);
     }
 
     /**
      * broadcast handling
      */
     $scope.$on(sharedService.HANDLE_BROADCAST, function(){
-        if(sharedService.message == sharedService.REQUEST_CODE_TEXT){
-            var retval = [];
-
-            //if Desktop OS used, tell TextAreaCtrl to transfer code from CodeMirror to original textarea
-            if(!browserDetect.mobileVendor){
-                $scope.saveCodeMirrorText();
-            }
-
-            //Get textarea contents
-            for(i=1; i<=TextAreaCtrl.INSTANCE_CTR; ++i){
-                retval[i-1] = $("#untitled-" + i).val();
-            }
-
-            sharedService.prepForBroadcast(sharedService.CODE_TEXT_RESPONSE, retval);
-        }else if(sharedService.message == sharedService.REQUEST_SAVE_FILE_AS){
+        if(sharedService.message == sharedService.REQUEST_SAVE_FILE_AS){
             //if Desktop OS used, tell TextAreaCtrl to transfer code from CodeMirror to original textarea
             if(!browserDetect.mobileVendor){
                 $scope.saveCodeMirrorText();
@@ -56,7 +41,6 @@ function TextAreaCtrl($scope, eventRecorder, sharedService, browserDetect){
         }
     });
 
-    $scope.id = TextAreaCtrl.INSTANCE_CTR;
     TextAreaCtrl.INSTANCE_CTR++;
 }
 TextAreaCtrl.$inject = ['$scope', 'eventRecorder', 'sharedService', 'browserDetect'];

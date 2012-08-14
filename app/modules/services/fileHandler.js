@@ -40,7 +40,18 @@ angular.module('codeEdit.services').
         }
     }
 
-    fileHandler.updateFileAttr = function(fileName, fileAttr){
+    fileHandler.incrementCtr = function(fileName, ctrAttr){ //khusus untuk *_ctr
+        var file = fileHandler.files[fileName];
+        if(file){
+            for(var key in ctrAttr){
+                if(ctrAttr.hasOwnProperty(key) && file.hasOwnProperty(key)){
+                    file[key] += ctrAttr[key];
+                }
+            }
+        }
+    }
+
+    fileHandler.updateFileAttr = function(fileName, fileAttr){ //khusus untuk content
         var file = fileHandler.files[fileName];
         if(file){
             for(var key in fileAttr){

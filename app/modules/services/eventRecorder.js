@@ -4,31 +4,23 @@
  */
 
 angular.module('codeEdit.services').
-    factory('eventRecorder', function(){
+    factory('eventRecorder', function(fileHandler){
     var eventRecorder = {};
 
-    eventRecorder.keyPressCtr      = 0;
-    eventRecorder.directionCtr     = 0;
-    eventRecorder.mouseClickCtr    = 0;
-    eventRecorder.backSpaceCtr     = 0;
-    eventRecorder.compilationCtr   = 0;
-    eventRecorder.duration         = 0;
-
-    eventRecorder.keyPressHandler = function(keyEvent){
-        if( (keyEvent.type == 'keydown') && !(keyEvent.altKey || keyEvent.ctrlKey || keyEvent.shiftKey)){
-            ++eventRecorder.keyPressCtr;
-
+    eventRecorder.keyPressHandler = function(fileName, keyEvent){
+        if((keyEvent.type == 'keydown') && !(keyEvent.altKey || keyEvent.ctrlKey || keyEvent.shiftKey)){
             var kc = keyEvent.keyCode;
             if(kc == 8){                    //backspace
-                ++eventRecorder.backSpaceCtr;
+                fileHandler.incrementCtr(fileName, {backspace_ctr: 1});
             }else if(kc >= 37 && kc <= 40){ //4-directional pad
-                ++eventRecorder.directionCtr;
+                fileHandler.incrementCtr(fileName, {dir_ctr: 1});
             }
+            fileHandler.incrementCtr(fileName, {keypress_ctr: 1});
         }
     }
 
-    eventRecorder.mouseClickHandler = function(){
-        ++eventRecorder.mouseClickCtr;
+    eventRecorder.mouseClickHandler = function(fileName, mouseEvent){
+        fileHandler.incrementCtr(fileName, {mouseclick_ctr: 1});
     }
 
     return eventRecorder;

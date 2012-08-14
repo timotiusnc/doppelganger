@@ -26,8 +26,7 @@ function SaveFileAsCtrl($scope, fileHandler, sharedService){
     }
 
     $('#saveFileAsModal').on('shown', function () { //When a modal shown
-        //auto focus
-        $("#newfilename_input").focus();
+        $("#newfilename_input").focus();//auto focus
         
         //Request old files' name to CodeEditorCtrl
         sharedService.prepForBroadcast(sharedService.REQUEST_OLD_FILE_NAME, null);
@@ -36,7 +35,6 @@ function SaveFileAsCtrl($scope, fileHandler, sharedService){
     $scope.$on(sharedService.HANDLE_BROADCAST, function(){
         if(sharedService.message == sharedService.OLD_FILE_NAME_RESPONSE){ //OldFiles' name requested from EditorCtrl
             $scope.selectedTab = sharedService.param;
-            $scope.$apply();
         }
     });
 }

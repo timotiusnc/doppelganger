@@ -27,7 +27,7 @@ angular.module('codeEdit.services').
             });
         }
 
-        lxConnector.submit = function(fileNames, fileContents){
+        lxConnector.submit = function(files){
             var data = {
                 GradeRequest: {
                     submitter_id: 'timmy',
@@ -38,10 +38,10 @@ angular.module('codeEdit.services').
             };
 
             data.files = new Array();
-            for(i=0,n=fileNames.length; i<n; ++i){
+            for(i=0,n=files.length; i<n; ++i){
                 data.files[i] = {
-                    name : fileNames[i].tabTitle,
-                    content: fileContents[i]
+                    name : files[i].fileName,
+                    content: files[i].content
                 }
             }
             console.log(data);
