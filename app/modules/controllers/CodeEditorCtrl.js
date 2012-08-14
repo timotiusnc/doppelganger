@@ -1,44 +1,6 @@
 function CodeEditorCtrl($scope, fileHandler, sharedService) {
     $scope.tabs = []; //Semantically an array of Tab Title, the content (codeEditTextArea) is another instance
 
-    $scope.clearBtnClick = function(){
-        localStorage.clear();
-        alert('Local Storage Cleared');
-    }
-
-    /**
-     * @name openFileBtnClick
-     * @methodOf CodeEditorCtrl#
-     */
-    $scope.openFileBtnClick = function(){
-        $("#openFileModal").modal('show');
-    }
-
-    $scope.saveFileBtnClick = function(){
-        var selectedTab = $scope.getSelectedTab();
-        if(selectedTab){
-            fileHandler.saveFile(selectedTab.tabTitle);
-        }
-    }
-
-    $scope.saveFileAsBtnClick = function(){
-        if($scope.getSelectedTab()){
-            $("#saveFileAsModal").modal('show');
-        }
-    }
-
-    $scope.importFileBtnClick = function(){
-        $("#importFileModal").modal('show');
-    }
-
-    $scope.addNewTabBtnClick = function(){
-        sharedService.prepForBroadcast(sharedService.NEW_TAB_BTN_CLICKED, {title: '', content: ''});
-    }
-
-    $scope.gradeBtnClick = function(){
-        $("#resultDialogModal").modal('show');
-    }
-
     $scope.getSelectedTab = function(){
         var found = false, i=0;
         while(!found && i<$scope.tabs.length){
@@ -78,5 +40,7 @@ function CodeEditorCtrl($scope, fileHandler, sharedService) {
 
     //Add default tab
     //$scope.addNewTab('main', '', true);
+
+    console.log(NavbarCtrl.TES);
 }
 CodeEditorCtrl.$inject = ['$scope', 'fileHandler', 'sharedService'];

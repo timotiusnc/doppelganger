@@ -43,6 +43,7 @@
 
         <!-- directive controllers -->
         <script type="text/javascript" src="modules/controllers/directive_ctrl/TextAreaCtrl.js"></script>
+        <script type="text/javascript" src="modules/controllers/directive_ctrl/NavbarCtrl.js"></script>
         <script type="text/javascript" src="modules/controllers/directive_ctrl/FooterCtrl.js"></script>
 
         <!-- dialog controllers -->
