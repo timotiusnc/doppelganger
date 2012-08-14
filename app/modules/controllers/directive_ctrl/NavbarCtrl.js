@@ -16,16 +16,11 @@ function NavbarCtrl($scope, fileHandler, sharedService) {
     }
 
     $scope.saveFileBtnClick = function(){
-        var selectedTab = $scope.getSelectedTab();
-        if(selectedTab){
-            fileHandler.saveFile(selectedTab.tabTitle);
-        }
+        sharedService.prepForBroadcast(sharedService.REQUEST_SAVE_FILE, false);
     }
 
     $scope.saveFileAsBtnClick = function(){
-        if($scope.getSelectedTab()){
-            $("#saveFileAsModal").modal('show');
-        }
+        sharedService.prepForBroadcast(sharedService.REQUEST_SAVE_FILE, true);
     }
 
     $scope.importFileBtnClick = function(){

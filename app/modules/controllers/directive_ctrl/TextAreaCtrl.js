@@ -33,7 +33,7 @@ function TextAreaCtrl($scope, eventRecorder, sharedService, browserDetect){
      * broadcast handling
      */
     $scope.$on(sharedService.HANDLE_BROADCAST, function(){
-        if(sharedService.message == sharedService.REQUEST_SAVE_FILE_AS){
+        if(sharedService.message == sharedService.REQUEST_SAVE_EDITOR){
             //if Desktop OS used, tell TextAreaCtrl to transfer code from CodeMirror to original textarea
             if(!browserDetect.mobileVendor){
                 $scope.saveCodeMirrorText();

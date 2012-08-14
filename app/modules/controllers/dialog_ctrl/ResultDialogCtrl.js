@@ -19,7 +19,6 @@ function ResultDialogCtrl($scope, fileHandler, sharedService){
         //sum up the variable
         for(var fileName in fileHandler.files){
             fileHandler.saveFile(fileName);
-            console.log(fileHandler.files[fileName].fileName);
 
             $scope.keyPressCtr      += fileHandler.files[fileName].keypress_ctr;
             $scope.directionCtr     += fileHandler.files[fileName].dir_ctr;

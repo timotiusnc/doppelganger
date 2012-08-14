@@ -20,14 +20,6 @@ angular.module('codeEdit.services').
 
     //Events
     /**
-     * NEW_TAB_ADDED
-     * @broadcaster CodeEditoCtrl
-     * @receiver tabbedpane.js
-     * Broadcasted when a new tab is added, set all old tabs selected attr to false and the newest one to true
-     */
-    sharedService.NEW_TAB_ADDED             = "newTabAdded";
-
-    /**
      * NEW_TAB_BTN_CLICKED
      * @broadcaster MainCtrl, FileImporterCtrl
      * @receiver CodeEditorCtrl
@@ -78,8 +70,10 @@ angular.module('codeEdit.services').
      * Ask the TextAreaCtrl's CodeMirror intance to save its content.
      * Then SaveFileAsCtrl can get the textarea value
      */
-    sharedService.REQUEST_SAVE_FILE_AS     = "saveFileAs";
-    
+    sharedService.REQUEST_SAVE_EDITOR     = "requestSaveEditor";
+
+    sharedService.REQUEST_SAVE_FILE       = "requestSaveFile";
+
     /**
      * @broadcaster tabbedpane.js (when a tab is selected)
      * @receiver navbar.js
