@@ -55,6 +55,7 @@ angular.module('codeEdit.directives').
                         found = true;
                         $scope.items.splice(i, 1);
                         fileHandler.stopTimer(item[opts.itemTitleAttr]);
+                        fileHandler.deleteFileFromMemory(item[opts.itemTitleAttr]); //delete it from memory so it is valid when user ask for grading
                     }else{
                         ++i;
                     }

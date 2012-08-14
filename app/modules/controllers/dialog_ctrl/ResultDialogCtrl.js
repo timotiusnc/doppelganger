@@ -19,14 +19,16 @@ function ResultDialogCtrl($scope, fileHandler, sharedService){
         //sum up the variable
         for(var fileName in fileHandler.files){
             fileHandler.saveFile(fileName);
-            console.log(fileHandler.files[fileName]);
+            console.log(fileHandler.files[fileName].fileName);
 
             $scope.keyPressCtr      += fileHandler.files[fileName].keypress_ctr;
-            $scope.totalChar        += fileHandler.files[fileName].content.length;
             $scope.directionCtr     += fileHandler.files[fileName].dir_ctr;
             $scope.mouseClickCtr    += fileHandler.files[fileName].mouseclick_ctr;
             $scope.backSpaceCtr     += fileHandler.files[fileName].backspace_ctr;
             $scope.duration         += fileHandler.files[fileName].duration;
+            if(fileHandler.files[fileName].content){
+                $scope.totalChar        += fileHandler.files[fileName].content.length;
+            }
 
             console.log($scope.totalChar, $scope.keyPressCtr);
         }

@@ -167,6 +167,12 @@ angular.module('codeEdit.services').
         }
     }
 
+    fileHandler.deleteFileFromMemory = function(fileName){
+        if(fileHandler.files[fileName]){
+            delete fileHandler.files[fileName];
+        }
+    }
+
     /**
      * @name deleteFile
      * @methodOf Files#
