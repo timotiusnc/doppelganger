@@ -4,7 +4,7 @@
  */
 
 function TabbedPaneCtrl($scope, fileHandler, sharedService){
-    $scope.items = [];
+    $scope.items = []; //tabs attribute
 
     $scope.selectItem = function(item) {
         angular.forEach($scope.items, function(it) {
@@ -16,18 +16,6 @@ function TabbedPaneCtrl($scope, fileHandler, sharedService){
         fileHandler.startTimer(item.tabTitle);
         sharedService.prepForBroadcast(sharedService.CHANGE_NAVBAR_FILENAME, item.tabTitle);
     };
-
-    $scope.itemSelected = function(item){
-        return item.selected;
-    }
-
-    $scope.itemTitle = function(item){
-        return item.tabTitle;
-    }
-
-    $scope.itemInitialContent = function(item){
-        return item.tabInitialContent;
-    }
 
     $scope.closeItem = function(item, $event){
         var found = false, i=0, changeSelected=false;
@@ -41,7 +29,7 @@ function TabbedPaneCtrl($scope, fileHandler, sharedService){
                 found = true;
                 $scope.items.splice(i, 1);
                 fileHandler.stopTimer(item.tabTitle);
-                fileHandler.deleteFileFromMemory(item.selected); //delete it from memory so it is valid when user ask for grading
+                fileHandler.deleteFileFromMemory(item.tabTitle); //delete it from memory so it is valid when user ask for grading
             }else{
                 ++i;
             }

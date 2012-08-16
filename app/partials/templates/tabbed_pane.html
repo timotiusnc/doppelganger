@@ -1,14 +1,14 @@
 <div class="tabbable" id="myTab">
     <ul class="nav nav-tabs">
-        <li ng-repeat="item in items" ng-class="{active:itemSelected(item)}">
-            <a ng-click="selectItem(item)">{{itemTitle(item)}} <button class="tab-close" ng-click="closeItem(item, $event);">&times;</button></a>
+        <li ng-repeat="item in items" ng-class="{active:item.selected}">
+            <a ng-click="selectItem(item)">{{item.tabTitle}} <button class="tab-close" ng-click="closeItem(item, $event);">&times;</button></a>
         </li>
     </ul>
 
     <div class="tab-content">
         <div ng-repeat="item in items">
-            <div class="tab-pane" ng-class="{active:itemSelected(item), hidden: !itemSelected(item)}">
-                <div code-edit-text-area title="itemTitle(item)" content="itemInitialContent(item)"></div>
+            <div class="tab-pane" ng-class="{active:item.selected, hidden: !item.selected}">
+                <div code-edit-text-area title="item.tabTitle" content="item.tabInitialContent"></div>
             </div>
         </div>
     </div>

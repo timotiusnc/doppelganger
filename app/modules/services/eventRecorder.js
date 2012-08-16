@@ -8,7 +8,7 @@ angular.module('codeEdit.services').
     var eventRecorder = {};
 
     eventRecorder.keyPressHandler = function(fileName, keyEvent){
-        if((keyEvent.type == 'keydown') && !(keyEvent.altKey || keyEvent.ctrlKey || keyEvent.shiftKey)){
+        if((keyEvent.type == 'keydown') && !(keyEvent.altKey || keyEvent.ctrlKey)){
             var kc = keyEvent.keyCode;
             if(kc == 8){                    //backspace
                 fileHandler.incrementCtr(fileName, {backspace_ctr: 1});

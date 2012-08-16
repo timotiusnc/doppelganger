@@ -4,42 +4,68 @@
         <h3>Hasil Penilaian Proses</h3>
     </div>
     <div class="modal-body">
-        <div id="keypress_counter_grade">
+        <div id="keypress_versus_total_grade">
+            <table class="grade_table">
+                <tr>
+                    <td><b>Jumlah ketikan</b></td>
+                    <td><span class="red_number">{{keyPressCtr}} karakter</span></td>
+                </tr>
+                <tr>
+                    <td><b>Ukuran <i>source code</i></b></td>
+                    <td><span class="red_number">{{totalChar}} karakter</span></td>
+                </tr>
+            </table>
+                
             <blockquote>
-                <p><b>Jumlah Ketikan: <span style="color: red">{{jumlah_ketikan}}%</span></b></p>
+                <p><b>Kebersihan Cara Berpikir: <span class="red_number">{{kebersihan_cara_pikir}}%</span></b></p>
                 <small><i>(Jumlah karakter akhir / Jumlah ketikan total) * 100%</i></small>
             </blockquote>
 
-            <div class="progress progress-striped active">
-                <div class="bar" style="width: {{jumlah_ketikan}}%;"></div>{{jumlah_ketikan}}%
+            <div class="progress progress-striped">
+                <div class="bar" style="width: {{kebersihan_cara_pikir}}%;"></div>{{jumlah_ketikan}}%
             </div>
         </div>
 
         <div id="accuracy_grade">
+            <table class="grade_table">
+                <tr>
+                    <td><b>Jumlah ketikan <i>Backspace</i></b></td>
+                    <td><span class="red_number">{{backSpaceCtr}} kali</span></td>
+                </tr>
+                <tr>
+                    <td><b>Jumlah ketikan arah</b></td>
+                    <td><span class="red_number">{{directionCtr}} kali</span></td>
+                </tr>
+                <tr>
+                    <td><b>Jumlah klik <i>mouse</i></b></td>
+                    <td><span class="red_number">{{mouseClickCtr}} kali</span></td>
+                </tr>
+            </table>
+
             <blockquote>
-                <p><b>Akurasi: <span style="color: red">{{akurasi_pengetikan}}%</span></b></p>
+                <p><b>Akurasi: <span class="red_number">{{akurasi_pengetikan}}%</span></b></p>
                 <small><i>(&Sigma;backspace + &Sigma;mouseclick + &Sigma;&larr;&uarr;&rarr;&darr;)/Jumlah ketikan total) * 100%</i></small>
             </blockquote>
 
-            <div class="progress progress-striped active">
+            <div class="progress progress-striped">
                 <div class="bar" style="width: {{akurasi_pengetikan}}%;"></div>
             </div>
         </div>
 
-        <div id="duration_grade">
+        <!--<div id="duration_grade">
             <blockquote>
                 <p><b>Jumlah Kompilasi: <span style="color: red">{{compilationCtr}} X</span></b></p>
             </blockquote>
-        </div>
+        </div>-->
 
-        <div id="compilation_counter_grade">
+        <div id="duration_grade">
             <blockquote>
-                <p><b>Durasi: <span style="color: red">{{duration}} seconds</span></b></p>
+                <p><b>Durasi: <span class="red_number">{{duration}} seconds</span></b></p>
             </blockquote>
         </div>
     </div>
     <div class="modal-footer">
         <a class="btn" data-dismiss="modal">Close</a>
-        <a class="btn btn-primary" ng-click="">Upload Assignment</a>
+        <!--<a class="btn btn-primary" ng-click="">Upload Assignment</a>-->
     </div>
 </div>
