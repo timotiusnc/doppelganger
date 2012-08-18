@@ -106,6 +106,7 @@ function TabbedPaneCtrl($scope, fileHandler, sharedService){
             }else{
                 if(selectedTab){
                     fileHandler.saveFile(selectedTab.tabTitle);
+                    //console.log(selectedTab.tabInitialContent);
                 }
             }
         }

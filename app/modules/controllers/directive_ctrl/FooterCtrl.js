@@ -21,7 +21,10 @@ function FooterCtrl($scope, sharedService, browserDetect){
         }else if(sharedService.message == sharedService.CODE_GRADED){
             $scope.$apply(function(){
                 $scope.report= sharedService.param
-                if($scope.report.compile_result['return'] != 0){
+                if($scope.report == "Connection timed out"){
+                    $scope.error = $scope.report;
+                    $("#footer_tab a[href='#error']").tab('show');
+                }else if($scope.report.compile_result['return'] != 0){
                     $scope.error = $scope.report.compile_result.output;
                     $("#footer_tab a[href='#error']").tab('show');
                 }else{

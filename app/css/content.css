@@ -12,6 +12,10 @@ textarea{
     background-color: #F5F5F5;   
 }
 
+#error_txt{
+    color: red;
+}
+
 #footer_tab{
     width: 98%;
     margin-left: auto;

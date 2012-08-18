@@ -6,9 +6,9 @@ angular.module('codeEdit.services').
     sharedService.param = {};
 
     sharedService.prepForBroadcast = function(msg, param) {
-        this.message = msg;
-        this.param = param;
-        this.broadcastItem();
+        sharedService.message = msg;
+        sharedService.param = param;
+        sharedService.broadcastItem();
     };
 
     sharedService.broadcastItem = function() {
@@ -50,7 +50,7 @@ angular.module('codeEdit.services').
 
     /**
      * @broadcaster fileHandler
-     * @receiver navbar.js
+     * @receiver NavbarCtrl
      * fileHandler has incremented the duration, the view in navbar should reflect it
      */
     sharedService.ONE_SECOND_PASSED         = "oneSecondPassed";
@@ -72,6 +72,12 @@ angular.module('codeEdit.services').
      */
     sharedService.REQUEST_SAVE_EDITOR     = "requestSaveEditor";
 
+    /**
+     * @broadcaster NavbarCtrl
+     * @receiver TabbedPaneCtrl
+     * when button Save File or Save File As is clicked
+     * then TabbedPaneCtrl will invoke save or saveFileAs method on fileHandler
+     */
     sharedService.REQUEST_SAVE_FILE       = "requestSaveFile";
 
     /**
@@ -79,6 +85,20 @@ angular.module('codeEdit.services').
      * @receiver navbar.js
      */
     sharedService.CHANGE_NAVBAR_FILENAME    = "changeNavbarFilename";
+
+    /**
+     * @broadcaster NavbarMessagingCtrl
+     * @receiver CodeMessagingCtrl
+     * when button Compile is clicked, notify CodeMessaingCtrl to invoke lxConnector.submit
+     */
+    sharedService.ASK_TO_COMPILE    = "askToCompile";
+
+    /**
+     * @broadcaster NavbarMessagingCtrl
+     * @receiver CodeMessagingCtrl
+     * when button Execute is clicked, notify CodeMessaingCtrl to invoke lxConnector. what ?
+     */
+    sharedService.ASK_TO_COMPILE    = "askToExecute";
 
     return sharedService;
 });

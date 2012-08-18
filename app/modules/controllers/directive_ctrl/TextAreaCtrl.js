@@ -19,6 +19,7 @@ function TextAreaCtrl($scope, eventRecorder, sharedService, browserDetect){
     $scope.saveCodeMirrorText = function(){
         for(i=0,n=$scope.instances.length; i<n; ++i){
             $scope.instances[i].save();
+            //$scope.content = $scope.instances[i].getValue();
         }
     }
 

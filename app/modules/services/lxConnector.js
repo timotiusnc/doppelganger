@@ -5,11 +5,15 @@
 
 angular.module('codeEdit.services').
     factory('lxConnector', function(sharedService){
+        var timeout_constant = 5;
+        var getResultCtr = 0;
         var lxConnector = {};
         var timer;
 
         lxConnector.getResult = function(clientid, clienttoken, id){
             console.log('getResult');
+            ++getResultCtr;
+
             $.ajax({
                 type: 'POST',
                 url: 'http://167.205.32.27/lz/services/grading/detail?clientid=' + clientid + '&clienttoken=' + clienttoken + '&id=' + id,
@@ -25,15 +29,20 @@ angular.module('codeEdit.services').
                     }
                 }
             });
+
+            if(getResultCtr >= timeout_constant){
+                lxConnector.stopGetResult();
+                sharedService.prepForBroadcast(sharedService.CODE_GRADED, 'Connection timed out');
+            }
         }
 
         lxConnector.submit = function(files){
             var data = {
                 GradeRequest: {
-                    submitter_id: 'timmy',
+                    submitter_id: 'DoppelGanger',
                     evaluationset_id: 3,
                     mode: 1,
-                    source_file: 'tes_timmy.zip'
+                    source_file: 'DoppelGanger.zip'
                 }
             };
 

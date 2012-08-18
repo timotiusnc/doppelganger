@@ -69,7 +69,7 @@ angular.module('codeEdit.services').
     fileHandler.changeFileName = function(oldFileName, newFileName){
         var file = fileHandler.files[oldFileName];
         if(file){
-            fileHandler.files[newFileName] = fileHandler.files[oldFileName];
+            fileHandler.files[newFileName] = file;
             fileHandler.files[newFileName].fileName = newFileName;
             delete fileHandler.files[oldFileName];
         }

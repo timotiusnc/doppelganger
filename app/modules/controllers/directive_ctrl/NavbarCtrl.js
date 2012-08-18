@@ -1,4 +1,4 @@
-function NavbarCtrl($scope, fileHandler, sharedService) {
+function NavbarCtrl($scope, sharedService) {
     $scope.duration = '--';
     $scope.fileName = '';
 
@@ -46,5 +46,4 @@ function NavbarCtrl($scope, fileHandler, sharedService) {
         }
     });
 }
-NavbarCtrl.$inject = ['$scope', 'fileHandler', 'sharedService'];
-NavbarCtrl.TES = "BLALBLAB";
+NavbarCtrl.$inject = ['$scope', 'sharedService'];

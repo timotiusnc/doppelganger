@@ -10,6 +10,7 @@ angular.module('codeEdit.directives').
     directive('codeMessagingNavbar', function(){
         return {
             replace: true,
+            controller: NavbarMessagingCtrl,
             templateUrl: 'partials/templates/navbar_codemessaging.html',
             transclude: false,
             scope: true
