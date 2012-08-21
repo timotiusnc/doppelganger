@@ -18,18 +18,26 @@
                             <li><a ng-click="saveFileAsBtnClick()">Save As</a></li>
                         </ul>
                     </li>-->
-                    <li><a ng-click="addNewTabBtnClick()">New File</a></li>
+                    <li><a id="addNewTab" ng-click="addNewTabBtnClick()">New File</a></li>
                     <li><a ng-click="openFileBtnClick()">Open</a></li>
-                    <!--<li><a ng-click="importFileBtnClick()">Import</a></li>-->
+                    <li><a ng-click="importFileBtnClick()">Import</a></li>
                     <li><a ng-click="saveFileBtnClick()">Save</a></li>
                     <li><a ng-click="saveFileAsBtnClick()">Save As</a></li>
+                    <li class="divider-vertical"></li>
+                    <li>Language:
+                        <select ng-model="choosen_lang" 
+                                ng-options="l for l in langs"
+                                ng-change="lang_changed()"
+                                style="margin-top: 4px; width: 80px">
+                        </select>
+                    </li>
                     <li class="divider-vertical"></li>
                     <li><button class="btn btn-danger" ng-click="gradeBtnClick()">Grade</button></li>
                     <!--<li><a href="#/view2">View 2</a></li>-->
                     <!--<li><button class="btn btn-danger" ng-click="clearBtnClick()">Clear</button></li>-->
                 </ul>
                 <ul class="nav pull-right">
-                    <li><a class=".pull-right" style="color: white">{{fileName}} Timer: {{duration}} seconds</a></li>
+                    <li><a id="timer" style="color: white">{{fileName}} Timer: {{duration}} seconds</a></li>
                     <!--<li class="divider-vertical"></li>
                     <li><button class="btn btn-success">Submit</button></li>
                     <li><button class="btn btn-success">Login</button></li>-->

@@ -22,13 +22,30 @@ angular.module('codeEdit.services').
     /**
      * NEW_TAB_BTN_CLICKED
      * @broadcaster MainCtrl, FileImporterCtrl
-     * @receiver CodeEditorCtrl
+     * @receiver TabbedPaneCtrl
      * @param string title
      * @param string content
      * @param boolean selected
      * Broadcasted when new tab button is clicked or when file is imported. Call NEW_TAB_ADDED event
      */
     sharedService.NEW_TAB_BTN_CLICKED       = "newTabBtnClicked";
+
+    /**
+     * @broadcaster NavbarCtrl
+     * @receiver TabbedPaneCtrl
+     * @param string the new lang
+     * sent when a language is changed
+     */
+    sharedService.LANG_CHANGED = "langChanged";
+    
+    /**
+     * @broadcaster TabbedPaneCtrl
+     * @reicever TextAreaCtrl
+     * @param string the mode name
+     * @param int the CodeMirror instance index
+     * change the CodeMirror mode
+     */
+    sharedService.REQUEST_MODE_CHANGE = "requestChangeMode";
 
     /**
      * RESULT_RECEIVED
@@ -83,6 +100,8 @@ angular.module('codeEdit.services').
     /**
      * @broadcaster tabbedpane.js (when a tab is selected)
      * @receiver navbar.js
+     * @param string tabTitle
+     * @param string corresponding lang
      */
     sharedService.CHANGE_NAVBAR_FILENAME    = "changeNavbarFilename";
 

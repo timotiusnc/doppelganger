@@ -1,6 +1,8 @@
 function NavbarCtrl($scope, sharedService) {
     $scope.duration = '--';
     $scope.fileName = '';
+    $scope.langs = ["Pascal", "C/C++", "LISP"];
+    $scope.choosen_lang = $scope.langs[0]; //Set PASCAL as default lang
 
     $scope.clearBtnClick = function(){
         localStorage.clear();
@@ -31,6 +33,10 @@ function NavbarCtrl($scope, sharedService) {
         sharedService.prepForBroadcast(sharedService.NEW_TAB_BTN_CLICKED, {title: '', content: ''});
     }
 
+    $scope.lang_changed = function(){
+        sharedService.prepForBroadcast(sharedService.LANG_CHANGED, $scope.choosen_lang);
+    }
+
     $scope.gradeBtnClick = function(){
         $("#resultDialogModal").modal('show');
     }
@@ -42,7 +48,8 @@ function NavbarCtrl($scope, sharedService) {
             });
         }else if(sharedService.message == sharedService.CHANGE_NAVBAR_FILENAME){
             $scope.duration = '--';
-            $scope.fileName = sharedService.param;
+            $scope.fileName = sharedService.param.tabTitle;
+            $scope.choosen_lang = sharedService.param.tabLang;
         }
     });
 }

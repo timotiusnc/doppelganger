@@ -86,6 +86,7 @@
         <!--Code Mirror -->
         <script type="text/javascript" src="lib/codemirror/lib/codemirror.js"></script>
         <script type="text/javascript" src="lib/codemirror/mode/clike/clike.js"></script>
+        <script type="text/javascript" src="lib/codemirror/mode/pascal/pascal.js"></script>
 
         <!-- JSZip -->
         <script type="text/javascript" src="lib/jszip/jszip.js"></script>

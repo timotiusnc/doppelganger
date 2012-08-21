@@ -29,4 +29,10 @@ angular.module('codeEdit', ['codeEdit.filters', 'codeEdit.services', 'codeEdit.d
                 $("#content").css('margin-top', '50px');
             }
         });
+
+        jQuery.fn.simulateKeyDown = function(character) {
+              // Internally calls jQuery.event.trigger
+              // with arguments (Event, data, elem). That last arguments is very important!
+              jQuery(this).trigger({ type: 'keydown', which: character.charCodeAt(0) });
+        };
   });

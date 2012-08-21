@@ -2,44 +2,57 @@
 
 /* http://docs.angularjs.org/guide/dev_guide.e2e-testing */
 
-describe('my app', function() {
+describe('DoppelGanger', function() {
 
   beforeEach(function() {
-    browser().navigateTo('../../app/index.html');
+    browser().navigateTo('../../app/index.php');
   });
 
 
-  it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
-    expect(browser().location().url()).toBe("/view1");
+  it('should automatically redirect to /code-editor when location hash/fragment is empty', function() {
+    expect(browser().location().url()).toBe("/code-editor");
   });
 
 
-  describe('view1', function() {
+  describe('codeEditor', function() {
 
     beforeEach(function() {
-      browser().navigateTo('#/view1');
+      browser().navigateTo('#/code-editor');
     });
 
 
-    it('should render view1 when user navigates to /view1', function() {
-      expect(element('[ng-view] p:first').text()).
-        toMatch(/partial for view 1/);
+    it('should render code-editor when user navigates to /code-editor', function() {
+        expect(element("#timer").text()).toMatch(/Timer: -- seconds/);
     });
 
+    it('should open new tab and the name contains string "untitled-0"', function(){
+        element("#addNewTab").click();
+        expect(repeater("#myTab li").count()).toBe(1);
+        expect(element("#myTab li :nth-child(1)").text()).toMatch(/untitled-0/);
+
+        //pause();
+        //input("untitled-0").enter('a');
+        //pause();
+    });
   });
 
 
-  describe('view2', function() {
+  describe('codeMessaging', function() {
 
     beforeEach(function() {
-      browser().navigateTo('#/view2');
+      browser().navigateTo('#/code-messaging');
     });
 
 
-    it('should render view1 when user navigates to /view2', function() {
+    /*it('should render view1 when user navigates to /view2', function() {
       expect(element('[ng-view] p:first').text()).
         toMatch(/partial for view 2/);
-    });
+    });*/
 
+    it('should insert username "tes_username"', function(){
+        //pause();
+        input("username").enter('tes_username');
+        pause();
+    });
   });
 });

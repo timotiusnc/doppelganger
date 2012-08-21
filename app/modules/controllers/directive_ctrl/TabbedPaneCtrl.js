@@ -14,7 +14,7 @@ function TabbedPaneCtrl($scope, fileHandler, sharedService){
 
         item.selected = true;
         fileHandler.startTimer(item.tabTitle);
-        sharedService.prepForBroadcast(sharedService.CHANGE_NAVBAR_FILENAME, item.tabTitle);
+        sharedService.prepForBroadcast(sharedService.CHANGE_NAVBAR_FILENAME, {tabTitle: item.tabTitle, tabLang: item.lang});
     };
 
     $scope.closeItem = function(item, $event){
@@ -70,7 +70,8 @@ function TabbedPaneCtrl($scope, fileHandler, sharedService){
         $scope.items.push({
             tabTitle: fileName,
             tabInitialContent: (content) ? content : '',
-            selected: selected
+            selected: selected,
+            lang: "Pascal" //default lang
         });
 
         fileHandler.createNewFile(fileName);
@@ -84,20 +85,26 @@ function TabbedPaneCtrl($scope, fileHandler, sharedService){
             }else{
                 item.selected = true;
                 fileHandler.startTimer(item.tabTitle);
-                sharedService.prepForBroadcast(sharedService.CHANGE_NAVBAR_FILENAME, item.tabTitle);
+                sharedService.prepForBroadcast(sharedService.CHANGE_NAVBAR_FILENAME, {tabTitle: item.tabTitle, tabLang: item.lang});
             }
             ++i;
         });
     }
 
     $scope.$on(sharedService.HANDLE_BROADCAST, function(){ //When a new tab added, set selected tab to the newest one
+        var selectedTab = null;
         if(sharedService.message == sharedService.NEW_TAB_BTN_CLICKED){
             $scope.addNewTab(sharedService.param.title, sharedService.param.content);
+        }else if(sharedService.message == sharedService.LANG_CHANGED){
+            selectedTab = $scope.getSelectedTab();
+            selectedTab.lang = sharedService.param;
+
+            sharedService.prepForBroadcast(sharedService.REQUEST_MODE_CHANGE, {lang: sharedService.param, idx: $scope.items.indexOf(selectedTab)});
         }else if(sharedService.message == sharedService.REQUEST_OLD_FILE_NAME){
             sharedService.prepForBroadcast(sharedService.OLD_FILE_NAME_RESPONSE, $scope.getSelectedTab());
         }else if(sharedService.message == sharedService.REQUEST_SAVE_FILE){
             var saveAs      = sharedService.param;
-            var selectedTab = $scope.getSelectedTab();
+            selectedTab = $scope.getSelectedTab();
 
             if(saveAs){
                 if(selectedTab){
