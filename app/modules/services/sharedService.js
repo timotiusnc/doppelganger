@@ -42,7 +42,7 @@ angular.module('codeEdit.services').
      * @broadcaster TabbedPaneCtrl
      * @reicever TextAreaCtrl
      * @param string the mode name
-     * @param int the CodeMirror instance index
+     * @param string the tab title
      * change the CodeMirror mode
      */
     sharedService.REQUEST_MODE_CHANGE = "requestChangeMode";

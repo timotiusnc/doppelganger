@@ -66,19 +66,20 @@ function TextAreaCtrl($scope, eventRecorder, sharedService, browserDetect){
             }
         }else if(sharedService.message == sharedService.REQUEST_MODE_CHANGE){
             if(!browserDetect.mobileVendor){
-                var lang    = sharedService.param.lang;
-                var idx     = sharedService.param.idx;
-                console.log(lang, idx, $scope.instances.length);
-                switch(lang){
-                    case "Pascal":
-                        $scope.instances[idx].setOption("mode", "text/x-pascal");
-                        break;
-                    case "C/C++":
-                        $scope.instances[idx].setOption("mode", "text/x-csrc");
-                        break;
-                    case "LISP":
-                        $scope.instances[idx].setOption("mode", "text/x-diff");
-                        break;
+                var lang        = sharedService.param.tabLang;
+                var tabTitle    = sharedService.param.tabTitle;
+                if($scope.title == tabTitle){
+                    switch(lang){
+                        case "Pascal":
+                            $scope.cm_instance.setOption("mode", "text/x-pascal");
+                            break;
+                        case "C/C++":
+                            $scope.cm_instance.setOption("mode", "text/x-csrc");
+                            break;
+                        case "LISP":
+                            $scope.cm_instance.setOption("mode", "text/x-diff");
+                            break;
+                    }
                 }
             }
         }

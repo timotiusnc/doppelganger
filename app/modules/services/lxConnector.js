@@ -18,21 +18,22 @@ angular.module('codeEdit.services').
                 type: 'POST',
                 url: 'http://167.205.32.27/lz/services/grading/detail?clientid=' + clientid + '&clienttoken=' + clienttoken + '&id=' + id,
                 success: function(data){
-                    var res = eval('(' + data + ')');
+                    var res = eval('(' + data + ')'); //example in js/ResultExample
                     sharedService.prepForBroadcast(sharedService.RESULT_RECEIVED, res);
                     if(res.detail.status == 2 || res.detail.status == 3){
-                        //tell FooterCtrl that the code has been graded
                         sharedService.prepForBroadcast(sharedService.CODE_GRADED, res.detail.report);
-
-                        //stop the pooling
                         lxConnector.stopGetResult();
                     }
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    var errMsg = "Error " + errorThrown.code + " " + errorThrown.message
+                    sharedService.prepForBroadcast(sharedService.CODE_GRADED, errMsg);
                 }
             });
 
             if(getResultCtr >= timeout_constant){
                 lxConnector.stopGetResult();
-                sharedService.prepForBroadcast(sharedService.CODE_GRADED, 'Connection timed out');
+                sharedService.prepForBroadcast(sharedService.CODE_GRADED, 'Error: Connection timed out');
             }
         }
 
@@ -60,9 +61,13 @@ angular.module('codeEdit.services').
                 url: 'http://167.205.32.27/lz/services/grading/compile?clientid=100&clienttoken=100&flat=1',
                 data: data,
                 success: function(data){
-                    console.log(data);
+                    console.log(data); //example: {"reason":"Ok","success":true,"request_id":"114"} 
                     var res = eval('(' + data + ')');
                     timer = setInterval(function(){lxConnector.getResult(100, 100, res.request_id)}, 1000); //pooling getResult per 1 sec until get the result
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    var errMsg = "Error " + errorThrown.code + " " + errorThrown.message
+                    sharedService.prepForBroadcast(sharedService.CODE_GRADED, errMsg);
                 }
             });
         }

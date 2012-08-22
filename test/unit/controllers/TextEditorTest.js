@@ -1,6 +1,6 @@
 'use strict';
 
-describe('TabbedPaneTest', function(){
+describe('TextEditorTest', function(){
     var scope, ctrl;
     
     beforeEach(module('codeEdit.services'));

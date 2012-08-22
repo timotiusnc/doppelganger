@@ -1,6 +1,6 @@
 'use strict';
 
-describe('NavbarTest', function(){
+describe('MenubarEditorTest', function(){
     var scope, ctrl;
     
     beforeEach(module('codeEdit.services'));

@@ -19,19 +19,17 @@ function FooterCtrl($scope, sharedService, browserDetect){
                 $scope.result = sharedService.param;
             });
         }else if(sharedService.message == sharedService.CODE_GRADED){
-            $scope.$apply(function(){
-                $scope.report= sharedService.param
-                if($scope.report == "Connection timed out"){
-                    $scope.error = $scope.report;
-                    $("#footer_tab a[href='#error']").tab('show');
-                }else if($scope.report.compile_result['return'] != 0){
-                    $scope.error = $scope.report.compile_result.output;
-                    $("#footer_tab a[href='#error']").tab('show');
-                }else{
-                    $scope.output = $scope.report.compile_result.output;
-                    $("#footer_tab a[href='#output']").tab('show');
-                }
-            });
+            $scope.report= sharedService.param
+            if($scope.report.indexOf("Error") != -1){
+                $scope.error = $scope.report;
+                $("#footer_tab a[href='#error']").tab('show');
+            }else if($scope.report.compile_result['return'] != 0){
+                $scope.error = $scope.report.compile_result.output;
+                $("#footer_tab a[href='#error']").tab('show');
+            }else{
+                $scope.output = $scope.report.compile_result.output;
+                $("#footer_tab a[href='#output']").tab('show');
+            }
         }
     });
 

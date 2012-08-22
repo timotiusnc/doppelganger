@@ -1,4 +1,4 @@
 function CodeEditorCtrl($scope) {
-    $scope.dummy = "YEAH";
+    $scope.dummy = "tes";
 }
 CodeEditorCtrl.$inject = ['$scope'];

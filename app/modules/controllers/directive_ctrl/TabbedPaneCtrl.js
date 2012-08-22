@@ -99,7 +99,7 @@ function TabbedPaneCtrl($scope, fileHandler, sharedService){
             selectedTab = $scope.getSelectedTab();
             selectedTab.lang = sharedService.param;
 
-            sharedService.prepForBroadcast(sharedService.REQUEST_MODE_CHANGE, {lang: sharedService.param, idx: $scope.items.indexOf(selectedTab)});
+            sharedService.prepForBroadcast(sharedService.REQUEST_MODE_CHANGE, {tabLang: selectedTab.lang, tabTitle: selectedTab.tabTitle});
         }else if(sharedService.message == sharedService.REQUEST_OLD_FILE_NAME){
             sharedService.prepForBroadcast(sharedService.OLD_FILE_NAME_RESPONSE, $scope.getSelectedTab());
         }else if(sharedService.message == sharedService.REQUEST_SAVE_FILE){

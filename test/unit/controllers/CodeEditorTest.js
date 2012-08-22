@@ -5,6 +5,6 @@ describe('CodeEditorTest', function(){
         var scope = {},
         ctrl = new CodeEditorCtrl(scope);
 
-        expect(scope.dummy).toBe('YEAH');
+        expect(scope.dummy).toBe('tes');
     });
 });
