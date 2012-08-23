@@ -8,14 +8,23 @@ angular.module('codeEdit.services').
     var eventRecorder = {};
 
     eventRecorder.keyPressHandler = function(fileName, keyEvent){
-        if((keyEvent.type == 'keydown') && !(keyEvent.altKey || keyEvent.ctrlKey)){
-            var kc = keyEvent.keyCode;
-            if(kc == 8){                    //backspace
-                fileHandler.incrementCtr(fileName, {backspace_ctr: 1});
-            }else if(kc >= 37 && kc <= 40){ //4-directional pad
-                fileHandler.incrementCtr(fileName, {dir_ctr: 1});
+        var kc;
+        if((keyEvent.type == 'keypress') && !(keyEvent.altKey || keyEvent.ctrlKey)){
+            kc = keyEvent.keyCode;
+            if(kc == 10){ //line-feed, do not count
+                //do nothing
+            }else{
+                fileHandler.incrementCtr(fileName, {keypress_ctr: 1});
             }
-            fileHandler.incrementCtr(fileName, {keypress_ctr: 1});
+        }else if(keyEvent.type == 'keydown'){
+            kc = keyEvent.keyCode;
+            if(kc >= 37 && kc <= 40){ //4-directional pad
+                fileHandler.incrementCtr(fileName, {dir_ctr: 1});
+            }else if(kc == 8){                    //backspace
+                fileHandler.incrementCtr(fileName, {backspace_ctr: 1});
+            }else if(kc == 10 || kc == 16){ //line-feed or shift key, do not count
+                //do nothing
+            }
         }
     }
 

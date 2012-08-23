@@ -35,14 +35,16 @@ function TextAreaCtrl($scope, eventRecorder, sharedService, browserDetect){
         var timer = null;
         var from = 0, to = 1;
         var tempContent = '';
+        var ctr = 0;
 
         timer = setInterval(function(){$scope.animateTyping.animate()}, interval);
 
         $scope.animateTyping.animate = function(){
+            ++ctr;
             tempContent = content.substring(from, to);
             ++to;
 
-            textarea.simulateKeyDown(tempContent);
+            textarea.simulateKeyPress(tempContent);
             cm_instance.setValue(tempContent);
 
             if(to === content.length+1){

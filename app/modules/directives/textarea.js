@@ -23,8 +23,11 @@ angular.module('codeEdit.directives').
                 textarea.attr('id', scope.title);   //Give ID to newly created textarea
                 textarea.attr('name', scope.title);   //Give ID to newly created textarea
 
-                //bind keydown event to key processor (do it here so automatic testing could be done)
+                //bind keydown and keypress event to key processor (do it here so automatic testing could be done)
                 textarea.bind('keydown', function(event){
+                    scope.processKeyPress(textarea, event);
+                });
+                textarea.bind('keypress', function(event){
                     scope.processKeyPress(textarea, event);
                 });
 
@@ -56,9 +59,10 @@ angular.module('codeEdit.directives').
                         }
                     });
 
-                    if(scope.content.indexOf("/*animation_testing*/") != -1){
+                    if(scope.content.indexOf("animation_testing") != -1){
                         scope.content = scope.content.replace("/*animation_testing*/", "");
-                        scope.animateTyping(cm_instance, textarea, scope.content, 100);
+                        scope.content = scope.content.replace("(*animation_testing*)", "");
+                        scope.animateTyping(cm_instance, textarea, scope.content, 50);
                     }else{
                         cm_instance.setValue(scope.content);    //Set original value
                     }
