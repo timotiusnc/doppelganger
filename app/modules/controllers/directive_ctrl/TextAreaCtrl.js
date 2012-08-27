@@ -27,6 +27,10 @@ function TextAreaCtrl($scope, eventRecorder, sharedService, browserDetect){
         eventRecorder.mouseClickHandler($scope.title, evt);
     }
 
+    $scope.onPasteEvent = function(evt){
+        eventRecorder.pasteHandler($scope.title, evt);
+    }
+
     $scope.animateTyping = function(cm_instance, textarea, content, interval){
         if(!content){ //if no content, skip it, otherwise all manually typed chars will be deleted
             return;

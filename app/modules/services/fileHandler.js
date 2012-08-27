@@ -34,6 +34,7 @@ angular.module('codeEdit.services').
             newFile.dir_ctr         = 0;
             newFile.keypress_ctr    = 0;
             newFile.mouseclick_ctr  = 0;
+            newFile.copypaste_ctr   = 0;
             newFile.timer           = null;
 
             fileHandler.files[fileName] = newFile;
@@ -84,8 +85,6 @@ angular.module('codeEdit.services').
         fileContent = $("#" + fileName.replace(/[.]/g,"\\.")).val();
         fileHandler.updateFileAttr(fileName, {content: fileContent});
         fileHandler.saveFileToLocalStorage(fileName);
-
-        alert('File ' + fileName + ' has been saved');
     }
 
     fileHandler.saveFileAs = function(oldFileName, newFileName){
@@ -102,8 +101,6 @@ angular.module('codeEdit.services').
         //delete old file and then save new file from/to localstorage
         fileHandler.deleteFileFromLocalStorage(oldFileName);
         fileHandler.saveFileToLocalStorage(newFileName);
-
-        alert('File ' + newFileName + ' has been saved');
     }
 
     fileHandler.openFile = function(fileName){

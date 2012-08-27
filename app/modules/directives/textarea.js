@@ -43,19 +43,26 @@ angular.module('codeEdit.directives').
                     scope.cm_instance = cm_instance;      //Push instances into instances array in TextAreaCtrl
 
                     //get element instance (indicated with CodeMirror-scroll class name); bind its mouse click event
-                    var cm_textarea = $('.CodeMirror-scroll');
-                    cm_textarea.bind('click', function(evt){
+                    var cm_element = $('.CodeMirror-scroll');
+                    cm_element.bind('click', function(evt){
                         scope.onMouseClick(evt);
+                    });
+
+                    var tab_panes = $('.tab-pane'); //get all tab panes element
+                    //select last tab_panes (newest one), then get last textarea. (First textarea is the original, second is the codemirror textarea)
+                    var cm_textarea = tab_panes[tab_panes.length-1].getElementsByTagName('textarea')[1];
+                    jQuery(cm_textarea).bind('paste', function(evt){
+                        scope.onPasteEvent(evt);
                     });
 
                     //Handle textarea height
                     if($(window).height() > defaultHeight.MINIMUM_HEIGHT){
-                        cm_textarea.css('height', ($(window).height() - defaultHeight.getOccupiedHeight())+'px');
+                        cm_element.css('height', ($(window).height() - defaultHeight.getOccupiedHeight())+'px');
                     }
                     $(window).resize(function() { //Bind and event (window resized)
                         if($(window).height() > defaultHeight.MINIMUM_HEIGHT){
                             var contentHeight = $(window).height() - defaultHeight.getOccupiedHeight();
-                            cm_textarea.css('height', contentHeight+'px');
+                            cm_element.css('height', contentHeight+'px');
                         }
                     });
 

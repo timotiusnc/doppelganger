@@ -13,6 +13,7 @@ function ResultDialogCtrl($scope, fileHandler, sharedService){
         $scope.backSpaceCtr     = 0;
         $scope.compilationCtr   = 0;
         $scope.duration         = 0;
+        $scope.copypasteCtr     = 0;
 
         $scope.kebersihan_cara_pikir= 0;
         $scope.akurasi_pengetikan   = 0;
@@ -27,6 +28,7 @@ function ResultDialogCtrl($scope, fileHandler, sharedService){
             $scope.mouseClickCtr    += fileHandler.files[fileName].mouseclick_ctr;
             $scope.backSpaceCtr     += fileHandler.files[fileName].backspace_ctr;
             $scope.duration         += fileHandler.files[fileName].duration;
+            $scope.copypasteCtr     += fileHandler.files[fileName].copypaste_ctr;
             if(fileHandler.files[fileName].content){
                 $scope.totalChar        += fileHandler.files[fileName].content.length;
             }

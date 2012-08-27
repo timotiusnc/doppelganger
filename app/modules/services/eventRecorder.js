@@ -36,6 +36,10 @@ angular.module('codeEdit.services').
         fileHandler.incrementCtr(fileName, {mouseclick_ctr: 1});
     }
 
+    eventRecorder.pasteHandler = function(fileName, pasteEvent){
+        fileHandler.incrementCtr(fileName, {copypaste_ctr: 1});
+    }
+
     return eventRecorder;
 });
 
