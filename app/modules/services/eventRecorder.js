@@ -22,6 +22,7 @@ angular.module('codeEdit.services').
                 fileHandler.incrementCtr(fileName, {dir_ctr: 1});
             }else if(kc == 8){                    //backspace
                 fileHandler.incrementCtr(fileName, {backspace_ctr: 1});
+                fileHandler.incrementCtr(fileName, {keypress_ctr: 1});
             }else if(kc == 10 || kc == 16){ //line-feed or shift key, do not count
                 //do nothing
             }

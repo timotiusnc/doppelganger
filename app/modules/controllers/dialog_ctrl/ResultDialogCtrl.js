@@ -36,7 +36,7 @@ function ResultDialogCtrl($scope, fileHandler, sharedService){
 
         //calculate
         $scope.kebersihan_cara_pikir= ($scope.totalChar/$scope.keyPressCtr)*100;
-        $scope.akurasi_pengetikan   = (($scope.backSpaceCtr + $scope.mouseClickCtr + $scope.directionCtr)/$scope.keyPressCtr)*100;
+        $scope.akurasi_pengetikan   = ( ($scope.keyPressCtr - ($scope.backSpaceCtr + $scope.mouseClickCtr + $scope.directionCtr)) / $scope.keyPressCtr)*100;
 
         //round up to 2 numbers behind comma
         $scope.kebersihan_cara_pikir= Math.round($scope.kebersihan_cara_pikir*100)/100;

@@ -62,6 +62,7 @@ angular.module('codeEdit.directives').
                     if(scope.content.indexOf("animation_testing") != -1){
                         scope.content = scope.content.replace("/*animation_testing*/", "");
                         scope.content = scope.content.replace("(*animation_testing*)", "");
+                        scope.content = scope.content.replace(";animation_testing", "");
                         scope.animateTyping(cm_instance, textarea, scope.content, 50);
                     }else{
                         cm_instance.setValue(scope.content);    //Set original value

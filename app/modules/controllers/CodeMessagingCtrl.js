@@ -26,7 +26,7 @@ function CodeMessagingCtrl($scope, fileHandler, lxConnector, sharedService) {
         }
     }
 
-    $scope.compile = function(){
+    $scope.compile = function(eval_id){
         var files = new Array();
         for(var key in $scope.files){
             if($scope.files[key].checked){
@@ -34,18 +34,31 @@ function CodeMessagingCtrl($scope, fileHandler, lxConnector, sharedService) {
             }
         }
 
-        lxConnector.submit(files);
+        lxConnector.submit('compile', files, eval_id);
     }
 
-    $scope.execute = function(){
-        
+    $scope.execute = function(eval_id, input_contents){
+        var files = new Array();
+        for(var key in $scope.files){
+            if($scope.files[key].checked){
+                files.push($scope.files[key]);
+            }
+        }
+        files.push({ //make input file
+            fileName: 'input',
+            content: input_contents
+        });
+
+        lxConnector.submit('execute', files, eval_id);
     }
 
     $scope.$on(sharedService.HANDLE_BROADCAST, function(){
         if(sharedService.message == sharedService.ASK_TO_COMPILE){
-            $scope.compile();
+            $scope.compile(sharedService.param);
         }else if(sharedService.message == sharedService.ASK_TO_EXECUTE){
-            console.log('execute');
+            sharedService.prepForBroadcast(sharedService.ASK_FOR_INPUT_FILE, sharedService.param);
+        }else if(sharedService.message == sharedService.RESPONSE_FOR_INPUT_FILE){
+            $scope.execute(sharedService.param.eval_id, sharedService.param.input);
         }
     });
 

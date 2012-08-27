@@ -6,6 +6,7 @@
 angular.module('codeEdit.services').
     factory('fileHandler', function($rootScope, browserDetect, sharedService){
     var fileHandler = {};
+    fileHandler.key = "doppel-ganger-timotius-";
 
     /**
      * @name files
@@ -143,8 +144,9 @@ angular.module('codeEdit.services').
     fileHandler.saveFileToLocalStorage = function(fileName){
         if(browserDetect.supportLocalStorage){
             var file = fileHandler.files[fileName];
+            var newFileName = fileHandler.key + fileName; //example: doppel-ganger-timotius-hello.c
             if(file){
-                localStorage[fileName] = JSON.stringify(file);
+                localStorage[newFileName] = JSON.stringify(file);
                 //console.log(localStorage[fileName]);
             }
         }
@@ -156,7 +158,7 @@ angular.module('codeEdit.services').
      */
     fileHandler.getFileFromLocalStorage = function(fileName){
         if(browserDetect.supportLocalStorage){
-            var file = localStorage[fileName];
+            var file = localStorage[fileHandler.key + fileName];
             if(file){
                 return eval('(' + file + ')');
             }else{
@@ -178,13 +180,14 @@ angular.module('codeEdit.services').
      * @methodOf Files#
      */
     fileHandler.deleteFileFromLocalStorage = function(fileName){
-        localStorage.removeItem(fileName);
+        localStorage.removeItem(fileHandler.key + fileName);
     }
 
     fileHandler.listFilesOnLocalStorage = function(){
         var retval = new Object();
         for(var i=0; i<localStorage.length; ++i){
             var key = localStorage.key(i);
+            key = key.substring(fileHandler.key.length, key.length);
             retval[key] = fileHandler.getFileFromLocalStorage(key);
 
             if(retval[key].content){
@@ -196,7 +199,7 @@ angular.module('codeEdit.services').
     }
 
     fileHandler.formatFileName = function(fileName){
-        return fileName.replace(/\s/g,"_");
+        return fileName.replace(/\s/g,"_"); //replace whitespace character with underscore
     }
 
     $rootScope.$on(sharedService.HANDLE_BROADCAST, function(){

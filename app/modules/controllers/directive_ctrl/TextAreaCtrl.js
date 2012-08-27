@@ -79,7 +79,7 @@ function TextAreaCtrl($scope, eventRecorder, sharedService, browserDetect){
                             $scope.cm_instance.setOption("mode", "text/x-csrc");
                             break;
                         case "LISP":
-                            $scope.cm_instance.setOption("mode", "text/x-diff");
+                            $scope.cm_instance.setOption("mode", "text/x-lisp");
                             break;
                     }
                 }

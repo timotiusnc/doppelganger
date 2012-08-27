@@ -6,22 +6,27 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="#/view1">DoppelGanger</a>
+            <a class="brand">Ganger</a>
             <div class="nav-collapse">
                 <ul class="nav">
                     <li><button class="btn btn-danger" ng-click="compileBtnClick()">Compile</button></li>
                     <li><button class="btn btn-danger" ng-click="executeBtnClick()">Execute</button></li>
                     <!--<li><button class="btn btn-success">Submit</button></li>-->
+                    <li class="divider-vertical"></li>
+                    <form class="navbar-form pull-right">
+                        <input id="evaluatio_set_id" name="evaluation_set_id" ng-model="evaluation_set_id" type="text" class="span2" placeholder="evaluation set id">
+                    </form>
                 </ul>
                 <ul class="nav pull-right">
+                    <li><button class="btn btn-success" ng-click="getResultBtnClick()">Get Result</button></li>
                     <!--<li><a class=".pull-right">Timer: {{duration}} seconds</a></li>
                     <li><button class="btn btn-danger" ng-click="stopCodingBtnClick()">Grade</button></li>
                     <li class="divider-vertical"></li>-->
-                    <form class="navbar-form pull-left">
+                    <!--<form class="navbar-form pull-left">
                         <input id="username" name="username" ng-model="username" type="text" class="span2" placeholder="username">
                         <input id="password" name="password" type="password" class="span2" placeholder="password">
                     </form>
-                    <li><button class="btn btn-success">Login</button></li>
+                    <li><button class="btn btn-success">Login</button></li>-->
                 </ul>
             </div>
         </div>

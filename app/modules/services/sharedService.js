@@ -60,6 +60,7 @@ angular.module('codeEdit.services').
      * CODE_GRADED
      * @broadcaster lxConnectr
      * @receiver FooterCtrl
+     * @param string service name (compile or execute)
      * @param string the result string
      * App gets the compilation/execution result
      */
@@ -108,6 +109,7 @@ angular.module('codeEdit.services').
     /**
      * @broadcaster NavbarMessagingCtrl
      * @receiver CodeMessagingCtrl
+     * @param int evaluation_set_id
      * when button Compile is clicked, notify CodeMessaingCtrl to invoke lxConnector.submit
      */
     sharedService.ASK_TO_COMPILE    = "askToCompile";
@@ -115,9 +117,18 @@ angular.module('codeEdit.services').
     /**
      * @broadcaster NavbarMessagingCtrl
      * @receiver CodeMessagingCtrl
+     * @param int evaluation_set_id
      * when button Execute is clicked, notify CodeMessaingCtrl to invoke lxConnector. what ?
      */
     sharedService.ASK_TO_COMPILE    = "askToExecute";
+
+    /**
+     * @broadcaster CodeMessagingCtrl
+     * @receiver FooterCtrl
+     * @param string input file contents
+     */
+    sharedService.ASK_FOR_INPUT_FILE        = "askForInputFile";
+    sharedService.RESPONSE_FOR_INPUT_FILE   = "responseForInputFile";
 
     return sharedService;
 });
