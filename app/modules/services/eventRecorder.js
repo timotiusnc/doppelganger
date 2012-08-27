@@ -25,6 +25,9 @@ angular.module('codeEdit.services').
                 fileHandler.incrementCtr(fileName, {keypress_ctr: 1});
             }else if(kc == 10 || kc == 16){ //line-feed or shift key, do not count
                 //do nothing
+            }else if(kc == 83 && keyEvent.ctrlKey){
+                fileHandler.saveFile(fileName);
+                keyEvent.preventDefault();
             }
         }
     }

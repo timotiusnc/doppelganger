@@ -6,9 +6,10 @@
 angular.module('codeEdit.services').
     factory('lxConnector', function(sharedService){
         //constant
-        var timeout_constant    = 5;
+        var timeout_constant     = 5;
         var client_id            = 100;
         var client_token         = 'odysseus';
+        var mw_address           = '192.168.0.104';
 
         //attrib
         var getResultCtr = 0;
@@ -31,7 +32,7 @@ angular.module('codeEdit.services').
 
             $.ajax({ //Send POST to Oddysseus' getResult service
                 type: 'POST',
-                url: 'http://192.168.0.104/lz/services/grading/detail?clienttoken=' + clienttoken + '&id=' + id,
+                url: 'http://' + mw_address + '/lz/services/grading/detail?clienttoken=' + clienttoken + '&id=' + id,
                 success: function(data){
                     var res = eval('(' + data + ')'); //example in js/ResultExample
                     if(res.detail.status == 2 || res.detail.status == 3){
@@ -74,7 +75,7 @@ angular.module('codeEdit.services').
             getResultCtr = 0; //reset get result counter
             $.ajax({ //Send POST to Oddysseus' compile service
                 type: 'POST',
-                url: 'http://192.168.0.104/lz/services/grading/' + service + '?&clienttoken=' + client_token + '&flat=1',
+                url: 'http://' + mw_address + '/lz/services/grading/' + service + '?&clienttoken=' + client_token + '&flat=1',
                 data: data,
                 success: function(data){
                     console.log('response', data); //example: {"reason":"Ok","success":true,"request_id":"114"}

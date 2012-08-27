@@ -16,7 +16,6 @@ function SaveFileAsCtrl($scope, fileHandler, sharedService){
         $scope.selectedTab.tabTitle = newFileName;
 
         fileHandler.saveFileAs(oldFileName, newFileName);
-        alert('File ' + newFileName + ' has been saved');
 
         $scope.newFileName = ''; //initialize with empty string again for next save-as command
         $("#saveFileAsModal").modal('hide');

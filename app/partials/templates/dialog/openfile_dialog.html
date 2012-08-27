@@ -11,6 +11,9 @@
                 <input type="checkbox" value="{{file.fileName}}" ng:model="file.checked"> <span title="{{file.previewContent}}">{{file.fileName}}</span><br/>
             </span>
         </div>
+        <div style="margin-top: 10px">
+            <button ng-click="selectDeselect()" class="btn btn-navbar">{{selectDeselectStr}}</button>
+        </div>
     </div>
     <div class="modal-footer">
         <a class="btn" data-dismiss="modal">Cancel</a>
