@@ -4,7 +4,7 @@ angular.module('codeEdit.services').
 
     defaultHeight.MINIMUM_HEIGHT    = 500;
     defaultHeight.DEFAULT_NAVBAR_MB = 18;   //navbar margin-bottom
-    defaultHeight.FOOTER_HEIGHT     = 50;   //was 50, was 70
+    defaultHeight.FOOTER_HEIGHT     = 200;   //was 50, was 70
 
     defaultHeight.getOccupiedHeight = function(){
         var retval = 10  //#footer_text + its padding, was 6+28

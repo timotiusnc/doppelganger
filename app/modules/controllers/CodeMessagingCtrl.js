@@ -27,7 +27,7 @@ function CodeMessagingCtrl($scope, $window, fileHandler, lxConnector, sharedServ
         var files = new Array();
         for(var key in $scope.files){
             if($scope.files[key].checked){
-                files.push($scope.files[key]);
+                files.push(fileHandler.getFileFromLocalStorage(key));
             }
         }
 

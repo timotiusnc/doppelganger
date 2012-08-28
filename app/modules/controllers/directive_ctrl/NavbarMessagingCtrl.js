@@ -27,12 +27,12 @@ function NavbarMessagingCtrl($scope, lxConnector, sharedService) {
         lxConnector.getResultManual();
     }
 
-    $scope.$on(sharedService.HANDLE_BROADCAST, function(){
+    /*$scope.$on(sharedService.HANDLE_BROADCAST, function(){
         if(sharedService.message == sharedService.RESULT_RECEIVED){
             $scope.$apply(function(){
                 $scope.last_archive = "http://" + lxConnector.mw_address + "/lz/services/grading/downloadarchive?id=" + sharedService.param + "&clienttoken=" + lxConnector.client_token;
             });
         }
-    });
+    });*/
 }
 NavbarMessagingCtrl.$inject = ['$scope', 'lxConnector', 'sharedService'];
