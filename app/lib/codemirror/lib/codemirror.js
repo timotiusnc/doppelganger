@@ -1344,7 +1344,7 @@ var CodeMirror = (function() {
         while (pos < indentation) {++pos; indentString += " ";}
       }
 
-      replaceRange(indentString, {line: n, ch: 0}, {line: n, ch: curSpaceString.length});
+      //replaceRange(indentString, {line: n, ch: 0}, {line: n, ch: curSpaceString.length});
     }
 
     function loadMode() {

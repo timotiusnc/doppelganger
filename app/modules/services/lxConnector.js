@@ -5,21 +5,24 @@
 
 angular.module('codeEdit.services').
     factory('lxConnector', function(sharedService){
+        var lxConnector = {};
+
         //constant
-        var timeout_constant     = 5;
+        var timeout_constant     = 20;
         var client_id            = 100;
-        var client_token         = 'odysseus';
-        var mw_address           = '192.168.0.104';
 
         //attrib
         var getResultCtr = 0;
-        var lxConnector = {};
         var queue_id = -1;
         var timer;
 
+        //public static final
+        lxConnector.client_token         = '1';
+        lxConnector.mw_address           = '167.205.32.27';
+
         lxConnector.getResultManual = function(){
             console.log('queue_id', queue_id);
-            lxConnector.getResult(client_id, client_token, queue_id);
+            lxConnector.getResult(client_id, lxConnector.client_token, queue_id);
         }
 
         lxConnector.getResult = function(clientid, clienttoken, id){
@@ -32,9 +35,10 @@ angular.module('codeEdit.services').
 
             $.ajax({ //Send POST to Oddysseus' getResult service
                 type: 'POST',
-                url: 'http://' + mw_address + '/lz/services/grading/detail?clienttoken=' + clienttoken + '&id=' + id,
+                url: 'http://' + lxConnector.mw_address + '/lz/services/grading/detail?clienttoken=' + clienttoken + '&id=' + id,
                 success: function(data){
                     var res = eval('(' + data + ')'); //example in js/ResultExample
+                    //console.log('graded', res);
                     if(res.detail.status == 2 || res.detail.status == 3){
                         sharedService.prepForBroadcast(sharedService.CODE_GRADED, res.detail.report);
                         lxConnector.stopGetResult();
@@ -53,15 +57,23 @@ angular.module('codeEdit.services').
             }
         }
 
-        lxConnector.submit = function(service, files, eval_id){
+        lxConnector.submit = function(service, files, input_contents, eval_id){
             var data = { //Build the data parameter
                 GradeRequest: {
                     submitter_id: 'DoppelGanger',
-                    evaluationset_id: eval_id,
+                    evaluationset_id: files.length <= 1 ? 2 : 1,
                     mode: 1,
                     source_file: 'DoppelGanger.zip'
                 }
             };
+            data.input = input_contents;
+
+            /*compile (pasti tak ada input, jadi minimal 1)
+                <=1 -> eval_id 2 else 
+            execute (pasti ada input, jadi minimal 2 files)
+                <= 2 -> eval_id 2 else 1
+
+             (service == "compile") ? (files.length <= 1 ? 2 : 1) : (files.length <= 2 ? 2 : 1),*/
 
             data.files = new Array();
             for(i=0,n=files.length; i<n; ++i){
@@ -75,14 +87,14 @@ angular.module('codeEdit.services').
             getResultCtr = 0; //reset get result counter
             $.ajax({ //Send POST to Oddysseus' compile service
                 type: 'POST',
-                url: 'http://' + mw_address + '/lz/services/grading/' + service + '?&clienttoken=' + client_token + '&flat=1',
+                url: 'http://' + lxConnector.mw_address + '/lz/services/grading/' + service + '?&clienttoken=' + lxConnector.client_token + '&flat=1',
                 data: data,
                 success: function(data){
                     console.log('response', data); //example: {"reason":"Ok","success":true,"request_id":"114"}
                     var res = eval('(' + data + ')');
                     queue_id = res.request_id;
                     sharedService.prepForBroadcast(sharedService.RESULT_RECEIVED, queue_id); //Tell the user that the request has been received
-                    timer = setInterval(function(){lxConnector.getResult(client_id, client_token, res.request_id)}, 1000); //pooling getResult per 1 sec until get the result
+                    timer = setInterval(function(){lxConnector.getResult(client_id, lxConnector.client_token, res.request_id)}, 1000); //pooling getResult per 1 sec until get the result
                 },
                 error: function(jqXHR, textStatus, errorThrown){
                     var errCode     = errorThrown.code;

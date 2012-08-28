@@ -3,7 +3,7 @@
  * Intercept all keydown event
  */
 
-function TextAreaCtrl($scope, eventRecorder, sharedService, browserDetect){
+function TextAreaCtrl($scope, eventRecorder, sharedService, browserDetect, element){
     $scope.cm_instance    = null;//CodeMirror instance
 
     /**
@@ -11,6 +11,17 @@ function TextAreaCtrl($scope, eventRecorder, sharedService, browserDetect){
      */
     $scope.processKeyPress = function(element, keyEvent){
         eventRecorder.keyPressHandler($scope.title, keyEvent);
+
+        if(browserDetect.mobileVendor){
+            if (keyEvent.keyCode == 9 ) { //Detect TAB key
+                keyEvent.preventDefault();
+
+                var start = element.prop('selectionStart');
+                var end = element.prop('selectionEnd');
+
+                element.val(element.val().substring(0, start) + '\t' + element.val().substring(end, element.val().length));
+            }
+        }
     }
 
     /**

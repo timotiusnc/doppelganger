@@ -50,9 +50,11 @@ angular.module('codeEdit.services').
     /**
      * RESULT_RECEIVED
      * @broadcaster lxConector
-     * @receiver FooterCtrl
+     * @receiver FooterCtrl, NavbarMessagingCtrl
      * @param string the result string
      * App gets a queue-number
+     * (FooterCtrl shows that request received)
+     * (NavbarMessagingCtrl updates the Get Last Arhive link download)
      */
     sharedService.RESULT_RECEIVED           = "resultReceived";
 

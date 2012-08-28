@@ -19,6 +19,7 @@ function FooterCtrl($scope, sharedService, browserDetect){
         }else if(sharedService.message == sharedService.RESULT_RECEIVED){
             $scope.$apply(function(){
                 $scope.output = "Your request has been received, please wait for the result or get it manually by clicking 'Get Result' button";
+                $("#footer_tab a[href='#output']").tab('show');
             });
         }else if(sharedService.message == sharedService.CODE_GRADED){
             $scope.report = sharedService.param;

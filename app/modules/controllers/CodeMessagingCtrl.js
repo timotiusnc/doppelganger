@@ -1,13 +1,10 @@
-function CodeMessagingCtrl($scope, fileHandler, lxConnector, sharedService) {
+function CodeMessagingCtrl($scope, $window, fileHandler, lxConnector, sharedService) {
     $scope.files = null;
     $scope.selectDeselectStr = 'Select All';
+    $window.document.title = 'Ganger';
 
     $scope.initializeFile = function(){
         $scope.files = fileHandler.listFilesOnLocalStorage();
-
-        for(var key in $scope.files){
-            $scope.files[key].checked = false; //initialize check state to false
-        }
     }
 
     $scope.selectDeselect = function(){
@@ -41,15 +38,15 @@ function CodeMessagingCtrl($scope, fileHandler, lxConnector, sharedService) {
         var files = new Array();
         for(var key in $scope.files){
             if($scope.files[key].checked){
-                files.push($scope.files[key]);
+                files.push(fileHandler.getFileFromLocalStorage(key));
             }
         }
-        files.push({ //make input file
+        /*files.push({ //make input file
             fileName: 'input',
             content: input_contents
-        });
+        });*/
 
-        lxConnector.submit('execute', files, eval_id);
+        lxConnector.submit('execute', files, input_contents, eval_id);
     }
 
     $scope.$on(sharedService.HANDLE_BROADCAST, function(){
@@ -62,9 +59,9 @@ function CodeMessagingCtrl($scope, fileHandler, lxConnector, sharedService) {
         }
     });
 
-    $scope.initializeFile();
+    $scope.initializeFile(true);
 }
-CodeMessagingCtrl.$inject = ['$scope', 'fileHandler', 'lxConnector', 'sharedService'];
+CodeMessagingCtrl.$inject = ['$scope', '$window', 'fileHandler', 'lxConnector', 'sharedService'];
 
 /**
  * <p>Partial view 2</p>

@@ -4,7 +4,7 @@
     <p>Select file(s):</p>
     <div class="btn-group" data-toggle="buttons-checkbox">
         <span ng-repeat="file in files">
-            <input type="checkbox" value="{{file.fileName}}" ng:model="file.checked"> <span title="{{file.previewContent}}">{{file.fileName}}</span><br/>
+            <input type="checkbox" value="{{file.fileName}}" ng-model="file.checked"> <span title="{{file.previewContent}}">{{file.fileName}}</span><br/>
         </span>
     </div>
     <div style="margin-top: 10px">

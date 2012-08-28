@@ -4,13 +4,14 @@
  */
 
 angular.module('codeEdit.services').
-    factory('eventRecorder', function(fileHandler){
+    factory('eventRecorder', function(fileHandler, sharedService){
     var eventRecorder = {};
 
     eventRecorder.keyPressHandler = function(fileName, keyEvent){
         var kc;
         if((keyEvent.type == 'keypress') && !(keyEvent.altKey || keyEvent.ctrlKey)){
             kc = keyEvent.keyCode;
+            //console.log(kc);
             if(kc == 10){ //line-feed, do not count
                 //do nothing
             }else{
@@ -18,6 +19,7 @@ angular.module('codeEdit.services').
             }
         }else if(keyEvent.type == 'keydown'){
             kc = keyEvent.keyCode;
+            //console.log('keydown', kc);
             if(kc >= 37 && kc <= 40){ //4-directional pad
                 fileHandler.incrementCtr(fileName, {dir_ctr: 1});
             }else if(kc == 8){                    //backspace
@@ -26,8 +28,10 @@ angular.module('codeEdit.services').
             }else if(kc == 10 || kc == 16){ //line-feed or shift key, do not count
                 //do nothing
             }else if(kc == 83 && keyEvent.ctrlKey){
-                fileHandler.saveFile(fileName);
+                sharedService.prepForBroadcast(sharedService.REQUEST_SAVE_FILE, false);
                 keyEvent.preventDefault();
+            }else if(kc == 9 || kc == 13){ //tab or ente
+                fileHandler.incrementCtr(fileName, {keypress_ctr: 1});
             }
         }
     }

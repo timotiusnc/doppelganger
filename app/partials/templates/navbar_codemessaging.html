@@ -12,13 +12,14 @@
                     <li><button class="btn btn-danger" ng-click="compileBtnClick()">Compile</button></li>
                     <li><button class="btn btn-danger" ng-click="executeBtnClick()">Execute</button></li>
                     <!--<li><button class="btn btn-success">Submit</button></li>-->
-                    <li class="divider-vertical"></li>
+                    <!--<li class="divider-vertical"></li>
                     <form class="navbar-form pull-right">
                         <input id="evaluatio_set_id" name="evaluation_set_id" ng-model="evaluation_set_id" type="text" class="span2" placeholder="evaluation set id">
-                    </form>
+                    </form>-->
                 </ul>
                 <ul class="nav pull-right">
-                    <li><button class="btn btn-success" ng-click="getResultBtnClick()">Get Result</button></li>
+                    <li><button class="btn btn-success" ng-click="getResultBtnClick()">Get Last Result</button></li>
+                    <li><a href="{{last_archive}}" target="_blank">Get Last Archive</a></li>
                     <!--<li><a class=".pull-right">Timer: {{duration}} seconds</a></li>
                     <li><button class="btn btn-danger" ng-click="stopCodingBtnClick()">Grade</button></li>
                     <li class="divider-vertical"></li>-->

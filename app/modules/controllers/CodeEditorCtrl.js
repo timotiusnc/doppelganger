@@ -1,4 +1,5 @@
-function CodeEditorCtrl($scope) {
+function CodeEditorCtrl($scope, $window) {
     $scope.dummy = "tes";
+    $window.document.title = 'Doppel';
 }
-CodeEditorCtrl.$inject = ['$scope'];
+CodeEditorCtrl.$inject = ['$scope', '$window'];
