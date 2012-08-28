@@ -12,7 +12,7 @@ function SaveFileAsCtrl($scope, fileHandler, sharedService){
         var newFileName = fileHandler.formatFileName($scope.newFileName);
 
         //change textarea ID and tab title
-        $("#"+fileHandler.formatFileName(oldFileName)).attr('id', newFileName);
+        $("#"+oldFileName.replace(/[.]/g,"\\.")).attr('id', newFileName);
         $scope.selectedTab.tabTitle = newFileName;
 
         fileHandler.saveFileAs(oldFileName, newFileName);
