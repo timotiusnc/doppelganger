@@ -97,9 +97,10 @@ function TabbedPaneCtrl($scope, fileHandler, sharedService){
             $scope.addNewTab(sharedService.param.title, sharedService.param.content);
         }else if(sharedService.message == sharedService.LANG_CHANGED){
             selectedTab = $scope.getSelectedTab();
-            selectedTab.lang = sharedService.param;
-
-            sharedService.prepForBroadcast(sharedService.REQUEST_MODE_CHANGE, {tabLang: selectedTab.lang, tabTitle: selectedTab.tabTitle});
+            if(selectedTab){
+                selectedTab.lang = sharedService.param;
+                sharedService.prepForBroadcast(sharedService.REQUEST_MODE_CHANGE, {tabLang: selectedTab.lang, tabTitle: selectedTab.tabTitle});
+            }
         }else if(sharedService.message == sharedService.REQUEST_OLD_FILE_NAME){
             sharedService.prepForBroadcast(sharedService.OLD_FILE_NAME_RESPONSE, $scope.getSelectedTab());
         }else if(sharedService.message == sharedService.REQUEST_SAVE_FILE){
@@ -112,11 +113,18 @@ function TabbedPaneCtrl($scope, fileHandler, sharedService){
                 }
             }else{
                 if(selectedTab){
+                    //increment save ctr
+                    fileHandler.incrementCtr(selectedTab.tabTitle, {save_ctr: 1});
+
                     fileHandler.saveFile(selectedTab.tabTitle);
                     alert('File ' + selectedTab.tabTitle + ' has been saved');
                     //console.log(selectedTab.tabInitialContent);
                 }
             }
+        }else if(sharedService.message == sharedService.REQUEST_EXPORT_FILE){
+            selectedTab = $scope.getSelectedTab();
+            fileHandler.saveFile(selectedTab.tabTitle);
+            fileHandler.exportFile(selectedTab.tabTitle);
         }
     });
 }

@@ -15,7 +15,11 @@ function SaveFileAsCtrl($scope, fileHandler, sharedService){
         $("#"+oldFileName.replace(/[.]/g,"\\.")).attr('id', newFileName);
         $scope.selectedTab.tabTitle = newFileName;
 
+        //increment save ctr
+        fileHandler.incrementCtr(oldFileName, {save_ctr: 1});
+
         fileHandler.saveFileAs(oldFileName, newFileName);
+        sharedService.prepForBroadcast(sharedService.CHANGE_NAVBAR_FILENAME, {tabTitle: newFileName, tabLang: null}); //change navbar timer file name
         alert('File ' + newFileName + ' has been saved');
 
         $scope.newFileName = ''; //initialize with empty string again for next save-as command
@@ -25,6 +29,12 @@ function SaveFileAsCtrl($scope, fileHandler, sharedService){
     $scope.close = function(){
         $scope.newFileName = ''; //initialize with empty string again for next save-as command
     }
+
+    $('#newfilename_input').bind('keydown', function(evt){
+        if(evt.keyCode == 13){ //enter
+            $scope.save_file_as();
+        }
+    });
 
     $('#saveFileAsModal').on('shown', function () { //When a modal shown
         $("#newfilename_input").focus();//auto focus

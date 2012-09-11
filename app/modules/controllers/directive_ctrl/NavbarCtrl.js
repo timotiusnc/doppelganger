@@ -29,6 +29,11 @@ function NavbarCtrl($scope, sharedService) {
         $("#importFileModal").modal('show');
     }
 
+    $scope.exportFileBtnClick = function(){
+        //sharedService.prepForBroadcast(sharedService.REQUEST_SAVE_FILE, false);
+        sharedService.prepForBroadcast(sharedService.REQUEST_EXPORT_FILE, null);
+    }
+
     $scope.addNewTabBtnClick = function(){
         sharedService.prepForBroadcast(sharedService.NEW_TAB_BTN_CLICKED, {title: '', content: ''});
     }
@@ -49,7 +54,7 @@ function NavbarCtrl($scope, sharedService) {
         }else if(sharedService.message == sharedService.CHANGE_NAVBAR_FILENAME){
             $scope.duration = '--';
             $scope.fileName = sharedService.param.tabTitle;
-            $scope.choosen_lang = sharedService.param.tabLang;
+            if (sharedService.param.tabLang) {$scope.choosen_lang = sharedService.param.tabLang;}
         }
     });
 }

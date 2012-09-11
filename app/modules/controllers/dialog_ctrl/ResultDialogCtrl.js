@@ -6,15 +6,17 @@
 function ResultDialogCtrl($scope, fileHandler, sharedService){
     $('#resultDialogModal').on('shown', function () { //When the modal shown
         //initialize variable
-        $scope.keyPressCtr      = 0;
-        $scope.totalChar        = 0;
-        $scope.directionCtr     = 0;
-        $scope.mouseClickCtr    = 0;
-        $scope.backSpaceCtr     = 0;
-        $scope.compilationCtr   = 0;
         $scope.duration         = 0;
+        $scope.backSpaceCtr     = 0;
+        $scope.directionCtr     = 0;
+        $scope.keyPressCtr      = 0;
+        $scope.mouseClickCtr    = 0;
+        $scope.saveCtr          = 0;
+        $scope.compilationCtr   = 0;
+        $scope.executionCtr     = 0;
         $scope.copypasteCtr     = 0;
-
+        
+        $scope.totalChar        = 0;
         $scope.kebersihan_cara_pikir= 0;
         $scope.akurasi_pengetikan   = 0;
 
@@ -23,11 +25,14 @@ function ResultDialogCtrl($scope, fileHandler, sharedService){
             //console.log(fileHandler.files[fileName]);
             fileHandler.saveFile(fileName);
 
-            $scope.keyPressCtr      += fileHandler.files[fileName].keypress_ctr;
-            $scope.directionCtr     += fileHandler.files[fileName].dir_ctr;
-            $scope.mouseClickCtr    += fileHandler.files[fileName].mouseclick_ctr;
-            $scope.backSpaceCtr     += fileHandler.files[fileName].backspace_ctr;
             $scope.duration         += fileHandler.files[fileName].duration;
+            $scope.backSpaceCtr     += fileHandler.files[fileName].backspace_ctr;
+            $scope.directionCtr     += fileHandler.files[fileName].dir_ctr;
+            $scope.keyPressCtr      += fileHandler.files[fileName].keypress_ctr;
+            $scope.mouseClickCtr    += fileHandler.files[fileName].mouseclick_ctr;
+            $scope.saveCtr          += fileHandler.files[fileName].save_ctr;
+            $scope.compilationCtr   += fileHandler.files[fileName].compile_ctr;
+            $scope.executionCtr     += fileHandler.files[fileName].execute_ctr;
             $scope.copypasteCtr     += fileHandler.files[fileName].copypaste_ctr;
             if(fileHandler.files[fileName].content){
                 $scope.totalChar        += fileHandler.files[fileName].content.length;

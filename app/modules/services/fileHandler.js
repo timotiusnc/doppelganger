@@ -34,6 +34,9 @@ angular.module('codeEdit.services').
             newFile.dir_ctr         = 0;
             newFile.keypress_ctr    = 0;
             newFile.mouseclick_ctr  = 0;
+            newFile.save_ctr        = 0;
+            newFile.compile_ctr     = 0;
+            newFile.execute_ctr     = 0;
             newFile.copypaste_ctr   = 0;
             newFile.timer           = null;
 
@@ -80,6 +83,14 @@ angular.module('codeEdit.services').
     fileHandler.saveFile = function(fileName){
         var fileContent;
 
+        //update compile and execute ctr
+        //needs to be done to get the compile and execute ctr update from Ganger
+        var oldFile = fileHandler.getFileFromLocalStorage(fileName);
+        if(oldFile){
+            fileHandler.files[fileName].compile_ctr = oldFile.compile_ctr;
+            fileHandler.files[fileName].execute_ctr = oldFile.execute_ctr;
+        }
+
         //[save code mirror value]; get textarea value; update file content attr; save to localstorage
         sharedService.prepForBroadcast(sharedService.REQUEST_SAVE_EDITOR, fileName);
         fileContent = $("#" + fileName.replace(/[.]/g,"\\.")).val();
@@ -90,6 +101,14 @@ angular.module('codeEdit.services').
     fileHandler.saveFileAs = function(oldFileName, newFileName){
         var fileContent;
 
+        //update compile and execute ctr
+        //needs to be done to get the compile and execute ctr update from Ganger
+        var oldFile = fileHandler.getFileFromLocalStorage(oldFileName);
+        if(oldFile){
+            fileHandler.files[oldFileName].compile_ctr = oldFile.compile_ctr;
+            fileHandler.files[oldFileName].execute_ctr = oldFile.execute_ctr;
+        }
+
         //[save code mirror value]; get textarea value
         sharedService.prepForBroadcast(sharedService.REQUEST_SAVE_EDITOR, newFileName);
         fileContent = $("#" + newFileName.replace(/[.]/g,"\\.")).val();
@@ -99,7 +118,7 @@ angular.module('codeEdit.services').
         fileHandler.updateFileAttr(newFileName, {content: fileContent});
 
         //delete old file and then save new file from/to localstorage
-        fileHandler.deleteFileFromLocalStorage(oldFileName);
+        //fileHandler.deleteFileFromLocalStorage(oldFileName);
         fileHandler.saveFileToLocalStorage(newFileName);
     }
 
@@ -117,6 +136,14 @@ angular.module('codeEdit.services').
         }else{
             return null;
         }
+    }
+
+    fileHandler.exportFile = function(fileName){
+        var text = fileHandler.files[fileName].content;
+        //console.log('text', text);
+        var text64 = window.btoa(text);
+        //console.log('text64', text64);
+        window.location = "data:application/octet-stream;base64,"+text64;
     }
 
     fileHandler.startTimer = function(fileName){
@@ -186,6 +213,11 @@ angular.module('codeEdit.services').
      */
     fileHandler.deleteFileFromLocalStorage = function(fileName){
         localStorage.removeItem(fileHandler.key + fileName);
+    }
+
+    fileHandler.saveFileObjectToLocalStorage = function(file){
+        var newFileName = fileHandler.key + file.fileName;
+        localStorage[newFileName] = JSON.stringify(file);
     }
 
     fileHandler.listFilesOnLocalStorage = function(){

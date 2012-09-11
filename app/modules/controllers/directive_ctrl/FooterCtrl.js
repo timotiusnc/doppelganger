@@ -24,7 +24,7 @@ function FooterCtrl($scope, sharedService, browserDetect){
         }else if(sharedService.message == sharedService.CODE_GRADED){
             $scope.report = sharedService.param;
             console.log('report', $scope.report);
-            if(typeof $scope.report == "object"){
+            if($scope.report != null && typeof $scope.report == "object"){
                 if($scope.report.grade_result){
                     if($scope.report.grade_result['return'] == 0){
                         $scope.output = $scope.report.grade_result.output + '\n' + $scope.report.grade_result.sandboxoutput;
@@ -58,7 +58,8 @@ function FooterCtrl($scope, sharedService, browserDetect){
                     $("#footer_tab a[href='#error']").tab('show');
                 //}
             }else{
-                $scope.error = 'Unknown Error, contact system administrator';
+                $scope.error = 'Unknown Error, most likely because GRADER IS DOWN.\n\
+Please contact system administrator (karoldanutama@gmail.com)';
                 $scope.$apply();
                 $("#footer_tab a[href='#error']").tab('show');
             }

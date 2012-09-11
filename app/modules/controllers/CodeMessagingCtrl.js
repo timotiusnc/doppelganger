@@ -25,9 +25,15 @@ function CodeMessagingCtrl($scope, $window, fileHandler, lxConnector, sharedServ
 
     $scope.compile = function(eval_id){
         var files = new Array();
+        var currFile = null;
         for(var key in $scope.files){
             if($scope.files[key].checked){
-                files.push(fileHandler.getFileFromLocalStorage(key));
+                currFile = fileHandler.getFileFromLocalStorage(key);
+
+                ++currFile.compile_ctr;
+                fileHandler.saveFileObjectToLocalStorage(currFile);
+
+                files.push(currFile);
             }
         }
 
@@ -36,9 +42,15 @@ function CodeMessagingCtrl($scope, $window, fileHandler, lxConnector, sharedServ
 
     $scope.execute = function(eval_id, input_contents){
         var files = new Array();
+        var currFile = null;
         for(var key in $scope.files){
             if($scope.files[key].checked){
-                files.push(fileHandler.getFileFromLocalStorage(key));
+                currFile = fileHandler.getFileFromLocalStorage(key);
+
+                ++currFile.execute_ctr;
+                fileHandler.saveFileObjectToLocalStorage(currFile);
+
+                files.push(currFile);
             }
         }
         /*files.push({ //make input file

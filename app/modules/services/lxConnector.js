@@ -78,7 +78,7 @@ angular.module('codeEdit.services').
             data.files = new Array();
             for(i=0,n=files.length; i<n; ++i){
                 data.files[i] = {
-                    name : files[i].fileName,
+                    name: files[i].fileName,
                     content: files[i].content
                 }
             }

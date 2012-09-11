@@ -101,7 +101,14 @@ angular.module('codeEdit.services').
     sharedService.REQUEST_SAVE_FILE       = "requestSaveFile";
 
     /**
-     * @broadcaster tabbedpane.js (when a tab is selected)
+     * @broadcaster NavBarCtrl
+     * @receiver TabbedPaneCtrl
+     * When export button clicked, NavBarCtrl tell TabbedPaneCtrl, then tell fileHandler to export
+     */
+    sharedService.REQUEST_EXPORT_FILE     = "requestExportFile";
+
+    /**
+     * @broadcaster tabbedpane.js (when a tab is selected), SaveFileAsCtrl
      * @receiver navbar.js
      * @param string tabTitle
      * @param string corresponding lang
@@ -122,7 +129,7 @@ angular.module('codeEdit.services').
      * @param int evaluation_set_id
      * when button Execute is clicked, notify CodeMessaingCtrl to invoke lxConnector. what ?
      */
-    sharedService.ASK_TO_COMPILE    = "askToExecute";
+    sharedService.ASK_TO_EXECUTE    = "askToExecute";
 
     /**
      * @broadcaster CodeMessagingCtrl

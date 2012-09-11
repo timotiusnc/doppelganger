@@ -27,9 +27,11 @@ angular.module('codeEdit.services').
                 fileHandler.incrementCtr(fileName, {keypress_ctr: 1});
             }else if(kc == 10 || kc == 16){ //line-feed or shift key, do not count
                 //do nothing
-            }else if(kc == 83 && keyEvent.ctrlKey){
+            }else if(kc == 83 && keyEvent.ctrlKey){ //Ctrl+S
                 sharedService.prepForBroadcast(sharedService.REQUEST_SAVE_FILE, false);
                 keyEvent.preventDefault();
+            }else if(kc == 78 && keyEvent.ctrlKey){ //Ctrl+N, not yet working, maybe browser interrupt it (new window)
+                
             }else if(kc == 9 || kc == 13){ //tab or ente
                 fileHandler.incrementCtr(fileName, {keypress_ctr: 1});
             }
