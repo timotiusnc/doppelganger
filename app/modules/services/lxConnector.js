@@ -15,6 +15,7 @@ angular.module('codeEdit.services').
         var getResultCtr = 0;
         var queue_id = -1;
         var timer;
+        var submit_lock = false;
 
         //public static final
         lxConnector.client_token         = '1';
@@ -22,7 +23,7 @@ angular.module('codeEdit.services').
 
         lxConnector.getResultManual = function(){
             console.log('queue_id', queue_id);
-            lxConnector.getResult(client_id, lxConnector.client_token, queue_id);
+            lxConnector.get(client_id, lxConnector.client_token, queue_id);
         }
 
         lxConnector.getResult = function(clientid, clienttoken, id){
@@ -58,6 +59,12 @@ angular.module('codeEdit.services').
         }
 
         lxConnector.submit = function(service, files, input_contents, eval_id){
+            if(timer != null || submit_lock){
+                console.log('return');
+                return;
+            }
+            submit_lock = true;
+
             var data = { //Build the data parameter
                 GradeRequest: {
                     submitter_id: 'DoppelGanger',
@@ -112,6 +119,8 @@ angular.module('codeEdit.services').
         lxConnector.stopGetResult = function(){
             console.log('clearing interval');
             clearInterval(timer);
+            timer = null;
+            submit_lock = false;
         }
 
         return lxConnector;

@@ -224,19 +224,23 @@ angular.module('codeEdit.services').
         var retval = new Object();
         for(var i=0; i<localStorage.length; ++i){
             var key = localStorage.key(i);
-            key = key.substring(fileHandler.key.length, key.length);
-            retval[key] = fileHandler.getFileFromLocalStorage(key);
+			if(key.indexOf(fileHandler.key) != -1){
+				key = key.substring(fileHandler.key.length, key.length);
+				retval[key] = fileHandler.getFileFromLocalStorage(key);
 
-            if(retval[key].content){
-                retval[key].previewContent = retval[key].content.substring(0, 50);
-            }
+				if(retval[key].content){
+					retval[key].previewContent = retval[key].content.substring(0, 50);
+				}
+			}
         }
 
         return retval;
     }
 
     fileHandler.formatFileName = function(fileName){
-        return fileName.replace(/\s/g,"_"); //replace whitespace character with underscore
+        fileName = fileName.replace(/\s/g,"_"); //replace whitespace character with underscore
+        fileName = fileName.replace(/[\[\]]/g,""); //replace [] character with underscore
+        return fileName; //replace whitespace character with underscore
     }
 
     $rootScope.$on(sharedService.HANDLE_BROADCAST, function(){

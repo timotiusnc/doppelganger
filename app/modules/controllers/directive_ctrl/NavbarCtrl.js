@@ -1,7 +1,7 @@
 function NavbarCtrl($scope, sharedService) {
     $scope.duration = '--';
     $scope.fileName = '';
-    $scope.langs = ["Pascal", "C/C++", "LISP"]; //tambahkan bahasa baru disini
+    $scope.langs = ["Pascal", "C/C++", "LISP"];
     $scope.choosen_lang = $scope.langs[0]; //Set PASCAL as default lang
 
     $scope.clearBtnClick = function(){

@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <title>CodeMirror: LISP mode</title>
+    <link rel="stylesheet" href="../../lib/codemirror.css">
+    <script src="../../lib/codemirror.js"></script>
+    <script src="lisp.js"></script>
+    <link rel="stylesheet" href="../../doc/docs.css">
+    <style type="text/css">.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}</style>
+  </head>
+  <body>
+    <h1>CodeMirror: LISP mode</h1>
+
+<div><textarea id="code" name="code">
+;NIM/Nama  : 16506086/Firman Azhari
+;Nama File	 : P4-stei16086-070327-01.lsp
+;Topik     	 : ADT Pohon Biner basis 1
+;Tanggal  	 : 27 Maret 2007
+
+;type PohonBiner: <  A:Elemen,L: PohonBiner, R:PohonBiner>
+
+;KONSTRUKTOR
+
+; konsoL : elemen, list of elemen -> list of elemen
+;  konsoL(e,L) membuat list dengan Firtselement  e dan tail L
+(defun konsoL (e L)
+   (cons e L)
+)
+
+; konkat : list of elemen, list of elemen -> list of elemen
+; konkat(L1,L2) menggabungkan L1 dengan L2 
+(defun konkat (L1 L2)
+   (append L1 L2)
+)
+
+; MakeTree : integer,  list of elemen , list of elemen -> Pohon Biner
+;  MakeTree(A,L,R) membuat pohon dengan akar A  dengan anak kiri L dan anak kanan R}
+(defun MakeTree (A L R)
+   (konkat (konsoL A (list L)) (list R))
+)
+
+;SELEKTOR
+
+; Akar: pohon biner tidak kosong-> integer
+; Akar (P) memberikan nilai dari akar pohon biner
+(defun Akar (P)
+	(car P)
+)
+</textarea></div>
+
+    <script>
+      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        mode: "text/x-lisp"
+      });
+    </script>
+
+    <p><strong>MIME types defined:</strong> <code>text/x-pascal</code>.</p>
+  </body>
+</html>

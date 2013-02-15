@@ -96,7 +96,6 @@ function TextAreaCtrl($scope, eventRecorder, sharedService, browserDetect, eleme
                         case "LISP":
                             $scope.cm_instance.setOption("mode", "text/x-lisp");
                             break;
-                            //Tambahkan kasus bahasa baru disini
                     }
                 }
             }
