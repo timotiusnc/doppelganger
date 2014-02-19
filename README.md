@@ -6,7 +6,7 @@ Please note that this app still uses outdated AngularJS library: 1.0.1 (the late
 
 Running the app is dead simple (assuming you already have web server running):
 after clone, just navigate your browser to `http://localhost/<folder-name>/app`
-(for example, if you cloned into folder named 'doppelganger', then navigate to: 'http://localhost/doppelganger/app').
+(for example, if you cloned into folder named `doppelganger`, then navigate to: `http://localhost/doppelganger/app`).
 
 # angular-seed — the seed for AngularJS apps
 
