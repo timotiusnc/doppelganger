@@ -2,6 +2,12 @@
 IDEOne-like app that monitors your typing process and lets you compile (and excute) multiple files.
 This app uses [angular-seed](https://github.com/angular/angular-seed). The angular-seed readme is included here.
 
+Please note that this app still uses outdated AngularJS library: 1.0.1 (the latest one is 1.2.13).
+
+Running the app is dead simple (assuming you already have web server running):
+after clone, just navigate your browser to `http://localhost/<folder-name>/app`
+(for example, if you cloned into folder named 'doppelganger', then navigate to: 'http://localhost/doppelganger/app').
+
 # angular-seed — the seed for AngularJS apps
 
 This project is an application skeleton for a typical [AngularJS](http://angularjs.org/) web app.
