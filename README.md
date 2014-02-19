@@ -1,3 +1,7 @@
+#DoppelGanger
+IDEOne-like app that monitors your typing process and lets you compile (and excute) multiple files.
+This app uses [angular-seed](https://github.com/angular/angular-seed). The angular-seed readme is included here.
+
 # angular-seed — the seed for AngularJS apps
 
 This project is an application skeleton for a typical [AngularJS](http://angularjs.org/) web app.
